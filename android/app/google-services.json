@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "285205140731",
+    "project_id": "senior-companion-app",
+    "storage_bucket": "senior-companion-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:285205140731:android:7777cff57e6dded4e84c5e",
+        "android_client_info": {
+          "package_name": "com.doughnutlabs.seniorcompanion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "285205140731-7nhg2ksu97alvg0c81bldu4u54n7vsa7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVm3LmMrSzVlQu_FgQSVkmzJIQj_S11Pc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "285205140731-7nhg2ksu97alvg0c81bldu4u54n7vsa7.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "285205140731-09g7cs7ttroqtl8vd3jmgt3jhsamrmr4.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.doughnutlabs.seniorcompanion"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
