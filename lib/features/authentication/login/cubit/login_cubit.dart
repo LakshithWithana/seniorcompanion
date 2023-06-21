@@ -19,9 +19,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(
       state.copyWith(
         email: email,
-        status: Formz.validate([email, state.password])
-            ? FormzSubmissionStatus.success
-            : FormzSubmissionStatus.failure,
+        validated: Formz.validate([email, state.password]),
       ),
     );
   }
@@ -31,15 +29,13 @@ class LoginCubit extends Cubit<LoginState> {
     emit(
       state.copyWith(
         password: password,
-        status: Formz.validate([password, state.email])
-            ? FormzSubmissionStatus.success
-            : FormzSubmissionStatus.failure,
+        validated: Formz.validate([password, state.email]),
       ),
     );
   }
 
   Future<void> loginWithCredentials() async {
-    if (!state.status.isSuccess) return;
+    if (!state.validated) return;
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     try {
       var result = await _authRepository.loginWithEmailAndPassword(

@@ -23,6 +23,7 @@ class CustomTextFormField extends StatefulWidget {
     this.borderWidth,
     this.fontSize,
     this.height,
+    this.errorText,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -41,6 +42,7 @@ class CustomTextFormField extends StatefulWidget {
   final double? borderWidth;
   final double? fontSize;
   final double? height;
+  final String? errorText;
 
   @override
   _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
@@ -68,6 +70,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   fontSize: widget.fontSize ?? 16.0.w,
                 ),
                 decoration: InputDecoration(
+                  errorText: widget.errorText,
                   prefixIcon: widget.prefix,
                   suffixIcon: widget.suffix,
                   hintText: widget.hintText,
