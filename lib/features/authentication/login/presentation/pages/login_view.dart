@@ -4,13 +4,13 @@ import 'package:formz/formz.dart';
 import 'package:seniorcompanion/core/constants/colors.dart';
 import 'package:seniorcompanion/core/shared/widgets/custom_elevated_buttons.dart';
 import 'package:seniorcompanion/core/shared/widgets/custom_text.dart';
-import 'package:seniorcompanion/core/shared/widgets/custom_text_form_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:seniorcompanion/features/authentication/login/cubit/login_cubit.dart';
 import 'package:seniorcompanion/features/authentication/login/presentation/widgets/email_input_widget.dart';
 import 'package:seniorcompanion/features/authentication/login/presentation/widgets/login_button_widget.dart';
 import 'package:seniorcompanion/features/authentication/login/presentation/widgets/password_input_widget.dart';
+import 'package:seniorcompanion/features/authentication/signup/presentation/pages/signup_page.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({super.key});
@@ -24,7 +24,7 @@ class LoginView extends StatelessWidget {
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
-                content: Text(state.errorMessage ?? "Authentication Failed"),
+                content: Text(state.errorMessage ?? "Login Failed"),
               ),
             );
         }
@@ -71,6 +71,7 @@ class LoginView extends StatelessWidget {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: white,
+                        padding: const EdgeInsets.all(0),
                         shape: const RoundedRectangleBorder(
                           side: BorderSide(color: mainColor, width: 2.0),
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -78,9 +79,10 @@ class LoginView extends StatelessWidget {
                       ),
                       child: SizedBox(
                         height: 50.0,
-                        width: 122.0.w,
+                        width: 170.0.w,
                         child: Center(
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset("assets/images/facebook_icon.png"),
                               const SizedBox(width: 5.0),
@@ -99,6 +101,7 @@ class LoginView extends StatelessWidget {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: white,
+                        padding: const EdgeInsets.all(0),
                         shape: const RoundedRectangleBorder(
                           side: BorderSide(color: mainColor, width: 2.0),
                           borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -106,9 +109,10 @@ class LoginView extends StatelessWidget {
                       ),
                       child: SizedBox(
                         height: 50.0,
-                        width: 122.0.w,
+                        width: 170.0.w,
                         child: Center(
                           child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Image.asset("assets/images/google_icon.png"),
                               const SizedBox(width: 5.0),
@@ -130,7 +134,13 @@ class LoginView extends StatelessWidget {
                   isNegative: true,
                   backgroundColor: mainColor,
                   label: "signup".tr(),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SignupPage()),
+                    );
+                  },
                 ),
               ],
             ),

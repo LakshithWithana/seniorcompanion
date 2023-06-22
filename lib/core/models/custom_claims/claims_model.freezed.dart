@@ -32,7 +32,9 @@ mixin _$ClaimsModel {
   @JsonKey(name: 'email')
   String? get email => throw _privateConstructorUsedError;
 
-  ///The role of the user
+  ///Profile updated or not
+  @JsonKey(name: 'profileUpdated')
+  bool? get profileUpdated => throw _privateConstructorUsedError;
   @DateStampConverterForNull()
   @JsonKey(name: '_lastCommitted')
   DateStamp? get lastCommitted => throw _privateConstructorUsedError;
@@ -56,6 +58,8 @@ abstract class $ClaimsModelCopyWith<$Res> {
           String? role,
       @JsonKey(name: 'email')
           String? email,
+      @JsonKey(name: 'profileUpdated')
+          bool? profileUpdated,
       @DateStampConverterForNull()
       @JsonKey(name: '_lastCommitted')
           DateStamp? lastCommitted});
@@ -77,6 +81,7 @@ class _$ClaimsModelCopyWithImpl<$Res, $Val extends ClaimsModel>
     Object? userId = null,
     Object? role = freezed,
     Object? email = freezed,
+    Object? profileUpdated = freezed,
     Object? lastCommitted = freezed,
   }) {
     return _then(_value.copyWith(
@@ -92,6 +97,10 @@ class _$ClaimsModelCopyWithImpl<$Res, $Val extends ClaimsModel>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      profileUpdated: freezed == profileUpdated
+          ? _value.profileUpdated
+          : profileUpdated // ignore: cast_nullable_to_non_nullable
+              as bool?,
       lastCommitted: freezed == lastCommitted
           ? _value.lastCommitted
           : lastCommitted // ignore: cast_nullable_to_non_nullable
@@ -115,6 +124,8 @@ abstract class _$$_ClaimsModelCopyWith<$Res>
           String? role,
       @JsonKey(name: 'email')
           String? email,
+      @JsonKey(name: 'profileUpdated')
+          bool? profileUpdated,
       @DateStampConverterForNull()
       @JsonKey(name: '_lastCommitted')
           DateStamp? lastCommitted});
@@ -134,6 +145,7 @@ class __$$_ClaimsModelCopyWithImpl<$Res>
     Object? userId = null,
     Object? role = freezed,
     Object? email = freezed,
+    Object? profileUpdated = freezed,
     Object? lastCommitted = freezed,
   }) {
     return _then(_$_ClaimsModel(
@@ -149,6 +161,10 @@ class __$$_ClaimsModelCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
+      profileUpdated: freezed == profileUpdated
+          ? _value.profileUpdated
+          : profileUpdated // ignore: cast_nullable_to_non_nullable
+              as bool?,
       lastCommitted: freezed == lastCommitted
           ? _value.lastCommitted
           : lastCommitted // ignore: cast_nullable_to_non_nullable
@@ -167,6 +183,8 @@ class _$_ClaimsModel extends _ClaimsModel {
           this.role,
       @JsonKey(name: 'email')
           this.email,
+      @JsonKey(name: 'profileUpdated')
+          this.profileUpdated,
       @DateStampConverterForNull()
       @JsonKey(name: '_lastCommitted')
           this.lastCommitted})
@@ -190,7 +208,10 @@ class _$_ClaimsModel extends _ClaimsModel {
   @JsonKey(name: 'email')
   final String? email;
 
-  ///The role of the user
+  ///Profile updated or not
+  @override
+  @JsonKey(name: 'profileUpdated')
+  final bool? profileUpdated;
   @override
   @DateStampConverterForNull()
   @JsonKey(name: '_lastCommitted')
@@ -198,7 +219,7 @@ class _$_ClaimsModel extends _ClaimsModel {
 
   @override
   String toString() {
-    return 'ClaimsModel(userId: $userId, role: $role, email: $email, lastCommitted: $lastCommitted)';
+    return 'ClaimsModel(userId: $userId, role: $role, email: $email, profileUpdated: $profileUpdated, lastCommitted: $lastCommitted)';
   }
 
   @override
@@ -209,14 +230,16 @@ class _$_ClaimsModel extends _ClaimsModel {
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.role, role) || other.role == role) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.profileUpdated, profileUpdated) ||
+                other.profileUpdated == profileUpdated) &&
             (identical(other.lastCommitted, lastCommitted) ||
                 other.lastCommitted == lastCommitted));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, userId, role, email, lastCommitted);
+  int get hashCode => Object.hash(
+      runtimeType, userId, role, email, profileUpdated, lastCommitted);
 
   @JsonKey(ignore: true)
   @override
@@ -240,6 +263,8 @@ abstract class _ClaimsModel extends ClaimsModel {
           final String? role,
       @JsonKey(name: 'email')
           final String? email,
+      @JsonKey(name: 'profileUpdated')
+          final bool? profileUpdated,
       @DateStampConverterForNull()
       @JsonKey(name: '_lastCommitted')
           final DateStamp? lastCommitted}) = _$_ClaimsModel;
@@ -265,7 +290,10 @@ abstract class _ClaimsModel extends ClaimsModel {
   String? get email;
   @override
 
-  ///The role of the user
+  ///Profile updated or not
+  @JsonKey(name: 'profileUpdated')
+  bool? get profileUpdated;
+  @override
   @DateStampConverterForNull()
   @JsonKey(name: '_lastCommitted')
   DateStamp? get lastCommitted;

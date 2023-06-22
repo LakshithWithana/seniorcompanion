@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
+import 'package:logger/logger.dart';
 import 'package:seniorcompanion/app/data/data_provider/auth_data_provider.dart';
 import 'package:seniorcompanion/app/data/repository/custom_claims/custom_claims_repository.dart';
 import 'package:seniorcompanion/core/cache/cache.dart';
@@ -52,7 +53,10 @@ class AuthDataProviderImpl implements AuthDataProvider {
     final claims = (await userClaims);
     if (claims != null) {
       if (firebaseUser != null) {
-        final currentUser = firebaseUser.toUser.copyWith(role: claims['role']);
+        final currentUser = firebaseUser.toUser.copyWith(
+          role: claims['role'],
+          profileUpdated: claims['profileUpdated'],
+        );
         _cache.write(key: userCacheKey, value: currentUser);
 
         return currentUser;
@@ -158,7 +162,7 @@ class AuthDataProviderImpl implements AuthDataProvider {
           .doc(result.user!.uid)
           .set({
         "uid": result.user!.uid,
-        "email": email,
+        "email": email.value,
         "role": role,
         "firstName": "",
         "lastName": "",
@@ -169,7 +173,10 @@ class AuthDataProviderImpl implements AuthDataProvider {
         "profilePicURL": "",
       }).then((value) async {
         final ClaimsModel cModel = ClaimsModel(
-            userId: result.user!.uid, email: email.toString(), role: role);
+            userId: result.user!.uid,
+            email: email.value,
+            role: role,
+            profileUpdated: false);
         await customClaimsRepository.setClaimsModel(cModel);
         return unit;
       }).onError((error, stackTrace) {
@@ -190,7 +197,7 @@ class AuthDataProviderImpl implements AuthDataProvider {
       await _firebaseAuth.currentUser!.getIdToken(true);
       return unit;
     } catch (e) {
-      print(e);
+      Logger().e(e);
       throw const Exceptions.dataSourceException(
           "ErrorMessages.unexpectedErrorMessage");
     }
@@ -203,6 +210,6 @@ class AuthDataProviderImpl implements AuthDataProvider {
 
 extension on firebase_auth.User {
   SCUser get toUser {
-    return SCUser(uid: uid, email: email!, role: "");
+    return SCUser(uid: uid, email: email!, role: "", profileUpdated: false);
   }
 }

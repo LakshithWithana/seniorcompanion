@@ -19,9 +19,9 @@ class SignupCubit extends Cubit<SignupState> {
     emit(
       state.copyWith(
         email: email,
-        status: Formz.validate([email, state.password, state.confirmPassword])
-            ? FormzSubmissionStatus.success
-            : FormzSubmissionStatus.failure,
+        validated:
+            Formz.validate([email, state.password, state.confirmPassword]),
+        status: FormzSubmissionStatus.initial,
       ),
     );
   }
@@ -31,9 +31,9 @@ class SignupCubit extends Cubit<SignupState> {
     emit(
       state.copyWith(
         password: password,
-        status: Formz.validate([password, state.email, state.confirmPassword])
-            ? FormzSubmissionStatus.success
-            : FormzSubmissionStatus.failure,
+        validated:
+            Formz.validate([password, state.email, state.confirmPassword]),
+        status: FormzSubmissionStatus.initial,
       ),
     );
   }
@@ -43,19 +43,29 @@ class SignupCubit extends Cubit<SignupState> {
     emit(
       state.copyWith(
         confirmPassword: confirmPassword,
-        status: Formz.validate([confirmPassword, state.email, state.password])
-            ? FormzSubmissionStatus.success
-            : FormzSubmissionStatus.failure,
+        validated:
+            Formz.validate([confirmPassword, state.email, state.password]) &&
+                confirmPassword == state.password,
+        status: FormzSubmissionStatus.initial,
+      ),
+    );
+  }
+
+  void roleChanged(String role) {
+    emit(
+      state.copyWith(
+        role: role,
+        status: FormzSubmissionStatus.initial,
       ),
     );
   }
 
   Future<void> registerWithEmailAndPassword() async {
-    if (!state.status.isSuccess) return;
+    if (!state.validated) return;
     emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
     try {
       var result = await _authRepository.registerWithEmailAndPassword(
-          email: state.email, password: state.password, role: state.role!);
+          email: state.email, password: state.password, role: state.role);
 
       result.fold((l) {
         if (!isClosed) {

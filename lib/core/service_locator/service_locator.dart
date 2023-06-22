@@ -2,6 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:seniorcompanion/core/cache/cache.dart';
+import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider.dart';
+import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider_impl.dart';
+import 'package:seniorcompanion/features/profile/data/repositories/profile_repository.dart';
+import 'package:seniorcompanion/features/profile/data/repositories/profile_repository_impl.dart';
 
 import '../../app/data/data_provider/auth_data_provider.dart';
 import '../../app/data/data_provider/auth_data_provider_impl.dart';
@@ -61,7 +65,18 @@ void setupLocator() {
   registerLazySingleton<UserDetailsRepository>(UserDetailsRepositoryImpl(
     userDetailsDataProvider: locator(),
   ));
+  //!
 
+  //! Profile data
+  registerLazySingleton<ProfileDataProvider>(ProfileDataProviderImpl(
+    firebaseAuth: locator(),
+    firebaseFirestore: locator(),
+    customClaimsRepository: locator(),
+  ));
+
+  registerLazySingleton<ProfileRepository>(ProfileRepositoryImpl(
+    profileDataProvider: locator(),
+  ));
   //!
 }
 

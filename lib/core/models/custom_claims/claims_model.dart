@@ -23,7 +23,8 @@ class ClaimsModel with _$ClaimsModel {
     ///Full name of the user
     @JsonKey(name: 'email') String? email,
 
-    ///The role of the user
+    ///Profile updated or not
+    @JsonKey(name: 'profileUpdated') bool? profileUpdated,
     @DateStampConverterForNull()
     @JsonKey(name: '_lastCommitted')
     DateStamp? lastCommitted,

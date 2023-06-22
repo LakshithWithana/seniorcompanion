@@ -8,10 +8,12 @@ class SCUser with _$SCUser {
     required String uid,
     required String email,
     required String role,
+    required bool profileUpdated,
   }) = _SCUser;
   const SCUser._();
 
-  static const empty = SCUser(uid: "", email: "", role: "");
+  static const empty =
+      SCUser(uid: "", email: "", role: "", profileUpdated: false);
 
   bool get isEmpty => this == SCUser.empty;
 

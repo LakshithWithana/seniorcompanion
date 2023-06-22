@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logger/logger.dart';
 
 import '../../core/models/custom_claims/claims_model.dart';
 import '../../core/models/sc_user/sc_user_model.dart';
@@ -30,9 +31,13 @@ class AppBloc extends Bloc<AppEvent, AppState> {
         super(authRepository.currentUser.isEmpty
             ? const AppState.unAuthenticated()
             : (authRepository.currentUser.isNotEmpty &&
-                    authRepository.currentUser.role == "CR")
-                ? AppState.careRecipient(authRepository.currentUser)
-                : AppState.careGiver(authRepository.currentUser)) {
+                    authRepository.currentUser.profileUpdated == false)
+                ? AppState.incompleteProfile(authRepository.currentUser)
+                : (authRepository.currentUser.isNotEmpty &&
+                        authRepository.currentUser.profileUpdated == true &&
+                        authRepository.currentUser.role == "CR")
+                    ? AppState.careRecipient(authRepository.currentUser)
+                    : AppState.careGiver(authRepository.currentUser)) {
     on<_AuthStatusChanged>(_onAuthStatusChanged);
 
     _userSubscription =
@@ -74,9 +79,15 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   FutureOr<void> _onAuthStatusChanged(
       _AuthStatusChanged event, Emitter<AppState> emit) async {
-    if (event.user!.isNotEmpty && event.user!.role == "CR") {
+    if (event.user!.isNotEmpty && event.user!.profileUpdated == false) {
+      emit(AppState.incompleteProfile(event.user!));
+    } else if (event.user!.isNotEmpty &&
+        event.user!.profileUpdated == true &&
+        event.user!.role == "CR") {
       emit(AppState.careRecipient(event.user!));
-    } else if (event.user!.isNotEmpty && event.user!.role == "CG") {
+    } else if (event.user!.isNotEmpty &&
+        event.user!.profileUpdated == true &&
+        event.user!.role == "CG") {
       emit(AppState.careGiver(event.user!));
     } else {
       emit(const AppState.unAuthenticated());
@@ -92,12 +103,12 @@ class AppBloc extends Bloc<AppEvent, AppState> {
 
   Future<void> refreshIdTokenOfTheUser() async {
     final result = await _authRepository.refreshIdTokenOfTheUser();
-    print("referesh token called");
+    Logger().i("referesh token called");
 
     result.fold((l) {
-      print(l);
+      Logger().e(l);
     }, (r) {
-      print("success");
+      Logger().i("success");
     });
   }
 

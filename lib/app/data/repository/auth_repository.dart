@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:logger/logger.dart';
 import 'package:seniorcompanion/core/models/sc_user/sc_user_model.dart';
 
 import '../../../core/errors/failures/failures.dart';
@@ -20,7 +21,7 @@ abstract class AuthRepository {
 
   clearValue() {
     SCUser.empty;
-    print("current user value cleared");
+    Logger().w("current user value cleared");
   }
 
   ///Sign in method

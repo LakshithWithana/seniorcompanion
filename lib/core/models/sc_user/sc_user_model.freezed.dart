@@ -19,6 +19,7 @@ mixin _$SCUser {
   String get uid => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
+  bool get profileUpdated => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SCUserCopyWith<SCUser> get copyWith => throw _privateConstructorUsedError;
@@ -29,7 +30,7 @@ abstract class $SCUserCopyWith<$Res> {
   factory $SCUserCopyWith(SCUser value, $Res Function(SCUser) then) =
       _$SCUserCopyWithImpl<$Res, SCUser>;
   @useResult
-  $Res call({String uid, String email, String role});
+  $Res call({String uid, String email, String role, bool profileUpdated});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$SCUserCopyWithImpl<$Res, $Val extends SCUser>
     Object? uid = null,
     Object? email = null,
     Object? role = null,
+    Object? profileUpdated = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -62,6 +64,10 @@ class _$SCUserCopyWithImpl<$Res, $Val extends SCUser>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
+      profileUpdated: null == profileUpdated
+          ? _value.profileUpdated
+          : profileUpdated // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -72,7 +78,7 @@ abstract class _$$_SCUserCopyWith<$Res> implements $SCUserCopyWith<$Res> {
       __$$_SCUserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String uid, String email, String role});
+  $Res call({String uid, String email, String role, bool profileUpdated});
 }
 
 /// @nodoc
@@ -88,6 +94,7 @@ class __$$_SCUserCopyWithImpl<$Res>
     Object? uid = null,
     Object? email = null,
     Object? role = null,
+    Object? profileUpdated = null,
   }) {
     return _then(_$_SCUser(
       uid: null == uid
@@ -102,6 +109,10 @@ class __$$_SCUserCopyWithImpl<$Res>
           ? _value.role
           : role // ignore: cast_nullable_to_non_nullable
               as String,
+      profileUpdated: null == profileUpdated
+          ? _value.profileUpdated
+          : profileUpdated // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -109,7 +120,11 @@ class __$$_SCUserCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SCUser extends _SCUser {
-  const _$_SCUser({required this.uid, required this.email, required this.role})
+  const _$_SCUser(
+      {required this.uid,
+      required this.email,
+      required this.role,
+      required this.profileUpdated})
       : super._();
 
   @override
@@ -118,10 +133,12 @@ class _$_SCUser extends _SCUser {
   final String email;
   @override
   final String role;
+  @override
+  final bool profileUpdated;
 
   @override
   String toString() {
-    return 'SCUser(uid: $uid, email: $email, role: $role)';
+    return 'SCUser(uid: $uid, email: $email, role: $role, profileUpdated: $profileUpdated)';
   }
 
   @override
@@ -131,11 +148,14 @@ class _$_SCUser extends _SCUser {
             other is _$_SCUser &&
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.role, role) || other.role == role));
+            (identical(other.role, role) || other.role == role) &&
+            (identical(other.profileUpdated, profileUpdated) ||
+                other.profileUpdated == profileUpdated));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, uid, email, role);
+  int get hashCode =>
+      Object.hash(runtimeType, uid, email, role, profileUpdated);
 
   @JsonKey(ignore: true)
   @override
@@ -148,7 +168,8 @@ abstract class _SCUser extends SCUser {
   const factory _SCUser(
       {required final String uid,
       required final String email,
-      required final String role}) = _$_SCUser;
+      required final String role,
+      required final bool profileUpdated}) = _$_SCUser;
   const _SCUser._() : super._();
 
   @override
@@ -157,6 +178,8 @@ abstract class _SCUser extends SCUser {
   String get email;
   @override
   String get role;
+  @override
+  bool get profileUpdated;
   @override
   @JsonKey(ignore: true)
   _$$_SCUserCopyWith<_$_SCUser> get copyWith =>
