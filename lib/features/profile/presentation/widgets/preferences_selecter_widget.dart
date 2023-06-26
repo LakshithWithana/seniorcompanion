@@ -6,6 +6,7 @@ import 'package:seniorcompanion/features/profile/cubit/profile_cubit.dart';
 
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/shared/widgets/custom_text.dart';
+import '../../../../app/bloc/app_bloc.dart';
 
 class PreferencesSelecterWidget extends StatelessWidget {
   const PreferencesSelecterWidget({super.key});
@@ -133,59 +134,71 @@ class SingleItem extends StatelessWidget {
     return BlocBuilder<ProfileCubit, ProfileState>(
       // buildWhen: (previous, current) =>
       //     previous.preferences.length != current.preferences.length,
-      builder: (context, state) {
-        return ElevatedButton(
-          onPressed: state.preferences.contains(name.tr())
-              ? null
-              : () => context
-                  .read<ProfileCubit>()
-                  .addPreferencesSelection(name.tr()),
-          style: ElevatedButton.styleFrom(
-            disabledBackgroundColor:
-                state.preferences.contains(name.tr()) ? mainBlue : white,
-            backgroundColor:
-                state.preferences.contains(name.tr()) ? mainBlue : white,
-            padding: const EdgeInsets.all(0),
-            shape: const RoundedRectangleBorder(
-              side: BorderSide(color: mainBlue, width: 2.0),
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            ),
-          ),
-          child: SizedBox(
-            height: 40.0,
-            // width: 110.0.w,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(
-                child: Row(
-                  children: [
-                    CustomText(
-                      text: name.tr().toUpperCase(),
-                      fontSize: 16.0.sp,
-                      color: state.preferences.contains(name.tr())
-                          ? white
-                          : mainBlue,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    const SizedBox(width: 5.0),
-                    state.preferences.contains(name.tr())
-                        ? InkWell(
-                            onTap: () {
-                              context
-                                  .read<ProfileCubit>()
-                                  .removePreferencesSelection(name.tr());
-                            },
-                            child: const Icon(
-                              Icons.cancel,
-                              color: Colors.red,
-                            ),
-                          )
-                        : const SizedBox()
-                  ],
+      builder: (contextP, stateP) {
+        return BlocBuilder<AppBloc, AppState>(
+          builder: (context, state) {
+            return ElevatedButton(
+              onPressed: stateP.preferences.contains(name.tr())
+                  ? null
+                  : () => contextP
+                      .read<ProfileCubit>()
+                      .addPreferencesSelection(name.tr()),
+              style: ElevatedButton.styleFrom(
+                disabledBackgroundColor: stateP.preferences.contains(name.tr())
+                    ? (state.user.role == "CG" ? mainBlue : mainOrange)
+                    : white,
+                backgroundColor: stateP.preferences.contains(name.tr())
+                    ? (state.user.role == "CG" ? mainBlue : mainOrange)
+                    : white,
+                padding: const EdgeInsets.all(0),
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                      color: (state.user.role == "CG" ? mainBlue : mainOrange),
+                      width: 2.0),
+                  borderRadius: const BorderRadius.all(Radius.circular(10.0)),
                 ),
               ),
-            ),
-          ),
+              child: SizedBox(
+                height: 40.0,
+                // width: 110.0.w,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Center(
+                    child: Row(
+                      children: [
+                        CustomText(
+                          text: name.tr().toUpperCase(),
+                          fontSize: 16.0.sp,
+                          color: stateP.preferences.contains(name.tr())
+                              ? white
+                              : (state.user.role == "CG"
+                                  ? mainBlue
+                                  : mainOrange),
+                          fontWeight: FontWeight.bold,
+                        ),
+                        const SizedBox(width: 5.0),
+                        stateP.preferences.contains(name.tr())
+                            ? InkWell(
+                                onTap: () {
+                                  contextP
+                                      .read<ProfileCubit>()
+                                      .removePreferencesSelection(name.tr());
+                                },
+                                child: Icon(
+                                  Icons.cancel,
+                                  color: (state.user.role == "CG"
+                                      ? Colors.red
+                                      : yellow),
+                                ),
+                              )
+                            : const SizedBox()
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            );
+          },
         );
       },
     );

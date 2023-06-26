@@ -17,7 +17,8 @@ class LoginButtonWidget extends StatelessWidget {
           (previous.status != current.status) ||
           (previous.validated != current.validated),
       builder: (context, state) {
-        return (state.status == FormzSubmissionStatus.inProgress)
+        return (state.status == FormzSubmissionStatus.inProgress ||
+                state.status == FormzSubmissionStatus.success)
             ? const Center(child: CircularProgressIndicator())
             : CustomElevatedButton(
                 key: const Key("login_form_login_button"),

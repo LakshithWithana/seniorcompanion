@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../constants/colors.dart';
 import 'custom_text.dart';
 
-class CustomTextFormField extends StatefulWidget {
+enum RoleType { general, careGiver, careRecipient }
+
+class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     Key? key,
     this.controller,
@@ -24,6 +26,7 @@ class CustomTextFormField extends StatefulWidget {
     this.fontSize,
     this.height,
     this.errorText,
+    this.roleType,
   }) : super(key: key);
 
   final TextEditingController? controller;
@@ -43,12 +46,8 @@ class CustomTextFormField extends StatefulWidget {
   final double? fontSize;
   final double? height;
   final String? errorText;
+  final RoleType? roleType;
 
-  @override
-  _CustomTextFormFieldState createState() => _CustomTextFormFieldState();
-}
-
-class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,21 +58,21 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
-                text: widget.hintText!.toUpperCase(),
+                text: hintText!.toUpperCase(),
                 fontSize: 14.0,
                 fontWeight: FontWeight.bold,
               ),
               TextFormField(
-                enabled: widget.enabled,
+                enabled: enabled,
                 style: TextStyle(
                   color: black,
-                  fontSize: widget.fontSize ?? 16.0.w,
+                  fontSize: fontSize ?? 16.0.w,
                 ),
                 decoration: InputDecoration(
-                  errorText: widget.errorText,
-                  prefixIcon: widget.prefix,
-                  suffixIcon: widget.suffix,
-                  hintText: widget.hintText,
+                  errorText: errorText,
+                  prefixIcon: prefix,
+                  suffixIcon: suffix,
+                  hintText: hintText,
                   hintStyle: const TextStyle(color: secondaryFontColor),
                   isDense: true,
                   contentPadding: const EdgeInsets.all(10.0),
@@ -81,20 +80,22 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   filled: true,
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                        color: secondaryColor,
-                        width: widget.borderWidth ?? 2.0),
+                        color: secondaryColor, width: borderWidth ?? 2.0),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   disabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                        color: secondaryColor,
-                        width: widget.borderWidth ?? 2.0),
+                        color: secondaryColor, width: borderWidth ?? 2.0),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(
-                        color: widget.borderColor,
-                        width: widget.borderWidth ?? 2.0),
+                        color: roleType == RoleType.general
+                            ? borderColor
+                            : roleType == RoleType.careGiver
+                                ? mainBlue
+                                : mainOrange,
+                        width: borderWidth ?? 2.0),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   errorBorder: OutlineInputBorder(
@@ -108,14 +109,14 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
-                validator: widget.validator,
-                controller: widget.controller,
-                initialValue: widget.initialValue,
-                onChanged: widget.onChanged,
-                inputFormatters: widget.inputFormatters,
-                obscureText: widget.secure == null ? false : widget.secure!,
-                readOnly: widget.readOnly == null ? false : widget.readOnly!,
-                keyboardType: widget.keyboardType,
+                validator: validator,
+                controller: controller,
+                initialValue: initialValue,
+                onChanged: onChanged,
+                inputFormatters: inputFormatters,
+                obscureText: secure == null ? false : secure!,
+                readOnly: readOnly == null ? false : readOnly!,
+                keyboardType: keyboardType,
               ),
               const SizedBox(height: 20.0),
             ],

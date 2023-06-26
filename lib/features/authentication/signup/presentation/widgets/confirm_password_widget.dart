@@ -25,6 +25,7 @@ class _ConfirmPasswordInputWidgetState
           previous.confirmPassword != current.confirmPassword,
       builder: (context, state) {
         return CustomTextFormField(
+          roleType: RoleType.general,
           key: const Key("signup_form_password_input_field"),
           keyboardType: TextInputType.visiblePassword,
           secure: isSecure,

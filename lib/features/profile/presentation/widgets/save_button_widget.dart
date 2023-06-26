@@ -5,6 +5,7 @@ import 'package:formz/formz.dart';
 import 'package:seniorcompanion/core/constants/colors.dart';
 import 'package:seniorcompanion/features/profile/cubit/profile_cubit.dart';
 
+import '../../../../app/bloc/app_bloc.dart';
 import '../../../../core/shared/widgets/custom_elevated_buttons.dart';
 
 class SaveButtonWidget extends StatelessWidget {
@@ -16,17 +17,24 @@ class SaveButtonWidget extends StatelessWidget {
       buildWhen: (previous, current) =>
           (previous.status != current.status) ||
           (previous.validated != current.validated),
-      builder: (context, state) {
-        return (state.status == FormzSubmissionStatus.inProgress ||
-                state.status == FormzSubmissionStatus.success)
+      builder: (contextP, stateP) {
+        return (stateP.status == FormzSubmissionStatus.inProgress ||
+                stateP.status == FormzSubmissionStatus.success)
             ? const Center(child: CircularProgressIndicator())
-            : CustomElevatedButton(
-                key: const Key("profile_page_save_button"),
-                backgroundColor: mainBlue,
-                label: "save".tr(),
-                onPressed: state.validated
-                    ? () => context.read<ProfileCubit>().updateUserProfileData()
-                    : null,
+            : BlocBuilder<AppBloc, AppState>(
+                builder: (context, state) {
+                  return CustomElevatedButton(
+                    key: const Key("profile_page_save_button"),
+                    backgroundColor:
+                        (state.user.role == "CG" ? mainBlue : mainOrange),
+                    label: "save".tr(),
+                    onPressed: stateP.validated
+                        ? () => contextP
+                            .read<ProfileCubit>()
+                            .updateUserProfileData()
+                        : null,
+                  );
+                },
               );
       },
     );

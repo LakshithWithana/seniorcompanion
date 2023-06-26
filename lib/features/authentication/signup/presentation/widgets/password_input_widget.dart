@@ -22,6 +22,7 @@ class _PasswordInputWidgetState extends State<PasswordInputWidget> {
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
         return CustomTextFormField(
+          roleType: RoleType.general,
           key: const Key("signup_form_password_input_field"),
           keyboardType: TextInputType.visiblePassword,
           secure: isSecure,

@@ -15,6 +15,7 @@ class EmailInputWidget extends StatelessWidget {
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return CustomTextFormField(
+          roleType: RoleType.general,
           hintText: "email".tr(),
           borderColor: mainColor,
           key: const Key("signup_form_email_input_field"),
