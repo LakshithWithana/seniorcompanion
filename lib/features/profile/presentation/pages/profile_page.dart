@@ -19,6 +19,7 @@ class ProfilePage extends StatelessWidget {
           create: (context) => ProfileCubit(
             profileRepository: locator<ProfileRepository>(),
           ),
+          lazy: false,
         ),
       ],
       child: const ProfileView(),

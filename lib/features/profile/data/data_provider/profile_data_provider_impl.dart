@@ -23,7 +23,7 @@ class ProfileDataProviderImpl implements ProfileDataProvider {
   Future<Unit> updateUserProfileData({
     required GeneralField firstName,
     required GeneralField lastName,
-    required GeneralField birthday,
+    required String birthday,
     required GeneralField about,
     required String gender,
     required List<String> preferences,
@@ -36,10 +36,10 @@ class ProfileDataProviderImpl implements ProfileDataProvider {
           .collection(FirebaseConstants.usersCollectionName)
           .doc(user.uid)
           .update({
-        "firstName": firstName,
-        "lastName": lastName,
+        "firstName": firstName.value,
+        "lastName": lastName.value,
         "birthday": birthday,
-        "about": about,
+        "about": about.value,
         "gender": gender,
         "preferences": preferences,
         "profilePicURL": "",

@@ -24,7 +24,7 @@ class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignupCubit, SignupState>(
-      listener: (context, state) {
+      listener: (context, state) async {
         if (state.status == FormzSubmissionStatus.failure) {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
@@ -33,8 +33,10 @@ class _SignupViewState extends State<SignupView> {
                 content: Text(state.errorMessage ?? "Signup Failed"),
               ),
             );
+        } else if (state.status == FormzSubmissionStatus.success) {
+          await Future.delayed(const Duration(milliseconds: 5000));
+          Navigator.pop(context);
         }
-        // else if (state.status == FormzSubmissionStatus.success) {}
       },
       child: Scaffold(
         appBar: AppBar(

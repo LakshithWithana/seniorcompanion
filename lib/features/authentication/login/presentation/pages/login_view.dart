@@ -28,7 +28,6 @@ class LoginView extends StatelessWidget {
               ),
             );
         }
-        // else if (state.status == FormzSubmissionStatus.success) {}
       },
       child: Scaffold(
         appBar: AppBar(

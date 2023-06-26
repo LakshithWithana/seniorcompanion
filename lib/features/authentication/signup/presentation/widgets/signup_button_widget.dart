@@ -14,19 +14,21 @@ class SignupButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SignupCubit, SignupState>(
       buildWhen: (previous, current) =>
-          (previous.status != current.status) ||
-          (previous.validated != current.validated),
+          (previous.status != current.status) || (current.validated == true),
       builder: (context, state) {
-        return (state.status == FormzSubmissionStatus.inProgress)
+        return (state.status == FormzSubmissionStatus.inProgress ||
+                state.status == FormzSubmissionStatus.success)
             ? const Center(child: CircularProgressIndicator())
             : CustomElevatedButton(
                 key: const Key("signup_form_signup_button"),
                 backgroundColor: mainColor,
                 label: "signup".tr(),
                 onPressed: state.validated
-                    ? () => context
-                        .read<SignupCubit>()
-                        .registerWithEmailAndPassword()
+                    ? () {
+                        context
+                            .read<SignupCubit>()
+                            .registerWithEmailAndPassword();
+                      }
                     : null,
               );
       },

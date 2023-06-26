@@ -42,7 +42,7 @@ class AuthDataProviderImpl implements AuthDataProvider {
     final user = _firebaseAuth.currentUser;
 
     // If refresh is set to true, a refresh of the id token is forced.
-    final idTokenResult = await user?.getIdTokenResult();
+    final idTokenResult = await user?.getIdTokenResult(true);
 
     return idTokenResult?.claims;
   }
@@ -50,6 +50,7 @@ class AuthDataProviderImpl implements AuthDataProvider {
   @override
   Future<SCUser> getUserFromFirebaseUser(
       firebase_auth.User? firebaseUser) async {
+    await Future.delayed(const Duration(milliseconds: 4000));
     final claims = (await userClaims);
     if (claims != null) {
       if (firebaseUser != null) {
@@ -96,7 +97,7 @@ class AuthDataProviderImpl implements AuthDataProvider {
 
   @override
   Stream<SCUser> get scUser {
-    return _firebaseAuth.authStateChanges().asyncMap(getUserFromFirebaseUser);
+    return _firebaseAuth.idTokenChanges().asyncMap(getUserFromFirebaseUser);
   }
 
   @override

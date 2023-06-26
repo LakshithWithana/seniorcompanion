@@ -5,7 +5,7 @@ abstract class ProfileDataProvider {
   Future<Unit> updateUserProfileData({
     required GeneralField firstName,
     required GeneralField lastName,
-    required GeneralField birthday,
+    required String birthday,
     required GeneralField about,
     required String gender,
     required List<String> preferences,

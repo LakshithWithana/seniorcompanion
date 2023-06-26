@@ -22,7 +22,6 @@ class ProfileCubit extends Cubit<ProfileState> {
         validated: Formz.validate([
           firstName,
           state.lastName,
-          state.birthday,
           state.about,
         ]),
         status: FormzSubmissionStatus.initial,
@@ -38,7 +37,6 @@ class ProfileCubit extends Cubit<ProfileState> {
         validated: Formz.validate([
           lastName,
           state.firstName,
-          state.birthday,
           state.about,
         ]),
         status: FormzSubmissionStatus.initial,
@@ -47,11 +45,9 @@ class ProfileCubit extends Cubit<ProfileState> {
   }
 
   void birthdayChanged(String value) {
-    final birthday = GeneralField.dirty(value);
     emit(state.copyWith(
-      birthday: birthday,
-      validated: Formz.validate(
-          [birthday, state.firstName, state.lastName, state.about]),
+      birthday: value.split(" ").first,
+      validated: state.birthday == "" ? false : true,
       status: FormzSubmissionStatus.initial,
     ));
   }
@@ -60,8 +56,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     final about = GeneralField.dirty(value);
     emit(state.copyWith(
       about: about,
-      validated: Formz.validate(
-          [about, state.firstName, state.lastName, state.birthday]),
+      validated: Formz.validate([about, state.firstName, state.lastName]),
       status: FormzSubmissionStatus.initial,
     ));
   }
@@ -73,11 +68,20 @@ class ProfileCubit extends Cubit<ProfileState> {
     ));
   }
 
-  final List<String> preferencesList = [];
-  void preferencesSelection(String preferences) {
+  List<String> preferencesList = [];
+  void addPreferencesSelection(String preferences) {
     preferencesList.add(preferences);
     emit(state.copyWith(
-      preferences: preferencesList,
+      preferences: List.from(preferencesList),
+      status: FormzSubmissionStatus.initial,
+    ));
+  }
+
+  void removePreferencesSelection(String preferences) {
+    // List<String> preferencesList = [];
+    preferencesList.remove(preferences);
+    emit(state.copyWith(
+      preferences: List.from(preferencesList),
       status: FormzSubmissionStatus.initial,
     ));
   }

@@ -4,10 +4,10 @@ class ProfileState extends Equatable {
   const ProfileState({
     this.firstName = const GeneralField.pure(),
     this.lastName = const GeneralField.pure(),
-    this.birthday = const GeneralField.pure(),
+    this.birthday = " ",
     this.about = const GeneralField.pure(),
     this.gender = "female",
-    this.preferences = const [],
+    this.preferences = const <String>[],
     this.validated = false,
     this.status = FormzSubmissionStatus.initial,
     this.errorMessage,
@@ -15,7 +15,7 @@ class ProfileState extends Equatable {
 
   final GeneralField firstName;
   final GeneralField lastName;
-  final GeneralField birthday;
+  final String birthday;
   final GeneralField about;
   final String gender;
   final List<String> preferences;
@@ -38,7 +38,7 @@ class ProfileState extends Equatable {
   ProfileState copyWith({
     GeneralField? firstName,
     GeneralField? lastName,
-    GeneralField? birthday,
+    String? birthday,
     GeneralField? about,
     String? gender,
     List<String>? preferences,

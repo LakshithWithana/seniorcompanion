@@ -15,7 +15,7 @@ class SignUpWithEmailAndPasswordFailure implements Exception {
         return const SignUpWithEmailAndPasswordFailure(
           'Email is not valid or badly formatted.',
         );
-      case 'credentials-already-in-use':
+      case 'email-already-in-use':
         return const SignUpWithEmailAndPasswordFailure(
           'This email already exists in the system. Please use another email to register.',
         );

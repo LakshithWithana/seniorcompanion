@@ -8,6 +8,7 @@ import 'package:seniorcompanion/features/profile/presentation/widgets/first_name
 import 'package:seniorcompanion/features/profile/presentation/widgets/gender_selection_widget.dart';
 import 'package:seniorcompanion/features/profile/presentation/widgets/last_name_input_widget.dart';
 import 'package:seniorcompanion/features/profile/presentation/widgets/preferences_selecter_widget.dart';
+import 'package:seniorcompanion/features/profile/presentation/widgets/save_button_widget.dart';
 
 import '../../../../core/shared/widgets/custom_text.dart';
 import '../../cubit/profile_cubit.dart';
@@ -39,9 +40,9 @@ class ProfileView extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        body: const Padding(
-          padding: EdgeInsets.all(20.0),
-          child: SingleChildScrollView(
+        body: const SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -55,6 +56,8 @@ class ProfileView extends StatelessWidget {
                     GenderSelecterWidget(),
                     SizedBox(height: 20.0),
                     PreferencesSelecterWidget(),
+                    SizedBox(height: 40.0),
+                    SaveButtonWidget(),
                   ],
                 ),
               ],

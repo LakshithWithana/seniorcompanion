@@ -21,9 +21,7 @@ class BirthdayInputWidget extends StatelessWidget {
           onChanged: (birthday) =>
               context.read<ProfileCubit>().birthdayChanged(birthday.toString()),
           keyboardType: TextInputType.none,
-          errorText: state.birthday.isNotValid && state.birthday.value != ""
-              ? "Please enter your Birthday"
-              : null,
+          errorText: !state.validated ? "Please enter your Birthday" : null,
         );
       },
     );
