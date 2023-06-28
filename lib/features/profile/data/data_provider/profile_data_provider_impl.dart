@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:seniorcompanion/app/data/repository/custom_claims/custom_claims_repository.dart';
@@ -6,6 +8,8 @@ import 'package:seniorcompanion/core/form_models/general_field.dart';
 import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:seniorcompanion/features/profile/data/failures/profile_data_update_failure.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:seniorcompanion/features/profile/data/failures/profile_picture_upload_failure.dart';
 
 class ProfileDataProviderImpl implements ProfileDataProvider {
   final firebase_auth.FirebaseAuth _firebaseAuth;
@@ -54,6 +58,36 @@ class ProfileDataProviderImpl implements ProfileDataProvider {
       rResult = addProfileDataToUserDocument;
     } else {
       throw const ProfileDataUpdateFailure();
+    }
+    return rResult;
+  }
+
+  @override
+  Future<Unit> uploadProfileImage({required File file}) async {
+    final user = _firebaseAuth.currentUser;
+    final Unit rResult;
+    if (user != null) {
+      // final fileName = basename(file.path);
+
+      final ref = firebase_storage.FirebaseStorage.instance
+          .ref()
+          .child('profile_pictures')
+          .child('/${user.uid}');
+      final uploadPhoto = await ref.putFile(file).then((p0) async {
+        var url = await ref.getDownloadURL();
+        await _firebaseFirestore
+            .collection(FirebaseConstants.usersCollectionName)
+            .doc(user.uid)
+            .update({
+          "profilePicURL": url.toString(),
+        });
+        return unit;
+      }).onError((error, stackTrace) {
+        throw const ProfilePictureUploadFailure();
+      });
+      rResult = uploadPhoto;
+    } else {
+      throw const ProfilePictureUploadFailure();
     }
     return rResult;
   }

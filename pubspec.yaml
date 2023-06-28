@@ -56,6 +56,9 @@ dependencies:
   json_annotation: ^4.8.1
   logger: ^1.4.0
   datetime_picker_formfield_new: ^2.1.0
+  image_picker: ^1.0.0
+  path: ^1.8.3
+  firebase_storage: ^11.2.4
 
 
 dev_dependencies:

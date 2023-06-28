@@ -4,13 +4,14 @@ class ProfileState extends Equatable {
   const ProfileState({
     this.firstName = const GeneralField.pure(),
     this.lastName = const GeneralField.pure(),
-    this.birthday = " ",
+    this.birthday = "",
     this.about = const GeneralField.pure(),
     this.gender = "female",
     this.preferences = const <String>[],
     this.validated = false,
     this.status = FormzSubmissionStatus.initial,
     this.errorMessage,
+    this.profilePicUrl = "",
   });
 
   final GeneralField firstName;
@@ -22,6 +23,7 @@ class ProfileState extends Equatable {
   final FormzSubmissionStatus status;
   final bool validated;
   final String? errorMessage;
+  final String profilePicUrl;
 
   @override
   List<Object?> get props => [
@@ -33,6 +35,7 @@ class ProfileState extends Equatable {
         preferences,
         status,
         validated,
+        profilePicUrl,
       ];
 
   ProfileState copyWith({
@@ -45,6 +48,7 @@ class ProfileState extends Equatable {
     FormzSubmissionStatus? status,
     bool? validated,
     String? errorMessage,
+    String? profilePicUrl,
   }) {
     return ProfileState(
       firstName: firstName ?? this.firstName,
@@ -56,6 +60,7 @@ class ProfileState extends Equatable {
       status: status ?? this.status,
       validated: validated ?? this.validated,
       errorMessage: errorMessage ?? this.errorMessage,
+      profilePicUrl: profilePicUrl ?? this.profilePicUrl,
     );
   }
 }

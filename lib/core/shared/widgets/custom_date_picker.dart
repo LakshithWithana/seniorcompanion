@@ -68,11 +68,11 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                 format: DateFormat("yyyy-MM-dd"),
                 onShowPicker: (context, currentValue) {
                   return showDatePicker(
-                    context: context,
-                    firstDate: DateTime(1900),
-                    initialDate: currentValue ?? DateTime.now(),
-                    lastDate: DateTime.now(),
-                  );
+                      context: context,
+                      firstDate: DateTime(1900),
+                      initialDate: currentValue ?? DateTime.now(),
+                      lastDate: DateTime.now(),
+                      cancelText: "");
                 },
                 validator: widget.validator,
                 controller: widget.controller,

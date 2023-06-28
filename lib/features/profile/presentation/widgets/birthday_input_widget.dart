@@ -16,7 +16,7 @@ class BirthdayInputWidget extends StatelessWidget {
       builder: (context, state) {
         return CustomDatePicker(
           hintText: "birthday".tr(),
-          borderColor: mainColor,
+          borderColor: mainOrange,
           key: const Key("profile_form_birthday_input_field"),
           onChanged: (birthday) =>
               context.read<ProfileCubit>().birthdayChanged(birthday.toString()),

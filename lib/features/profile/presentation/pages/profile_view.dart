@@ -8,6 +8,7 @@ import 'package:seniorcompanion/features/profile/presentation/widgets/first_name
 import 'package:seniorcompanion/features/profile/presentation/widgets/gender_selection_widget.dart';
 import 'package:seniorcompanion/features/profile/presentation/widgets/last_name_input_widget.dart';
 import 'package:seniorcompanion/features/profile/presentation/widgets/preferences_selecter_widget.dart';
+import 'package:seniorcompanion/features/profile/presentation/widgets/profile_picture_widget.dart';
 import 'package:seniorcompanion/features/profile/presentation/widgets/save_button_widget.dart';
 
 import '../../../../core/shared/widgets/custom_text.dart';
@@ -30,6 +31,15 @@ class ProfileView extends StatelessWidget {
               ),
             );
         }
+        // if (state.profilePicUrl != "") {
+        //   ScaffoldMessenger.of(context)
+        //     ..hideCurrentSnackBar()
+        //     ..showSnackBar(
+        //       const SnackBar(
+        //         content: Text("Profile picture uploaded successfully"),
+        //       ),
+        //     );
+        // }
       },
       child: Scaffold(
         appBar: AppBar(
@@ -40,24 +50,26 @@ class ProfileView extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        body: const SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    FirstNameInputWidget(),
-                    LastNameInputWidget(),
-                    BirthdayInputWidget(),
-                    AboutInputWidget(),
-                    GenderSelecterWidget(),
-                    SizedBox(height: 20.0),
-                    PreferencesSelecterWidget(),
-                    SizedBox(height: 40.0),
-                    SaveButtonWidget(),
+                    ProfilePictureWidget(),
+                    const SizedBox(height: 20.0),
+                    const FirstNameInputWidget(),
+                    const LastNameInputWidget(),
+                    const BirthdayInputWidget(),
+                    const AboutInputWidget(),
+                    const GenderSelecterWidget(),
+                    const SizedBox(height: 20.0),
+                    const PreferencesSelecterWidget(),
+                    const SizedBox(height: 40.0),
+                    const SaveButtonWidget(),
                   ],
                 ),
               ],

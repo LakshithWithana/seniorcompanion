@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:seniorcompanion/core/form_models/general_field.dart';
 import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider.dart';
 import 'package:seniorcompanion/features/profile/data/failures/profile_data_update_failure.dart';
+import 'package:seniorcompanion/features/profile/data/failures/profile_picture_upload_failure.dart';
 import 'package:seniorcompanion/features/profile/data/repositories/profile_repository.dart';
 
 class ProfileRepositoryImpl extends ProfileRepository {
@@ -30,6 +33,21 @@ class ProfileRepositoryImpl extends ProfileRepository {
 
       return right(unit);
     } on ProfileDataUpdateFailure catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> uploadProfileImage({required File file}) async {
+    try {
+      await _profileDataProvider.uploadProfileImage(
+        file: file,
+      );
+
+      return right(unit);
+    } on ProfilePictureUploadFailure catch (e) {
       return left(e.message);
     } catch (e) {
       return left(e.toString());

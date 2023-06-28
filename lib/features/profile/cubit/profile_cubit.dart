@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
@@ -14,16 +16,42 @@ class ProfileCubit extends Cubit<ProfileState> {
       : _profileRepository = profileRepository,
         super(const ProfileState());
 
+  void profilePictureURL(String path) {
+    emit(state.copyWith(
+      profilePicUrl: path,
+      status: FormzSubmissionStatus.initial,
+      validated: state.profilePicUrl == ""
+          ? false
+          : true &&
+              Formz.validate([
+                state.lastName,
+                state.firstName,
+                state.about,
+              ]),
+    ));
+  }
+
+  Future<void> profilePictureUpload(File file) async {
+    try {
+      await _profileRepository.uploadProfileImage(file: file);
+    } catch (e) {
+      print(e);
+    }
+  }
+
   void firstNameChanged(String value) {
     final firstName = GeneralField.dirty(value);
     emit(
       state.copyWith(
         firstName: firstName,
         validated: Formz.validate([
-          firstName,
-          state.lastName,
-          state.about,
-        ]),
+                  firstName,
+                  state.lastName,
+                  state.about,
+                ]) &&
+                state.profilePicUrl == ""
+            ? false
+            : true,
         status: FormzSubmissionStatus.initial,
       ),
     );
@@ -35,19 +63,30 @@ class ProfileCubit extends Cubit<ProfileState> {
       state.copyWith(
         lastName: lastName,
         validated: Formz.validate([
-          lastName,
-          state.firstName,
-          state.about,
-        ]),
+                  lastName,
+                  state.firstName,
+                  state.about,
+                ]) &&
+                state.profilePicUrl == ""
+            ? false
+            : true,
         status: FormzSubmissionStatus.initial,
       ),
     );
   }
 
   void birthdayChanged(String value) {
+    final birthday = value;
     emit(state.copyWith(
-      birthday: value.split(" ").first,
-      validated: state.birthday == "" ? false : true,
+      birthday: birthday,
+      validated: birthday == "null"
+          ? false
+          : true &&
+              Formz.validate([
+                state.lastName,
+                state.firstName,
+                state.about,
+              ]),
       status: FormzSubmissionStatus.initial,
     ));
   }
@@ -56,7 +95,12 @@ class ProfileCubit extends Cubit<ProfileState> {
     final about = GeneralField.dirty(value);
     emit(state.copyWith(
       about: about,
-      validated: Formz.validate([about, state.firstName, state.lastName]),
+      validated: Formz.validate([about, state.firstName, state.lastName]) &&
+              state.profilePicUrl == ""
+          ? false
+          : true && state.birthday != ""
+              ? true
+              : false,
       status: FormzSubmissionStatus.initial,
     ));
   }

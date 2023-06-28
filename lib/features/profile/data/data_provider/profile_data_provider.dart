@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:seniorcompanion/core/form_models/general_field.dart';
 
@@ -10,4 +12,6 @@ abstract class ProfileDataProvider {
     required String gender,
     required List<String> preferences,
   });
+
+  Future<Unit> uploadProfileImage({required File file});
 }
