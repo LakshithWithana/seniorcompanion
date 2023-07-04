@@ -15,6 +15,6 @@ const secondaryFontColor = Color(0xFFAAAAAA);
 const white = Color(0xFFFFFFFF);
 const black = Color(0xFF000000);
 
-const deviderColor = Color(0xFFAAAAAA);
+const dividerColor = Color(0xFFAAAAAA);
 
 const yellow = Color(0xFFE3FF6B);

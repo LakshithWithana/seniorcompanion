@@ -59,6 +59,7 @@ dependencies:
   image_picker: ^1.0.0
   path: ^1.8.3
   firebase_storage: ^11.2.4
+  geolocator: ^9.0.2
 
 
 dev_dependencies:

@@ -53,5 +53,11 @@
 	<string>This app does not require access to the microphone.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app requires access to the camera.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Turning on location services allows to search nearby users.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Turning on location services allows to search nearby users.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Turning on location services allows to search nearby users.</string>
 </dict>
 </plist>

@@ -51,5 +51,29 @@
     "therapist": "Therapist",
     "trainer": "Trainer",
     "traveller": "Traveller",
-    "save": "Save"
+    "save": "Save",
+
+    "search": "Search",
+    "iAmLookingForACaregiver" : "I'm looking for a Caregiver",
+    "iAmLookingForACareRecipient" : "I'm looking for a Care Recipient",
+    "caregiverGender": "Caregiver Gender",
+    "careRecipientGender": "Care Recipient Gender",
+    "anyone": "Anyone",
+    "age": "Age",
+    "min": "Min",
+    "max": "Max",
+    "to": "To",
+    "distance": "Distance",
+    "searchingRadius": "Searching Radius",
+    "km": "km",
+    "time": "Time",
+    "from": "From",
+    "am": "AM",
+    "pm": "PM",
+    "searching": "Searching",
+    "cancel": "Cancel",
+
+    "searchResults": "Search Results",
+    "years": "Years",
+    "select": "Select"
 }

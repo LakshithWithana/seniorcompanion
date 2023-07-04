@@ -40,6 +40,10 @@ mixin _$UserDetails {
   List<String> get preferences => throw _privateConstructorUsedError;
   @JsonKey(name: 'profilePicURL')
   String get profilePicURL => throw _privateConstructorUsedError;
+  @JsonKey(name: 'lat')
+  double get lat => throw _privateConstructorUsedError;
+  @JsonKey(name: 'lon')
+  double get lon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,7 +67,9 @@ abstract class $UserDetailsCopyWith<$Res> {
       @JsonKey(name: 'about') String about,
       @JsonKey(name: 'gender') String gender,
       @JsonKey(name: 'preferences') List<String> preferences,
-      @JsonKey(name: 'profilePicURL') String profilePicURL});
+      @JsonKey(name: 'profilePicURL') String profilePicURL,
+      @JsonKey(name: 'lat') double lat,
+      @JsonKey(name: 'lon') double lon});
 }
 
 /// @nodoc
@@ -89,6 +95,8 @@ class _$UserDetailsCopyWithImpl<$Res, $Val extends UserDetails>
     Object? gender = null,
     Object? preferences = null,
     Object? profilePicURL = null,
+    Object? lat = null,
+    Object? lon = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -131,6 +139,14 @@ class _$UserDetailsCopyWithImpl<$Res, $Val extends UserDetails>
           ? _value.profilePicURL
           : profilePicURL // ignore: cast_nullable_to_non_nullable
               as String,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double,
+      lon: null == lon
+          ? _value.lon
+          : lon // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -153,7 +169,9 @@ abstract class _$$_UserDetailsCopyWith<$Res>
       @JsonKey(name: 'about') String about,
       @JsonKey(name: 'gender') String gender,
       @JsonKey(name: 'preferences') List<String> preferences,
-      @JsonKey(name: 'profilePicURL') String profilePicURL});
+      @JsonKey(name: 'profilePicURL') String profilePicURL,
+      @JsonKey(name: 'lat') double lat,
+      @JsonKey(name: 'lon') double lon});
 }
 
 /// @nodoc
@@ -177,6 +195,8 @@ class __$$_UserDetailsCopyWithImpl<$Res>
     Object? gender = null,
     Object? preferences = null,
     Object? profilePicURL = null,
+    Object? lat = null,
+    Object? lon = null,
   }) {
     return _then(_$_UserDetails(
       uid: null == uid
@@ -219,6 +239,14 @@ class __$$_UserDetailsCopyWithImpl<$Res>
           ? _value.profilePicURL
           : profilePicURL // ignore: cast_nullable_to_non_nullable
               as String,
+      lat: null == lat
+          ? _value.lat
+          : lat // ignore: cast_nullable_to_non_nullable
+              as double,
+      lon: null == lon
+          ? _value.lon
+          : lon // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -236,7 +264,9 @@ class _$_UserDetails implements _UserDetails {
       @JsonKey(name: 'about') required this.about,
       @JsonKey(name: 'gender') required this.gender,
       @JsonKey(name: 'preferences') required final List<String> preferences,
-      @JsonKey(name: 'profilePicURL') required this.profilePicURL})
+      @JsonKey(name: 'profilePicURL') required this.profilePicURL,
+      @JsonKey(name: 'lat') required this.lat,
+      @JsonKey(name: 'lon') required this.lon})
       : _preferences = preferences;
 
   factory _$_UserDetails.fromJson(Map<String, dynamic> json) =>
@@ -278,10 +308,16 @@ class _$_UserDetails implements _UserDetails {
   @override
   @JsonKey(name: 'profilePicURL')
   final String profilePicURL;
+  @override
+  @JsonKey(name: 'lat')
+  final double lat;
+  @override
+  @JsonKey(name: 'lon')
+  final double lon;
 
   @override
   String toString() {
-    return 'UserDetails(uid: $uid, email: $email, firstName: $firstName, lastName: $lastName, role: $role, birthday: $birthday, about: $about, gender: $gender, preferences: $preferences, profilePicURL: $profilePicURL)';
+    return 'UserDetails(uid: $uid, email: $email, firstName: $firstName, lastName: $lastName, role: $role, birthday: $birthday, about: $about, gender: $gender, preferences: $preferences, profilePicURL: $profilePicURL, lat: $lat, lon: $lon)';
   }
 
   @override
@@ -303,7 +339,9 @@ class _$_UserDetails implements _UserDetails {
             const DeepCollectionEquality()
                 .equals(other._preferences, _preferences) &&
             (identical(other.profilePicURL, profilePicURL) ||
-                other.profilePicURL == profilePicURL));
+                other.profilePicURL == profilePicURL) &&
+            (identical(other.lat, lat) || other.lat == lat) &&
+            (identical(other.lon, lon) || other.lon == lon));
   }
 
   @JsonKey(ignore: true)
@@ -319,7 +357,9 @@ class _$_UserDetails implements _UserDetails {
       about,
       gender,
       const DeepCollectionEquality().hash(_preferences),
-      profilePicURL);
+      profilePicURL,
+      lat,
+      lon);
 
   @JsonKey(ignore: true)
   @override
@@ -337,26 +377,18 @@ class _$_UserDetails implements _UserDetails {
 
 abstract class _UserDetails implements UserDetails {
   const factory _UserDetails(
-      {@JsonKey(name: 'uid')
-          required final String uid,
-      @JsonKey(name: 'email')
-          required final String email,
-      @JsonKey(name: 'firstName')
-          required final String firstName,
-      @JsonKey(name: 'lastName')
-          required final String lastName,
-      @JsonKey(name: 'role')
-          required final String role,
-      @JsonKey(name: 'birthday')
-          required final String birthday,
-      @JsonKey(name: 'about')
-          required final String about,
-      @JsonKey(name: 'gender')
-          required final String gender,
-      @JsonKey(name: 'preferences')
-          required final List<String> preferences,
-      @JsonKey(name: 'profilePicURL')
-          required final String profilePicURL}) = _$_UserDetails;
+      {@JsonKey(name: 'uid') required final String uid,
+      @JsonKey(name: 'email') required final String email,
+      @JsonKey(name: 'firstName') required final String firstName,
+      @JsonKey(name: 'lastName') required final String lastName,
+      @JsonKey(name: 'role') required final String role,
+      @JsonKey(name: 'birthday') required final String birthday,
+      @JsonKey(name: 'about') required final String about,
+      @JsonKey(name: 'gender') required final String gender,
+      @JsonKey(name: 'preferences') required final List<String> preferences,
+      @JsonKey(name: 'profilePicURL') required final String profilePicURL,
+      @JsonKey(name: 'lat') required final double lat,
+      @JsonKey(name: 'lon') required final double lon}) = _$_UserDetails;
 
   factory _UserDetails.fromJson(Map<String, dynamic> json) =
       _$_UserDetails.fromJson;
@@ -391,6 +423,12 @@ abstract class _UserDetails implements UserDetails {
   @override
   @JsonKey(name: 'profilePicURL')
   String get profilePicURL;
+  @override
+  @JsonKey(name: 'lat')
+  double get lat;
+  @override
+  @JsonKey(name: 'lon')
+  double get lon;
   @override
   @JsonKey(ignore: true)
   _$$_UserDetailsCopyWith<_$_UserDetails> get copyWith =>

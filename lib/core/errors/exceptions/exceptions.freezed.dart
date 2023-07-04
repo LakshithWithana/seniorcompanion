@@ -25,6 +25,13 @@ mixin _$Exceptions {
     required TResult Function(String message, String? devLogs)
         customClaimsException,
     required TResult Function(String message, String? devLogs) cacheException,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionRequest,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionNotGiven,
+    required TResult Function(String message, String? devLogs)
+        locationServicesNotEnabled,
+    required TResult Function(String message, String? devLogs) locationUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +39,13 @@ mixin _$Exceptions {
     TResult? Function(String message, String? devLogs)? dataSourceException,
     TResult? Function(String message, String? devLogs)? customClaimsException,
     TResult? Function(String message, String? devLogs)? cacheException,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult? Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult? Function(String message, String? devLogs)? locationUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,6 +53,13 @@ mixin _$Exceptions {
     TResult Function(String message, String? devLogs)? dataSourceException,
     TResult Function(String message, String? devLogs)? customClaimsException,
     TResult Function(String message, String? devLogs)? cacheException,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult Function(String message, String? devLogs)? locationUpdate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -48,6 +69,13 @@ mixin _$Exceptions {
     required TResult Function(CustomClaimsException value)
         customClaimsException,
     required TResult Function(CacheException value) cacheException,
+    required TResult Function(LocationPermissionRequestException value)
+        locationPermissionRequest,
+    required TResult Function(LocationPermissionNotGivenException value)
+        locationPermissionNotGiven,
+    required TResult Function(LocationServicesNotEnabledException value)
+        locationServicesNotEnabled,
+    required TResult Function(LocationUpdateException value) locationUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +83,13 @@ mixin _$Exceptions {
     TResult? Function(DataSourceException value)? dataSourceException,
     TResult? Function(CustomClaimsException value)? customClaimsException,
     TResult? Function(CacheException value)? cacheException,
+    TResult? Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult? Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult? Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult? Function(LocationUpdateException value)? locationUpdate,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -62,6 +97,13 @@ mixin _$Exceptions {
     TResult Function(DataSourceException value)? dataSourceException,
     TResult Function(CustomClaimsException value)? customClaimsException,
     TResult Function(CacheException value)? cacheException,
+    TResult Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult Function(LocationUpdateException value)? locationUpdate,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -189,6 +231,13 @@ class _$DataSourceException implements DataSourceException {
     required TResult Function(String message, String? devLogs)
         customClaimsException,
     required TResult Function(String message, String? devLogs) cacheException,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionRequest,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionNotGiven,
+    required TResult Function(String message, String? devLogs)
+        locationServicesNotEnabled,
+    required TResult Function(String message, String? devLogs) locationUpdate,
   }) {
     return dataSourceException(message, devLogs);
   }
@@ -199,6 +248,13 @@ class _$DataSourceException implements DataSourceException {
     TResult? Function(String message, String? devLogs)? dataSourceException,
     TResult? Function(String message, String? devLogs)? customClaimsException,
     TResult? Function(String message, String? devLogs)? cacheException,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult? Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult? Function(String message, String? devLogs)? locationUpdate,
   }) {
     return dataSourceException?.call(message, devLogs);
   }
@@ -209,6 +265,13 @@ class _$DataSourceException implements DataSourceException {
     TResult Function(String message, String? devLogs)? dataSourceException,
     TResult Function(String message, String? devLogs)? customClaimsException,
     TResult Function(String message, String? devLogs)? cacheException,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult Function(String message, String? devLogs)? locationUpdate,
     required TResult orElse(),
   }) {
     if (dataSourceException != null) {
@@ -224,6 +287,13 @@ class _$DataSourceException implements DataSourceException {
     required TResult Function(CustomClaimsException value)
         customClaimsException,
     required TResult Function(CacheException value) cacheException,
+    required TResult Function(LocationPermissionRequestException value)
+        locationPermissionRequest,
+    required TResult Function(LocationPermissionNotGivenException value)
+        locationPermissionNotGiven,
+    required TResult Function(LocationServicesNotEnabledException value)
+        locationServicesNotEnabled,
+    required TResult Function(LocationUpdateException value) locationUpdate,
   }) {
     return dataSourceException(this);
   }
@@ -234,6 +304,13 @@ class _$DataSourceException implements DataSourceException {
     TResult? Function(DataSourceException value)? dataSourceException,
     TResult? Function(CustomClaimsException value)? customClaimsException,
     TResult? Function(CacheException value)? cacheException,
+    TResult? Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult? Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult? Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult? Function(LocationUpdateException value)? locationUpdate,
   }) {
     return dataSourceException?.call(this);
   }
@@ -244,6 +321,13 @@ class _$DataSourceException implements DataSourceException {
     TResult Function(DataSourceException value)? dataSourceException,
     TResult Function(CustomClaimsException value)? customClaimsException,
     TResult Function(CacheException value)? cacheException,
+    TResult Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult Function(LocationUpdateException value)? locationUpdate,
     required TResult orElse(),
   }) {
     if (dataSourceException != null) {
@@ -347,6 +431,13 @@ class _$CustomClaimsException implements CustomClaimsException {
     required TResult Function(String message, String? devLogs)
         customClaimsException,
     required TResult Function(String message, String? devLogs) cacheException,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionRequest,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionNotGiven,
+    required TResult Function(String message, String? devLogs)
+        locationServicesNotEnabled,
+    required TResult Function(String message, String? devLogs) locationUpdate,
   }) {
     return customClaimsException(message, devLogs);
   }
@@ -357,6 +448,13 @@ class _$CustomClaimsException implements CustomClaimsException {
     TResult? Function(String message, String? devLogs)? dataSourceException,
     TResult? Function(String message, String? devLogs)? customClaimsException,
     TResult? Function(String message, String? devLogs)? cacheException,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult? Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult? Function(String message, String? devLogs)? locationUpdate,
   }) {
     return customClaimsException?.call(message, devLogs);
   }
@@ -367,6 +465,13 @@ class _$CustomClaimsException implements CustomClaimsException {
     TResult Function(String message, String? devLogs)? dataSourceException,
     TResult Function(String message, String? devLogs)? customClaimsException,
     TResult Function(String message, String? devLogs)? cacheException,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult Function(String message, String? devLogs)? locationUpdate,
     required TResult orElse(),
   }) {
     if (customClaimsException != null) {
@@ -382,6 +487,13 @@ class _$CustomClaimsException implements CustomClaimsException {
     required TResult Function(CustomClaimsException value)
         customClaimsException,
     required TResult Function(CacheException value) cacheException,
+    required TResult Function(LocationPermissionRequestException value)
+        locationPermissionRequest,
+    required TResult Function(LocationPermissionNotGivenException value)
+        locationPermissionNotGiven,
+    required TResult Function(LocationServicesNotEnabledException value)
+        locationServicesNotEnabled,
+    required TResult Function(LocationUpdateException value) locationUpdate,
   }) {
     return customClaimsException(this);
   }
@@ -392,6 +504,13 @@ class _$CustomClaimsException implements CustomClaimsException {
     TResult? Function(DataSourceException value)? dataSourceException,
     TResult? Function(CustomClaimsException value)? customClaimsException,
     TResult? Function(CacheException value)? cacheException,
+    TResult? Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult? Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult? Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult? Function(LocationUpdateException value)? locationUpdate,
   }) {
     return customClaimsException?.call(this);
   }
@@ -402,6 +521,13 @@ class _$CustomClaimsException implements CustomClaimsException {
     TResult Function(DataSourceException value)? dataSourceException,
     TResult Function(CustomClaimsException value)? customClaimsException,
     TResult Function(CacheException value)? cacheException,
+    TResult Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult Function(LocationUpdateException value)? locationUpdate,
     required TResult orElse(),
   }) {
     if (customClaimsException != null) {
@@ -504,6 +630,13 @@ class _$CacheException implements CacheException {
     required TResult Function(String message, String? devLogs)
         customClaimsException,
     required TResult Function(String message, String? devLogs) cacheException,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionRequest,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionNotGiven,
+    required TResult Function(String message, String? devLogs)
+        locationServicesNotEnabled,
+    required TResult Function(String message, String? devLogs) locationUpdate,
   }) {
     return cacheException(message, devLogs);
   }
@@ -514,6 +647,13 @@ class _$CacheException implements CacheException {
     TResult? Function(String message, String? devLogs)? dataSourceException,
     TResult? Function(String message, String? devLogs)? customClaimsException,
     TResult? Function(String message, String? devLogs)? cacheException,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult? Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult? Function(String message, String? devLogs)? locationUpdate,
   }) {
     return cacheException?.call(message, devLogs);
   }
@@ -524,6 +664,13 @@ class _$CacheException implements CacheException {
     TResult Function(String message, String? devLogs)? dataSourceException,
     TResult Function(String message, String? devLogs)? customClaimsException,
     TResult Function(String message, String? devLogs)? cacheException,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult Function(String message, String? devLogs)? locationUpdate,
     required TResult orElse(),
   }) {
     if (cacheException != null) {
@@ -539,6 +686,13 @@ class _$CacheException implements CacheException {
     required TResult Function(CustomClaimsException value)
         customClaimsException,
     required TResult Function(CacheException value) cacheException,
+    required TResult Function(LocationPermissionRequestException value)
+        locationPermissionRequest,
+    required TResult Function(LocationPermissionNotGivenException value)
+        locationPermissionNotGiven,
+    required TResult Function(LocationServicesNotEnabledException value)
+        locationServicesNotEnabled,
+    required TResult Function(LocationUpdateException value) locationUpdate,
   }) {
     return cacheException(this);
   }
@@ -549,6 +703,13 @@ class _$CacheException implements CacheException {
     TResult? Function(DataSourceException value)? dataSourceException,
     TResult? Function(CustomClaimsException value)? customClaimsException,
     TResult? Function(CacheException value)? cacheException,
+    TResult? Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult? Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult? Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult? Function(LocationUpdateException value)? locationUpdate,
   }) {
     return cacheException?.call(this);
   }
@@ -559,6 +720,13 @@ class _$CacheException implements CacheException {
     TResult Function(DataSourceException value)? dataSourceException,
     TResult Function(CustomClaimsException value)? customClaimsException,
     TResult Function(CacheException value)? cacheException,
+    TResult Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult Function(LocationUpdateException value)? locationUpdate,
     required TResult orElse(),
   }) {
     if (cacheException != null) {
@@ -579,5 +747,822 @@ abstract class CacheException implements Exceptions {
   @override
   @JsonKey(ignore: true)
   _$$CacheExceptionCopyWith<_$CacheException> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LocationPermissionRequestExceptionCopyWith<$Res>
+    implements $ExceptionsCopyWith<$Res> {
+  factory _$$LocationPermissionRequestExceptionCopyWith(
+          _$LocationPermissionRequestException value,
+          $Res Function(_$LocationPermissionRequestException) then) =
+      __$$LocationPermissionRequestExceptionCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String message, String? devLogs});
+}
+
+/// @nodoc
+class __$$LocationPermissionRequestExceptionCopyWithImpl<$Res>
+    extends _$ExceptionsCopyWithImpl<$Res, _$LocationPermissionRequestException>
+    implements _$$LocationPermissionRequestExceptionCopyWith<$Res> {
+  __$$LocationPermissionRequestExceptionCopyWithImpl(
+      _$LocationPermissionRequestException _value,
+      $Res Function(_$LocationPermissionRequestException) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+    Object? devLogs = freezed,
+  }) {
+    return _then(_$LocationPermissionRequestException(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      freezed == devLogs
+          ? _value.devLogs
+          : devLogs // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LocationPermissionRequestException
+    implements LocationPermissionRequestException {
+  const _$LocationPermissionRequestException(this.message, [this.devLogs]);
+
+  @override
+  final String message;
+  @override
+  final String? devLogs;
+
+  @override
+  String toString() {
+    return 'Exceptions.locationPermissionRequest(message: $message, devLogs: $devLogs)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationPermissionRequestException &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.devLogs, devLogs) || other.devLogs == devLogs));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message, devLogs);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocationPermissionRequestExceptionCopyWith<
+          _$LocationPermissionRequestException>
+      get copyWith => __$$LocationPermissionRequestExceptionCopyWithImpl<
+          _$LocationPermissionRequestException>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message, String? devLogs)
+        dataSourceException,
+    required TResult Function(String message, String? devLogs)
+        customClaimsException,
+    required TResult Function(String message, String? devLogs) cacheException,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionRequest,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionNotGiven,
+    required TResult Function(String message, String? devLogs)
+        locationServicesNotEnabled,
+    required TResult Function(String message, String? devLogs) locationUpdate,
+  }) {
+    return locationPermissionRequest(message, devLogs);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message, String? devLogs)? dataSourceException,
+    TResult? Function(String message, String? devLogs)? customClaimsException,
+    TResult? Function(String message, String? devLogs)? cacheException,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult? Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult? Function(String message, String? devLogs)? locationUpdate,
+  }) {
+    return locationPermissionRequest?.call(message, devLogs);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message, String? devLogs)? dataSourceException,
+    TResult Function(String message, String? devLogs)? customClaimsException,
+    TResult Function(String message, String? devLogs)? cacheException,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult Function(String message, String? devLogs)? locationUpdate,
+    required TResult orElse(),
+  }) {
+    if (locationPermissionRequest != null) {
+      return locationPermissionRequest(message, devLogs);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataSourceException value) dataSourceException,
+    required TResult Function(CustomClaimsException value)
+        customClaimsException,
+    required TResult Function(CacheException value) cacheException,
+    required TResult Function(LocationPermissionRequestException value)
+        locationPermissionRequest,
+    required TResult Function(LocationPermissionNotGivenException value)
+        locationPermissionNotGiven,
+    required TResult Function(LocationServicesNotEnabledException value)
+        locationServicesNotEnabled,
+    required TResult Function(LocationUpdateException value) locationUpdate,
+  }) {
+    return locationPermissionRequest(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DataSourceException value)? dataSourceException,
+    TResult? Function(CustomClaimsException value)? customClaimsException,
+    TResult? Function(CacheException value)? cacheException,
+    TResult? Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult? Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult? Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult? Function(LocationUpdateException value)? locationUpdate,
+  }) {
+    return locationPermissionRequest?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataSourceException value)? dataSourceException,
+    TResult Function(CustomClaimsException value)? customClaimsException,
+    TResult Function(CacheException value)? cacheException,
+    TResult Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult Function(LocationUpdateException value)? locationUpdate,
+    required TResult orElse(),
+  }) {
+    if (locationPermissionRequest != null) {
+      return locationPermissionRequest(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LocationPermissionRequestException implements Exceptions {
+  const factory LocationPermissionRequestException(final String message,
+      [final String? devLogs]) = _$LocationPermissionRequestException;
+
+  @override
+  String get message;
+  @override
+  String? get devLogs;
+  @override
+  @JsonKey(ignore: true)
+  _$$LocationPermissionRequestExceptionCopyWith<
+          _$LocationPermissionRequestException>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LocationPermissionNotGivenExceptionCopyWith<$Res>
+    implements $ExceptionsCopyWith<$Res> {
+  factory _$$LocationPermissionNotGivenExceptionCopyWith(
+          _$LocationPermissionNotGivenException value,
+          $Res Function(_$LocationPermissionNotGivenException) then) =
+      __$$LocationPermissionNotGivenExceptionCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String message, String? devLogs});
+}
+
+/// @nodoc
+class __$$LocationPermissionNotGivenExceptionCopyWithImpl<$Res>
+    extends _$ExceptionsCopyWithImpl<$Res,
+        _$LocationPermissionNotGivenException>
+    implements _$$LocationPermissionNotGivenExceptionCopyWith<$Res> {
+  __$$LocationPermissionNotGivenExceptionCopyWithImpl(
+      _$LocationPermissionNotGivenException _value,
+      $Res Function(_$LocationPermissionNotGivenException) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+    Object? devLogs = freezed,
+  }) {
+    return _then(_$LocationPermissionNotGivenException(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      freezed == devLogs
+          ? _value.devLogs
+          : devLogs // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LocationPermissionNotGivenException
+    implements LocationPermissionNotGivenException {
+  const _$LocationPermissionNotGivenException(this.message, [this.devLogs]);
+
+  @override
+  final String message;
+  @override
+  final String? devLogs;
+
+  @override
+  String toString() {
+    return 'Exceptions.locationPermissionNotGiven(message: $message, devLogs: $devLogs)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationPermissionNotGivenException &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.devLogs, devLogs) || other.devLogs == devLogs));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message, devLogs);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocationPermissionNotGivenExceptionCopyWith<
+          _$LocationPermissionNotGivenException>
+      get copyWith => __$$LocationPermissionNotGivenExceptionCopyWithImpl<
+          _$LocationPermissionNotGivenException>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message, String? devLogs)
+        dataSourceException,
+    required TResult Function(String message, String? devLogs)
+        customClaimsException,
+    required TResult Function(String message, String? devLogs) cacheException,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionRequest,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionNotGiven,
+    required TResult Function(String message, String? devLogs)
+        locationServicesNotEnabled,
+    required TResult Function(String message, String? devLogs) locationUpdate,
+  }) {
+    return locationPermissionNotGiven(message, devLogs);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message, String? devLogs)? dataSourceException,
+    TResult? Function(String message, String? devLogs)? customClaimsException,
+    TResult? Function(String message, String? devLogs)? cacheException,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult? Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult? Function(String message, String? devLogs)? locationUpdate,
+  }) {
+    return locationPermissionNotGiven?.call(message, devLogs);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message, String? devLogs)? dataSourceException,
+    TResult Function(String message, String? devLogs)? customClaimsException,
+    TResult Function(String message, String? devLogs)? cacheException,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult Function(String message, String? devLogs)? locationUpdate,
+    required TResult orElse(),
+  }) {
+    if (locationPermissionNotGiven != null) {
+      return locationPermissionNotGiven(message, devLogs);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataSourceException value) dataSourceException,
+    required TResult Function(CustomClaimsException value)
+        customClaimsException,
+    required TResult Function(CacheException value) cacheException,
+    required TResult Function(LocationPermissionRequestException value)
+        locationPermissionRequest,
+    required TResult Function(LocationPermissionNotGivenException value)
+        locationPermissionNotGiven,
+    required TResult Function(LocationServicesNotEnabledException value)
+        locationServicesNotEnabled,
+    required TResult Function(LocationUpdateException value) locationUpdate,
+  }) {
+    return locationPermissionNotGiven(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DataSourceException value)? dataSourceException,
+    TResult? Function(CustomClaimsException value)? customClaimsException,
+    TResult? Function(CacheException value)? cacheException,
+    TResult? Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult? Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult? Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult? Function(LocationUpdateException value)? locationUpdate,
+  }) {
+    return locationPermissionNotGiven?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataSourceException value)? dataSourceException,
+    TResult Function(CustomClaimsException value)? customClaimsException,
+    TResult Function(CacheException value)? cacheException,
+    TResult Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult Function(LocationUpdateException value)? locationUpdate,
+    required TResult orElse(),
+  }) {
+    if (locationPermissionNotGiven != null) {
+      return locationPermissionNotGiven(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LocationPermissionNotGivenException implements Exceptions {
+  const factory LocationPermissionNotGivenException(final String message,
+      [final String? devLogs]) = _$LocationPermissionNotGivenException;
+
+  @override
+  String get message;
+  @override
+  String? get devLogs;
+  @override
+  @JsonKey(ignore: true)
+  _$$LocationPermissionNotGivenExceptionCopyWith<
+          _$LocationPermissionNotGivenException>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LocationServicesNotEnabledExceptionCopyWith<$Res>
+    implements $ExceptionsCopyWith<$Res> {
+  factory _$$LocationServicesNotEnabledExceptionCopyWith(
+          _$LocationServicesNotEnabledException value,
+          $Res Function(_$LocationServicesNotEnabledException) then) =
+      __$$LocationServicesNotEnabledExceptionCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String message, String? devLogs});
+}
+
+/// @nodoc
+class __$$LocationServicesNotEnabledExceptionCopyWithImpl<$Res>
+    extends _$ExceptionsCopyWithImpl<$Res,
+        _$LocationServicesNotEnabledException>
+    implements _$$LocationServicesNotEnabledExceptionCopyWith<$Res> {
+  __$$LocationServicesNotEnabledExceptionCopyWithImpl(
+      _$LocationServicesNotEnabledException _value,
+      $Res Function(_$LocationServicesNotEnabledException) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+    Object? devLogs = freezed,
+  }) {
+    return _then(_$LocationServicesNotEnabledException(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      freezed == devLogs
+          ? _value.devLogs
+          : devLogs // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LocationServicesNotEnabledException
+    implements LocationServicesNotEnabledException {
+  const _$LocationServicesNotEnabledException(this.message, [this.devLogs]);
+
+  @override
+  final String message;
+  @override
+  final String? devLogs;
+
+  @override
+  String toString() {
+    return 'Exceptions.locationServicesNotEnabled(message: $message, devLogs: $devLogs)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationServicesNotEnabledException &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.devLogs, devLogs) || other.devLogs == devLogs));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message, devLogs);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocationServicesNotEnabledExceptionCopyWith<
+          _$LocationServicesNotEnabledException>
+      get copyWith => __$$LocationServicesNotEnabledExceptionCopyWithImpl<
+          _$LocationServicesNotEnabledException>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message, String? devLogs)
+        dataSourceException,
+    required TResult Function(String message, String? devLogs)
+        customClaimsException,
+    required TResult Function(String message, String? devLogs) cacheException,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionRequest,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionNotGiven,
+    required TResult Function(String message, String? devLogs)
+        locationServicesNotEnabled,
+    required TResult Function(String message, String? devLogs) locationUpdate,
+  }) {
+    return locationServicesNotEnabled(message, devLogs);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message, String? devLogs)? dataSourceException,
+    TResult? Function(String message, String? devLogs)? customClaimsException,
+    TResult? Function(String message, String? devLogs)? cacheException,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult? Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult? Function(String message, String? devLogs)? locationUpdate,
+  }) {
+    return locationServicesNotEnabled?.call(message, devLogs);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message, String? devLogs)? dataSourceException,
+    TResult Function(String message, String? devLogs)? customClaimsException,
+    TResult Function(String message, String? devLogs)? cacheException,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult Function(String message, String? devLogs)? locationUpdate,
+    required TResult orElse(),
+  }) {
+    if (locationServicesNotEnabled != null) {
+      return locationServicesNotEnabled(message, devLogs);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataSourceException value) dataSourceException,
+    required TResult Function(CustomClaimsException value)
+        customClaimsException,
+    required TResult Function(CacheException value) cacheException,
+    required TResult Function(LocationPermissionRequestException value)
+        locationPermissionRequest,
+    required TResult Function(LocationPermissionNotGivenException value)
+        locationPermissionNotGiven,
+    required TResult Function(LocationServicesNotEnabledException value)
+        locationServicesNotEnabled,
+    required TResult Function(LocationUpdateException value) locationUpdate,
+  }) {
+    return locationServicesNotEnabled(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DataSourceException value)? dataSourceException,
+    TResult? Function(CustomClaimsException value)? customClaimsException,
+    TResult? Function(CacheException value)? cacheException,
+    TResult? Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult? Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult? Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult? Function(LocationUpdateException value)? locationUpdate,
+  }) {
+    return locationServicesNotEnabled?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataSourceException value)? dataSourceException,
+    TResult Function(CustomClaimsException value)? customClaimsException,
+    TResult Function(CacheException value)? cacheException,
+    TResult Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult Function(LocationUpdateException value)? locationUpdate,
+    required TResult orElse(),
+  }) {
+    if (locationServicesNotEnabled != null) {
+      return locationServicesNotEnabled(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LocationServicesNotEnabledException implements Exceptions {
+  const factory LocationServicesNotEnabledException(final String message,
+      [final String? devLogs]) = _$LocationServicesNotEnabledException;
+
+  @override
+  String get message;
+  @override
+  String? get devLogs;
+  @override
+  @JsonKey(ignore: true)
+  _$$LocationServicesNotEnabledExceptionCopyWith<
+          _$LocationServicesNotEnabledException>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$LocationUpdateExceptionCopyWith<$Res>
+    implements $ExceptionsCopyWith<$Res> {
+  factory _$$LocationUpdateExceptionCopyWith(_$LocationUpdateException value,
+          $Res Function(_$LocationUpdateException) then) =
+      __$$LocationUpdateExceptionCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String message, String? devLogs});
+}
+
+/// @nodoc
+class __$$LocationUpdateExceptionCopyWithImpl<$Res>
+    extends _$ExceptionsCopyWithImpl<$Res, _$LocationUpdateException>
+    implements _$$LocationUpdateExceptionCopyWith<$Res> {
+  __$$LocationUpdateExceptionCopyWithImpl(_$LocationUpdateException _value,
+      $Res Function(_$LocationUpdateException) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? message = null,
+    Object? devLogs = freezed,
+  }) {
+    return _then(_$LocationUpdateException(
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      freezed == devLogs
+          ? _value.devLogs
+          : devLogs // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LocationUpdateException implements LocationUpdateException {
+  const _$LocationUpdateException(this.message, [this.devLogs]);
+
+  @override
+  final String message;
+  @override
+  final String? devLogs;
+
+  @override
+  String toString() {
+    return 'Exceptions.locationUpdate(message: $message, devLogs: $devLogs)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LocationUpdateException &&
+            (identical(other.message, message) || other.message == message) &&
+            (identical(other.devLogs, devLogs) || other.devLogs == devLogs));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message, devLogs);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LocationUpdateExceptionCopyWith<_$LocationUpdateException> get copyWith =>
+      __$$LocationUpdateExceptionCopyWithImpl<_$LocationUpdateException>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message, String? devLogs)
+        dataSourceException,
+    required TResult Function(String message, String? devLogs)
+        customClaimsException,
+    required TResult Function(String message, String? devLogs) cacheException,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionRequest,
+    required TResult Function(String message, String? devLogs)
+        locationPermissionNotGiven,
+    required TResult Function(String message, String? devLogs)
+        locationServicesNotEnabled,
+    required TResult Function(String message, String? devLogs) locationUpdate,
+  }) {
+    return locationUpdate(message, devLogs);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message, String? devLogs)? dataSourceException,
+    TResult? Function(String message, String? devLogs)? customClaimsException,
+    TResult? Function(String message, String? devLogs)? cacheException,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult? Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult? Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult? Function(String message, String? devLogs)? locationUpdate,
+  }) {
+    return locationUpdate?.call(message, devLogs);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message, String? devLogs)? dataSourceException,
+    TResult Function(String message, String? devLogs)? customClaimsException,
+    TResult Function(String message, String? devLogs)? cacheException,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionRequest,
+    TResult Function(String message, String? devLogs)?
+        locationPermissionNotGiven,
+    TResult Function(String message, String? devLogs)?
+        locationServicesNotEnabled,
+    TResult Function(String message, String? devLogs)? locationUpdate,
+    required TResult orElse(),
+  }) {
+    if (locationUpdate != null) {
+      return locationUpdate(message, devLogs);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataSourceException value) dataSourceException,
+    required TResult Function(CustomClaimsException value)
+        customClaimsException,
+    required TResult Function(CacheException value) cacheException,
+    required TResult Function(LocationPermissionRequestException value)
+        locationPermissionRequest,
+    required TResult Function(LocationPermissionNotGivenException value)
+        locationPermissionNotGiven,
+    required TResult Function(LocationServicesNotEnabledException value)
+        locationServicesNotEnabled,
+    required TResult Function(LocationUpdateException value) locationUpdate,
+  }) {
+    return locationUpdate(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DataSourceException value)? dataSourceException,
+    TResult? Function(CustomClaimsException value)? customClaimsException,
+    TResult? Function(CacheException value)? cacheException,
+    TResult? Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult? Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult? Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult? Function(LocationUpdateException value)? locationUpdate,
+  }) {
+    return locationUpdate?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataSourceException value)? dataSourceException,
+    TResult Function(CustomClaimsException value)? customClaimsException,
+    TResult Function(CacheException value)? cacheException,
+    TResult Function(LocationPermissionRequestException value)?
+        locationPermissionRequest,
+    TResult Function(LocationPermissionNotGivenException value)?
+        locationPermissionNotGiven,
+    TResult Function(LocationServicesNotEnabledException value)?
+        locationServicesNotEnabled,
+    TResult Function(LocationUpdateException value)? locationUpdate,
+    required TResult orElse(),
+  }) {
+    if (locationUpdate != null) {
+      return locationUpdate(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LocationUpdateException implements Exceptions {
+  const factory LocationUpdateException(final String message,
+      [final String? devLogs]) = _$LocationUpdateException;
+
+  @override
+  String get message;
+  @override
+  String? get devLogs;
+  @override
+  @JsonKey(ignore: true)
+  _$$LocationUpdateExceptionCopyWith<_$LocationUpdateException> get copyWith =>
       throw _privateConstructorUsedError;
 }

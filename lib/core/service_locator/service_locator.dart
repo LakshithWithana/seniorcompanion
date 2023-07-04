@@ -2,10 +2,18 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:seniorcompanion/core/cache/cache.dart';
+import 'package:seniorcompanion/core/loacation/data/data_provider/location_data_provider.dart';
+import 'package:seniorcompanion/core/loacation/data/data_provider/location_data_provider_impl.dart';
+import 'package:seniorcompanion/core/loacation/data/repository/location_repository.dart';
+import 'package:seniorcompanion/core/loacation/data/repository/location_repository_impl.dart';
 import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider.dart';
 import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider_impl.dart';
 import 'package:seniorcompanion/features/profile/data/repositories/profile_repository.dart';
 import 'package:seniorcompanion/features/profile/data/repositories/profile_repository_impl.dart';
+import 'package:seniorcompanion/features/search/data/data_provider/search_data_provider.dart';
+import 'package:seniorcompanion/features/search/data/data_provider/search_data_provider_impl.dart';
+import 'package:seniorcompanion/features/search/data/repository/search_repository.dart';
+import 'package:seniorcompanion/features/search/data/repository/search_repository_impl.dart';
 
 import '../../app/data/data_provider/auth_data_provider.dart';
 import '../../app/data/data_provider/auth_data_provider_impl.dart';
@@ -77,6 +85,28 @@ void setupLocator() {
   registerLazySingleton<ProfileRepository>(ProfileRepositoryImpl(
     profileDataProvider: locator(),
   ));
+  //!
+
+  //! Location data
+  registerLazySingleton<LocationDataProvider>(LocationDataProviderImpl(
+    firebaseAuth: locator(),
+    firebaseFirestore: locator(),
+  ));
+
+  registerLazySingleton<LocationRepository>(LocationRepositoryImpl(
+    locationDataProvider: locator(),
+  ));
+  //!
+
+  //! Search data
+  registerLazySingleton<SearchDataProvider>(SearchDataProviderImpl(
+    firebaseFirestore: locator(),
+    locationRepository: locator(),
+    firebaseAuth: locator(),
+  ));
+
+  registerLazySingleton<SearchRepository>(
+      SearchRepositoryImpl(searchDataProvider: locator()));
   //!
 }
 

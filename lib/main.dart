@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seniorcompanion/app/bloc/app_bloc.dart';
 import 'package:seniorcompanion/app/bloc/app_bloc_observer.dart';
+import 'package:seniorcompanion/app/routes/bloc/main_page_routes_bloc.dart';
 import 'package:seniorcompanion/app/routes/routes.dart';
 import 'package:seniorcompanion/core/constants/colors.dart';
+import 'package:seniorcompanion/core/loacation/bloc/location_bloc.dart';
+import 'package:seniorcompanion/core/loacation/data/repository/location_repository.dart';
 import 'package:seniorcompanion/core/user_details/cubit/cubit/user_details_cubit.dart';
 import 'package:seniorcompanion/core/user_details/data/repository/user_details_repository.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,6 +33,7 @@ Future<void> main() async {
   await authRepository.scUser.first;
   final CustomClaimsRepository customClaimsRepository =
       locator<CustomClaimsRepository>();
+  final LocationRepository locationRepository = locator<LocationRepository>();
   runApp(
     EasyLocalization(
         supportedLocales: const [
@@ -39,8 +43,10 @@ Future<void> main() async {
         startLocale: const Locale('en'),
         fallbackLocale: const Locale('en'),
         child: MyApp(
-            authRepository: authRepository,
-            customClaimsRepository: customClaimsRepository)),
+          authRepository: authRepository,
+          customClaimsRepository: customClaimsRepository,
+          locationRepository: locationRepository,
+        )),
   );
 }
 
@@ -49,11 +55,14 @@ class MyApp extends StatelessWidget {
     super.key,
     required AuthRepository authRepository,
     required CustomClaimsRepository customClaimsRepository,
+    required LocationRepository locationRepository,
   })  : _authRepository = authRepository,
-        _customClaimsRepository = customClaimsRepository;
+        _customClaimsRepository = customClaimsRepository,
+        _locationRepository = locationRepository;
 
   final AuthRepository _authRepository;
   final CustomClaimsRepository _customClaimsRepository;
+  final LocationRepository _locationRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +70,10 @@ class MyApp extends StatelessWidget {
       designSize: const Size(390, 844),
       builder: (context, child) {
         return App(
-            authRepository: _authRepository,
-            customClaimsRepository: _customClaimsRepository);
+          authRepository: _authRepository,
+          customClaimsRepository: _customClaimsRepository,
+          locationRepository: _locationRepository,
+        );
       },
     );
   }
@@ -73,11 +84,14 @@ class App extends StatelessWidget {
     super.key,
     required AuthRepository authRepository,
     required CustomClaimsRepository customClaimsRepository,
+    required LocationRepository locationRepository,
   })  : _authRepository = authRepository,
-        _customClaimsRepository = customClaimsRepository;
+        _customClaimsRepository = customClaimsRepository,
+        _locationRepository = locationRepository;
 
   final AuthRepository _authRepository;
   final CustomClaimsRepository _customClaimsRepository;
+  final LocationRepository _locationRepository;
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +102,9 @@ class App extends StatelessWidget {
         ),
         RepositoryProvider(
           create: (context) => _customClaimsRepository,
+        ),
+        RepositoryProvider(
+          create: (context) => _locationRepository,
         ),
       ],
       child: MultiBlocProvider(
@@ -103,6 +120,14 @@ class App extends StatelessWidget {
               authRepository: _authRepository,
             ),
           ),
+          BlocProvider(
+            create: (context) =>
+                LocationBloc(locationRepository: locator<LocationRepository>()),
+          ),
+          // BlocProvider<MainPageRoutesBloc>.value(value: material),
+          BlocProvider(
+            create: (context) => MainPageRoutesBloc(),
+          )
         ],
         child: const AppView(),
       ),
