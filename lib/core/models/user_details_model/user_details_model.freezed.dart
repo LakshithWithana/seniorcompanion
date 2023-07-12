@@ -44,6 +44,10 @@ mixin _$UserDetails {
   double get lat => throw _privateConstructorUsedError;
   @JsonKey(name: 'lon')
   double get lon => throw _privateConstructorUsedError;
+  @JsonKey(name: 'age')
+  int get age => throw _privateConstructorUsedError;
+  @JsonKey(name: 'rating')
+  double get rating => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -69,7 +73,9 @@ abstract class $UserDetailsCopyWith<$Res> {
       @JsonKey(name: 'preferences') List<String> preferences,
       @JsonKey(name: 'profilePicURL') String profilePicURL,
       @JsonKey(name: 'lat') double lat,
-      @JsonKey(name: 'lon') double lon});
+      @JsonKey(name: 'lon') double lon,
+      @JsonKey(name: 'age') int age,
+      @JsonKey(name: 'rating') double rating});
 }
 
 /// @nodoc
@@ -97,6 +103,8 @@ class _$UserDetailsCopyWithImpl<$Res, $Val extends UserDetails>
     Object? profilePicURL = null,
     Object? lat = null,
     Object? lon = null,
+    Object? age = null,
+    Object? rating = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -147,6 +155,14 @@ class _$UserDetailsCopyWithImpl<$Res, $Val extends UserDetails>
           ? _value.lon
           : lon // ignore: cast_nullable_to_non_nullable
               as double,
+      age: null == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -171,7 +187,9 @@ abstract class _$$_UserDetailsCopyWith<$Res>
       @JsonKey(name: 'preferences') List<String> preferences,
       @JsonKey(name: 'profilePicURL') String profilePicURL,
       @JsonKey(name: 'lat') double lat,
-      @JsonKey(name: 'lon') double lon});
+      @JsonKey(name: 'lon') double lon,
+      @JsonKey(name: 'age') int age,
+      @JsonKey(name: 'rating') double rating});
 }
 
 /// @nodoc
@@ -197,6 +215,8 @@ class __$$_UserDetailsCopyWithImpl<$Res>
     Object? profilePicURL = null,
     Object? lat = null,
     Object? lon = null,
+    Object? age = null,
+    Object? rating = null,
   }) {
     return _then(_$_UserDetails(
       uid: null == uid
@@ -247,6 +267,14 @@ class __$$_UserDetailsCopyWithImpl<$Res>
           ? _value.lon
           : lon // ignore: cast_nullable_to_non_nullable
               as double,
+      age: null == age
+          ? _value.age
+          : age // ignore: cast_nullable_to_non_nullable
+              as int,
+      rating: null == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -266,7 +294,9 @@ class _$_UserDetails implements _UserDetails {
       @JsonKey(name: 'preferences') required final List<String> preferences,
       @JsonKey(name: 'profilePicURL') required this.profilePicURL,
       @JsonKey(name: 'lat') required this.lat,
-      @JsonKey(name: 'lon') required this.lon})
+      @JsonKey(name: 'lon') required this.lon,
+      @JsonKey(name: 'age') required this.age,
+      @JsonKey(name: 'rating') required this.rating})
       : _preferences = preferences;
 
   factory _$_UserDetails.fromJson(Map<String, dynamic> json) =>
@@ -314,10 +344,16 @@ class _$_UserDetails implements _UserDetails {
   @override
   @JsonKey(name: 'lon')
   final double lon;
+  @override
+  @JsonKey(name: 'age')
+  final int age;
+  @override
+  @JsonKey(name: 'rating')
+  final double rating;
 
   @override
   String toString() {
-    return 'UserDetails(uid: $uid, email: $email, firstName: $firstName, lastName: $lastName, role: $role, birthday: $birthday, about: $about, gender: $gender, preferences: $preferences, profilePicURL: $profilePicURL, lat: $lat, lon: $lon)';
+    return 'UserDetails(uid: $uid, email: $email, firstName: $firstName, lastName: $lastName, role: $role, birthday: $birthday, about: $about, gender: $gender, preferences: $preferences, profilePicURL: $profilePicURL, lat: $lat, lon: $lon, age: $age, rating: $rating)';
   }
 
   @override
@@ -341,7 +377,9 @@ class _$_UserDetails implements _UserDetails {
             (identical(other.profilePicURL, profilePicURL) ||
                 other.profilePicURL == profilePicURL) &&
             (identical(other.lat, lat) || other.lat == lat) &&
-            (identical(other.lon, lon) || other.lon == lon));
+            (identical(other.lon, lon) || other.lon == lon) &&
+            (identical(other.age, age) || other.age == age) &&
+            (identical(other.rating, rating) || other.rating == rating));
   }
 
   @JsonKey(ignore: true)
@@ -359,7 +397,9 @@ class _$_UserDetails implements _UserDetails {
       const DeepCollectionEquality().hash(_preferences),
       profilePicURL,
       lat,
-      lon);
+      lon,
+      age,
+      rating);
 
   @JsonKey(ignore: true)
   @override
@@ -388,7 +428,9 @@ abstract class _UserDetails implements UserDetails {
       @JsonKey(name: 'preferences') required final List<String> preferences,
       @JsonKey(name: 'profilePicURL') required final String profilePicURL,
       @JsonKey(name: 'lat') required final double lat,
-      @JsonKey(name: 'lon') required final double lon}) = _$_UserDetails;
+      @JsonKey(name: 'lon') required final double lon,
+      @JsonKey(name: 'age') required final int age,
+      @JsonKey(name: 'rating') required final double rating}) = _$_UserDetails;
 
   factory _UserDetails.fromJson(Map<String, dynamic> json) =
       _$_UserDetails.fromJson;
@@ -429,6 +471,12 @@ abstract class _UserDetails implements UserDetails {
   @override
   @JsonKey(name: 'lon')
   double get lon;
+  @override
+  @JsonKey(name: 'age')
+  int get age;
+  @override
+  @JsonKey(name: 'rating')
+  double get rating;
   @override
   @JsonKey(ignore: true)
   _$$_UserDetailsCopyWith<_$_UserDetails> get copyWith =>

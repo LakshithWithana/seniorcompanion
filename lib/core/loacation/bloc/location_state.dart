@@ -11,3 +11,21 @@ class LocationState with _$LocationState {
   const factory LocationState.locationPermissionNotGiven(String? errorMessage) =
       _LocationPermissionNotGiven;
 }
+
+
+// Define the states
+// abstract class LocationState {}
+
+// class LocationInitial extends LocationState {}
+
+// class LocationEnabled extends LocationState {}
+
+// class LocationDisabled extends LocationState {}
+
+// class LocationError extends LocationState {
+//   final String errorMessage;
+
+//   LocationError(this.errorMessage);
+// }
+
+// class LocationUpdated extends LocationState {}

@@ -10,6 +10,7 @@ class SearchState extends Equatable {
     this.endTime = "",
     this.status = FormzSubmissionStatus.initial,
     this.errorMessage,
+    this.searchResult,
   });
 
   final String gender;
@@ -20,6 +21,7 @@ class SearchState extends Equatable {
   final String endTime;
   final FormzSubmissionStatus status;
   final String? errorMessage;
+  final List<UserDetails>? searchResult;
 
   @override
   // TODO: implement props
@@ -42,6 +44,7 @@ class SearchState extends Equatable {
     String? endTime,
     FormzSubmissionStatus? status,
     String? errorMessage,
+    List<UserDetails>? searchResult,
   }) {
     return SearchState(
       gender: gender ?? this.gender,
@@ -52,6 +55,7 @@ class SearchState extends Equatable {
       endTime: endTime ?? this.endTime,
       status: status ?? this.status,
       errorMessage: errorMessage ?? this.errorMessage,
+      searchResult: searchResult ?? this.searchResult,
     );
   }
 }

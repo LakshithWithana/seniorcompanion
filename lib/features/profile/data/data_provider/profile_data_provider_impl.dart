@@ -46,7 +46,6 @@ class ProfileDataProviderImpl implements ProfileDataProvider {
         "about": about.value,
         "gender": gender,
         "preferences": preferences,
-        "profilePicURL": "",
       }).then((value) async {
         await customClaimsRepository.updateClaims({
           'profileUpdated': true,

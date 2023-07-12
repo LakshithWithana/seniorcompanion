@@ -80,3 +80,60 @@ extension ExLocationBLoc on BuildContext {
   LocationBloc get bloc => read<LocationBloc>();
   void addLocationEvent(LocationEvent event) => bloc.add(event);
 }
+
+// class LocationBloc extends Bloc<LocationEvent, LocationState> {
+//   final LocationRepository _locationRepository;
+
+//   LocationBloc({required LocationRepository locationRepository})
+//       : _locationRepository = locationRepository,
+//         super(const _Initial());
+
+//   Stream<LocationState> mapEventToState(LocationEvent event) async* {
+//     if (event is _CheckLocationPermission) {
+//       yield* _mapCheckLocationEventToState();
+//     } else if (event is _UpdateLocation) {
+//       yield* _mapUpdateLocationEventToState(event.position);
+//     }
+//   }
+
+//   Stream<LocationState> _mapCheckLocationEventToState() async* {
+//     bool isLocationEnabled = await Geolocator.isLocationServiceEnabled();
+//     if (isLocationEnabled) {
+//       yield const LocationState.enabled();
+//     } else {
+//       yield const LocationState.disabled();
+//     }
+//     // final result = await _locationRepository.checkLocationPermission();
+
+//     // result.fold((l) {
+//     //   emit(const LocationState.disabled());
+//     // }, (r) {
+//     //   emit(const LocationState.enabled());
+//     // });
+//   }
+
+//   Stream<LocationState> _mapUpdateLocationEventToState(
+//       Position position) async* {
+//     try {
+//       await FirebaseFirestore.instance
+//           .collection(FirebaseConstants.usersCollectionName)
+//           .doc()
+//           .update({
+//         'lat': position.latitude,
+//         'lon': position.longitude,
+//       });
+//       yield const _Updated();
+//     } catch (e) {
+//       yield const _Error("");
+//     }
+
+//     // final result =
+//     //     await _locationRepository.updateCurrentLocationOfUser(position);
+
+//     // result.fold((l) {
+//     //   emit(const LocationState.error("Unable to update location"));
+//     // }, (r) {
+//     //   emit(const LocationState.updated());
+//     // });
+//   }
+// }

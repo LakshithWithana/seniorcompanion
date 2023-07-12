@@ -7,6 +7,16 @@ class LocationEvent with _$LocationEvent {
   const factory LocationEvent.locationChanged(Position location) =
       _LocationChanged;
 
-  ///When the driver is not working we dont have to listen to the location
   const factory LocationEvent.stopListening() = _StopListening;
 }
+
+// Define the events
+// abstract class LocationEvent {}
+
+// class CheckLocationEvent extends LocationEvent {}
+
+// class UpdateLocationEvent extends LocationEvent {
+//   final Position position;
+
+//   UpdateLocationEvent(this.position);
+// }

@@ -19,7 +19,7 @@ class LocationRepositoryImpl extends LocationRepository {
       return right(result);
     } catch (e) {
       return left(const LocationDataFailure.locationPermission(
-          "message")); //todo add the proper error message here
+          "Location Services are not enabled. Enable location services to use this app's features."));
     }
   }
 

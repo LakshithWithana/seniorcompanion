@@ -19,6 +19,8 @@ class UserDetails with _$UserDetails {
     @JsonKey(name: 'profilePicURL') required String profilePicURL,
     @JsonKey(name: 'lat') required double lat,
     @JsonKey(name: 'lon') required double lon,
+    @JsonKey(name: 'age') required int age,
+    @JsonKey(name: 'rating') required double rating,
   }) = _UserDetails;
 
   static const empty = UserDetails(
@@ -34,6 +36,8 @@ class UserDetails with _$UserDetails {
     profilePicURL: "",
     lat: 0.0,
     lon: 0.0,
+    age: 0,
+    rating: 0.0,
   );
 
   factory UserDetails.fromJson(Map<String, dynamic> json) =>

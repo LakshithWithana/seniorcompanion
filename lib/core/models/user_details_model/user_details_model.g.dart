@@ -22,6 +22,8 @@ _$_UserDetails _$$_UserDetailsFromJson(Map<String, dynamic> json) =>
       profilePicURL: json['profilePicURL'] as String,
       lat: (json['lat'] as num).toDouble(),
       lon: (json['lon'] as num).toDouble(),
+      age: json['age'] as int,
+      rating: (json['rating'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$_UserDetailsToJson(_$_UserDetails instance) =>
@@ -38,4 +40,6 @@ Map<String, dynamic> _$$_UserDetailsToJson(_$_UserDetails instance) =>
       'profilePicURL': instance.profilePicURL,
       'lat': instance.lat,
       'lon': instance.lon,
+      'age': instance.age,
+      'rating': instance.rating,
     };

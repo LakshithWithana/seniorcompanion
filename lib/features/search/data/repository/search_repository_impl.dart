@@ -10,22 +10,24 @@ class SearchRepositoryImpl extends SearchRepository {
   SearchRepositoryImpl({required SearchDataProvider searchDataProvider})
       : _searchDataProvider = searchDataProvider;
   @override
-  Future<Either<String, List<UserDetails>>> searchUsers({
+  Future<Either<String, Stream<List<UserDetails>>>> searchUsers({
     required String gender,
     required int startAge,
     required int endAge,
     required double distance,
     required String startTime,
     required String endTime,
+    required String role,
   }) async {
     try {
-      final result = await _searchDataProvider.searchUsers(
+      final result = _searchDataProvider.searchUsers(
           gender: gender,
           startAge: startAge,
           endAge: endAge,
           distance: distance,
           startTime: startTime,
-          endTime: endTime);
+          endTime: endTime,
+          role: role);
 
       return right(result);
     } on SearchFailure catch (e) {

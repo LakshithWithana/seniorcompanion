@@ -101,7 +101,6 @@ void setupLocator() {
   //! Search data
   registerLazySingleton<SearchDataProvider>(SearchDataProviderImpl(
     firebaseFirestore: locator(),
-    locationRepository: locator(),
     firebaseAuth: locator(),
   ));
 

@@ -10,6 +10,8 @@ import 'package:seniorcompanion/features/search/presentation/pages/search_view.d
 class SearchPage extends StatelessWidget {
   const SearchPage({super.key});
 
+  static Page page() => const MaterialPage<void>(child: SearchPage());
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -19,8 +21,9 @@ class SearchPage extends StatelessWidget {
               LocationBloc(locationRepository: locator<LocationRepository>()),
         ),
         BlocProvider(
-          create: (context) =>
-              SearchCubit(searchRepository: locator<SearchRepository>()),
+          create: (context) => SearchCubit(
+            searchRepository: locator<SearchRepository>(),
+          ),
         ),
       ],
       child: const SearchView(),

@@ -172,6 +172,10 @@ class AuthDataProviderImpl implements AuthDataProvider {
         "gender": "",
         "preferences": [],
         "profilePicURL": "",
+        "lat": 0.0,
+        "lon": 0.0,
+        "age": 0,
+        "rating": 5.0,
       }).then((value) async {
         final ClaimsModel cModel = ClaimsModel(
             userId: result.user!.uid,

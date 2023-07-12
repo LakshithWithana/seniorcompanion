@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:seniorcompanion/core/loacation/bloc/location_bloc.dart';
 import 'package:seniorcompanion/features/search/cubit/search_cubit.dart';
 
 import '../../../../app/bloc/app_bloc.dart';
@@ -13,11 +14,11 @@ class SearchButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locationBloc = BlocProvider.of<LocationBloc>(context);
     return BlocBuilder<SearchCubit, SearchState>(
       buildWhen: (previous, current) => (previous.status != current.status),
       builder: (contextP, stateP) {
-        return (stateP.status == FormzSubmissionStatus.inProgress ||
-                stateP.status == FormzSubmissionStatus.success)
+        return (stateP.status == FormzSubmissionStatus.inProgress)
             ? const Center(child: CircularProgressIndicator())
             : BlocBuilder<AppBloc, AppState>(
                 builder: (context, state) {
@@ -26,8 +27,9 @@ class SearchButtonWidget extends StatelessWidget {
                     backgroundColor:
                         (state.user.role == "CG" ? mainBlue : mainOrange),
                     label: "search".tr(),
-                    onPressed: () {
-                      context.read<SearchCubit>().searchUser();
+                    onPressed: () async {
+                      locationBloc.add(const LocationEvent.started());
+                      contextP.read<SearchCubit>().searchUser(state.user.role);
                     },
                   );
                 },
