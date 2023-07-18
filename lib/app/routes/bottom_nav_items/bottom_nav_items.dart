@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:seniorcompanion/features/chat/presentation/chat_page.dart';
+import 'package:seniorcompanion/features/notifications/presentation/pages/notification_page.dart';
 import 'package:seniorcompanion/features/search/presentation/pages/search_page.dart';
 
 import '../../../core/shared/widgets/custom_text.dart';
@@ -29,21 +31,13 @@ List<BottomNavigationBarItem> bottomNavItems = <BottomNavigationBarItem>[
 
 List<Widget> bottomNavScreen = <Widget>[
   const SearchPage(),
-  CustomText(
-    text: "chat".tr().toUpperCase(),
-    fontSize: 24.0,
-    fontWeight: FontWeight.bold,
-  ),
+  const ChatPage(),
   CustomText(
     text: "wellbeing".tr().toUpperCase(),
     fontSize: 24.0,
     fontWeight: FontWeight.bold,
   ),
-  CustomText(
-    text: "notifications".tr().toUpperCase(),
-    fontSize: 24.0,
-    fontWeight: FontWeight.bold,
-  ),
+  const NotificationPage(),
   CustomText(
     text: "settings".tr().toUpperCase(),
     fontSize: 24.0,

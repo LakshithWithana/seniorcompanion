@@ -2,10 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:seniorcompanion/app/bloc/app_bloc.dart';
+import 'package:seniorcompanion/features/chat/single_person_chat/presentation/single_person_chat_page.dart';
 import 'package:seniorcompanion/features/search/cubit/search_cubit.dart';
 
-import '../../../../app/bloc/app_bloc.dart';
 import '../../../../core/constants/colors.dart';
+import '../../../../core/shared/widgets/custom_elevated_buttons.dart';
 import '../../../../core/shared/widgets/custom_text.dart';
 import '../widgets/search_result_page/rating_stars.dart';
 
@@ -19,6 +21,7 @@ class SingleSearchResultView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            shadowColor: Theme.of(context).shadowColor,
             centerTitle: false,
             title: CustomText(
               text:
@@ -33,86 +36,127 @@ class SingleSearchResultView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ListTile(
-                    contentPadding: const EdgeInsets.all(0),
-                    leading: CircleAvatar(
-                      radius: 30.0,
-                      backgroundImage: NetworkImage(
-                          state.searchResult![index].profilePicURL),
-                    ),
-                    title: CustomText(
-                      text:
-                          "${state.searchResult![index].firstName} ${state.searchResult![index].lastName}",
-                      fontSize: 20.0.sp,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ListTile(
+                        contentPadding: const EdgeInsets.all(0),
+                        leading: CircleAvatar(
+                          radius: 30.0,
+                          backgroundImage: NetworkImage(
+                              state.searchResult![index].profilePicURL),
+                        ),
+                        title: CustomText(
+                          text:
+                              "${state.searchResult![index].firstName} ${state.searchResult![index].lastName}",
+                          fontSize: 20.0.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        subtitle: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            CustomText(
-                              text:
-                                  "${state.searchResult![index].age} Years - ",
-                              fontSize: 18.0.sp,
-                              color: secondaryFontColor,
-                              fontWeight: FontWeight.normal,
+                            Row(
+                              children: [
+                                CustomText(
+                                  text:
+                                      "${state.searchResult![index].age} Years - ",
+                                  fontSize: 18.0.sp,
+                                  color: secondaryFontColor,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                                CustomText(
+                                  text: state.searchResult![index].gender
+                                      .toUpperCase(),
+                                  fontSize: 18.0.sp,
+                                  color: secondaryFontColor,
+                                  fontWeight: FontWeight.normal,
+                                ),
+                              ],
                             ),
-                            CustomText(
-                              text: state.searchResult![index].gender
-                                  .toUpperCase(),
-                              fontSize: 18.0.sp,
-                              color: secondaryFontColor,
-                              fontWeight: FontWeight.normal,
+                            Row(
+                              children: [
+                                CustomText(
+                                  text: "${state.searchResult![index].rating}",
+                                  fontSize: 16.0.sp,
+                                ),
+                                CustomText(
+                                  text: "/5.0",
+                                  fontSize: 14.0.sp,
+                                  color: secondaryFontColor,
+                                ),
+                                const SizedBox(width: 10.0),
+                                RatingStars(
+                                    ratingScroe:
+                                        state.searchResult![index].rating),
+                              ],
                             ),
                           ],
                         ),
-                        Row(
-                          children: [
-                            CustomText(
-                              text: "${state.searchResult![index].rating}",
-                              fontSize: 16.0.sp,
-                            ),
-                            CustomText(
-                              text: "/5.0",
-                              fontSize: 14.0.sp,
-                              color: secondaryFontColor,
-                            ),
-                            const SizedBox(width: 10.0),
-                            RatingStars(
-                                ratingScroe: state.searchResult![index].rating),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 15.0),
-                  CustomText(
-                    text: "about".tr().toUpperCase(),
-                    fontSize: 20.0.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  CustomText(
-                    text: state.searchResult![index].about,
-                    fontSize: 16.0.sp,
-                    textAlignment: TextAlign.justify,
-                  ),
-                  const SizedBox(height: 15.0),
-                  CustomText(
-                    text: "preferences".tr().toUpperCase(),
-                    fontSize: 20.0.sp,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: state.searchResult![index].preferences.length,
-                    itemBuilder: (BuildContext context, int listIndex) {
-                      return BlocBuilder<AppBloc, AppState>(
-                        builder: (contextP, stateP) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
+                      ),
+                      const SizedBox(height: 15.0),
+                      CustomText(
+                        text: "about".tr().toUpperCase(),
+                        fontSize: 20.0.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      CustomText(
+                        text: state.searchResult![index].about,
+                        fontSize: 16.0.sp,
+                        textAlignment: TextAlign.justify,
+                      ),
+                      const SizedBox(height: 15.0),
+                      CustomText(
+                        text: "preferences".tr().toUpperCase(),
+                        fontSize: 20.0.sp,
+                        fontWeight: FontWeight.bold,
+                      ),
+
+                      // ListView.builder(
+                      //   shrinkWrap: true,
+                      //   itemCount: state.searchResult![index].preferences.length,
+                      //   itemBuilder: (BuildContext context, int listIndex) {
+                      //     return BlocBuilder<AppBloc, AppState>(
+                      //       builder: (contextP, stateP) {
+                      //         return Column(
+                      //           crossAxisAlignment: CrossAxisAlignment.start,
+                      //           children: [
+                      //             Container(
+                      //               decoration: BoxDecoration(
+                      //                   color: stateP.user.role == "CG"
+                      //                       ? mainBlue
+                      //                       : mainOrange,
+                      //                   border: Border.all(
+                      //                     color: (stateP.user.role == "CG"
+                      //                         ? mainBlue
+                      //                         : mainOrange),
+                      //                   ),
+                      //                   borderRadius: const BorderRadius.all(
+                      //                       Radius.circular(10))),
+                      //               child: Padding(
+                      //                 padding: const EdgeInsets.all(8.0),
+                      //                 child: CustomText(
+                      //                   text: state.searchResult![index]
+                      //                       .preferences[listIndex],
+                      //                   fontSize: 18.0.sp,
+                      //                   color: white,
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //             const SizedBox(height: 10.0),
+                      //           ],
+                      //         );
+                      //       },
+                      //     );
+                      //   },
+                      // ),
+                      Wrap(
+                        spacing: 10.0,
+                        runSpacing: 10.0,
+                        children: state.searchResult![index].preferences
+                            .map((String item) {
+                          return BlocBuilder<AppBloc, AppState>(
+                            builder: (contextP, stateP) {
+                              return Container(
                                 decoration: BoxDecoration(
                                     color: stateP.user.role == "CG"
                                         ? mainBlue
@@ -127,20 +171,37 @@ class SingleSearchResultView extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: CustomText(
-                                    text: state.searchResult![index]
-                                        .preferences[listIndex],
+                                    text: item,
                                     fontSize: 18.0.sp,
                                     color: white,
                                   ),
                                 ),
-                              ),
-                              const SizedBox(height: 10.0),
-                            ],
+                              );
+                            },
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 200),
+                  BlocBuilder<AppBloc, AppState>(
+                    builder: (contextP, stateP) {
+                      return CustomElevatedButton(
+                        key: const Key("single_search_result_page_chat_button"),
+                        backgroundColor:
+                            (stateP.user.role == "CG" ? mainBlue : mainOrange),
+                        label: "chat".tr().toUpperCase(),
+                        onPressed: () async {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const SinglePersonChatPage(),
+                            ),
                           );
                         },
                       );
                     },
-                  ),
+                  )
                 ],
               ),
             ),

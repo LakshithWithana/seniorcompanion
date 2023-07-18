@@ -43,6 +43,7 @@ class ProfileView extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
+          shadowColor: Theme.of(context).shadowColor,
           centerTitle: false,
           title: CustomText(
             text: "profile".tr().toUpperCase(),

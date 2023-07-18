@@ -18,6 +18,7 @@ class SearchResultView extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
+            shadowColor: Theme.of(context).shadowColor,
             centerTitle: false,
             title: CustomText(
               text: "searchResults".tr().toUpperCase(),

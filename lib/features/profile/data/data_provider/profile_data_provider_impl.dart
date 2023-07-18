@@ -46,6 +46,16 @@ class ProfileDataProviderImpl implements ProfileDataProvider {
         "about": about.value,
         "gender": gender,
         "preferences": preferences,
+        "age": (DateTime.now()
+                    .difference(DateTime(
+                        int.parse(("1995-12-20 00:00:00".split("-").first)),
+                        (int.parse("1995-12-20 00:00:00".split("-")[1])),
+                        (int.parse(("1995-12-20 00:00:00".split("-")[2])
+                            .split(" ")
+                            .first))))
+                    .inDays /
+                365)
+            .round(),
       }).then((value) async {
         await customClaimsRepository.updateClaims({
           'profileUpdated': true,

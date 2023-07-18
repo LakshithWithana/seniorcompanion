@@ -40,6 +40,7 @@ class _SignupViewState extends State<SignupView> {
       },
       child: Scaffold(
         appBar: AppBar(
+          shadowColor: Theme.of(context).shadowColor,
           centerTitle: false,
           title: CustomText(
             text: "signup".tr().toUpperCase(),
