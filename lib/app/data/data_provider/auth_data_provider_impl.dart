@@ -176,6 +176,7 @@ class AuthDataProviderImpl implements AuthDataProvider {
         "lon": 0.0,
         "age": 0,
         "rating": 5.0,
+        "chatUserList": [],
       }).then((value) async {
         final ClaimsModel cModel = ClaimsModel(
             userId: result.user!.uid,

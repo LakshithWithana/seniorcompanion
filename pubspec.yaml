@@ -60,6 +60,7 @@ dependencies:
   path: ^1.8.3
   firebase_storage: ^11.2.4
   geolocator: ^9.0.2
+  shimmer: ^3.0.0
 
 
 dev_dependencies:

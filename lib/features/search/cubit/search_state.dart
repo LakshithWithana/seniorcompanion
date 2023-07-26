@@ -24,7 +24,6 @@ class SearchState extends Equatable {
   final List<UserDetails>? searchResult;
 
   @override
-  // TODO: implement props
   List<Object?> get props => [
         gender,
         startAge,

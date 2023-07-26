@@ -24,6 +24,9 @@ _$_UserDetails _$$_UserDetailsFromJson(Map<String, dynamic> json) =>
       lon: (json['lon'] as num).toDouble(),
       age: json['age'] as int,
       rating: (json['rating'] as num).toDouble(),
+      chatUserList: (json['chatUserList'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$$_UserDetailsToJson(_$_UserDetails instance) =>
@@ -42,4 +45,5 @@ Map<String, dynamic> _$$_UserDetailsToJson(_$_UserDetails instance) =>
       'lon': instance.lon,
       'age': instance.age,
       'rating': instance.rating,
+      'chatUserList': instance.chatUserList,
     };

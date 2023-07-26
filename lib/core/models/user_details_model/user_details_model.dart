@@ -21,6 +21,7 @@ class UserDetails with _$UserDetails {
     @JsonKey(name: 'lon') required double lon,
     @JsonKey(name: 'age') required int age,
     @JsonKey(name: 'rating') required double rating,
+    @JsonKey(name: 'chatUserList') required List<String> chatUserList,
   }) = _UserDetails;
 
   static const empty = UserDetails(
@@ -38,6 +39,7 @@ class UserDetails with _$UserDetails {
     lon: 0.0,
     age: 0,
     rating: 0.0,
+    chatUserList: [],
   );
 
   factory UserDetails.fromJson(Map<String, dynamic> json) =>

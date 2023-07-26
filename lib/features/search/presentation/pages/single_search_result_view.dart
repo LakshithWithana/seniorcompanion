@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:seniorcompanion/app/bloc/app_bloc.dart';
-import 'package:seniorcompanion/features/chat/single_person_chat/presentation/single_person_chat_page.dart';
+import 'package:seniorcompanion/features/chat/cubit/chat_cubit.dart';
 import 'package:seniorcompanion/features/search/cubit/search_cubit.dart';
 
 import '../../../../core/constants/colors.dart';
+import '../../../../core/service_locator/service_locator.dart';
 import '../../../../core/shared/widgets/custom_elevated_buttons.dart';
 import '../../../../core/shared/widgets/custom_text.dart';
+import '../../../chat/data/repositories/chat_repository.dart';
+import '../../../chat/single_person_chat/presentation/single_person_chat_page.dart';
 import '../widgets/search_result_page/rating_stars.dart';
 
 class SingleSearchResultView extends StatelessWidget {
@@ -186,19 +189,91 @@ class SingleSearchResultView extends StatelessWidget {
                   const SizedBox(height: 200),
                   BlocBuilder<AppBloc, AppState>(
                     builder: (contextP, stateP) {
-                      return CustomElevatedButton(
-                        key: const Key("single_search_result_page_chat_button"),
-                        backgroundColor:
-                            (stateP.user.role == "CG" ? mainBlue : mainOrange),
-                        label: "chat".tr().toUpperCase(),
-                        onPressed: () async {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const SinglePersonChatPage(),
-                            ),
-                          );
-                        },
+                      return BlocProvider(
+                        create: (context) => ChatCubit(
+                            chatRepository: locator<ChatRepository>()),
+                        child: CustomElevatedButton(
+                          key: const Key(
+                              "single_search_result_page_chat_button"),
+                          backgroundColor: (stateP.user.role == "CG"
+                              ? mainBlue
+                              : mainOrange),
+                          label: "chat".tr().toUpperCase(),
+                          onPressed: () async {
+                            // contextC.read<ChatCubit>().createChat(
+                            //     myUid: stateP.user.uid,
+                            //     partnerUid: state.searchResult![index].uid);
+                            // contextC.read<ChatCubit>().getChatRoom(
+                            //     myUid: stateP.user.uid,
+                            //     partnerUid: state.searchResult![index].uid);
+                            // contextC.read<ChatCubit>().getChat(
+                            //     myUid: stateP.user.uid,
+                            //     partnerUid: state.searchResult![index].uid);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => MultiBlocProvider(
+                                  providers: [
+                                    BlocProvider.value(
+                                      value:
+                                          BlocProvider.of<SearchCubit>(context),
+                                    ),
+                                    // BlocProvider.value(
+                                    //   value:
+                                    //       BlocProvider.of<ChatCubit>(contextC),
+                                    // ),
+                                  ],
+                                  child: SinglePersonChatPage(
+                                    index: index,
+                                    myUid: stateP.user.uid,
+                                    partnerUid: state.searchResult![index].uid,
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        // BlocBuilder<ChatCubit, ChatState>(
+                        //   builder: (contextC, stateC) {
+                        //     return CustomElevatedButton(
+                        //       key: const Key(
+                        //           "single_search_result_page_chat_button"),
+                        //       backgroundColor: (stateP.user.role == "CG"
+                        //           ? mainBlue
+                        //           : mainOrange),
+                        //       label: "chat".tr().toUpperCase(),
+                        //       onPressed: () async {
+                        //         contextC.read<ChatCubit>().createChat(
+                        //             myUid: stateP.user.uid,
+                        //             partnerUid: state.searchResult![index].uid);
+                        //         contextC.read<ChatCubit>().getChatRoom(
+                        //             myUid: stateP.user.uid,
+                        //             partnerUid: state.searchResult![index].uid);
+                        //         contextC.read<ChatCubit>().getChat(
+                        //             myUid: stateP.user.uid,
+                        //             partnerUid: state.searchResult![index].uid);
+                        //         Navigator.push(
+                        //           context,
+                        //           MaterialPageRoute(
+                        //             builder: (_) => MultiBlocProvider(
+                        //               providers: [
+                        //                 BlocProvider.value(
+                        //                   value: BlocProvider.of<SearchCubit>(
+                        //                       context),
+                        //                 ),
+                        //                 BlocProvider.value(
+                        //                   value: BlocProvider.of<ChatCubit>(
+                        //                       contextC),
+                        //                 ),
+                        //               ],
+                        //               child: SinglePersonChatPage(index: index),
+                        //             ),
+                        //           ),
+                        //         );
+                        //       },
+                        //     );
+                        //   },
+                        // ),
                       );
                     },
                   )

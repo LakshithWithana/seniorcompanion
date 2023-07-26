@@ -48,6 +48,8 @@ mixin _$UserDetails {
   int get age => throw _privateConstructorUsedError;
   @JsonKey(name: 'rating')
   double get rating => throw _privateConstructorUsedError;
+  @JsonKey(name: 'chatUserList')
+  List<String> get chatUserList => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,7 +77,8 @@ abstract class $UserDetailsCopyWith<$Res> {
       @JsonKey(name: 'lat') double lat,
       @JsonKey(name: 'lon') double lon,
       @JsonKey(name: 'age') int age,
-      @JsonKey(name: 'rating') double rating});
+      @JsonKey(name: 'rating') double rating,
+      @JsonKey(name: 'chatUserList') List<String> chatUserList});
 }
 
 /// @nodoc
@@ -105,6 +108,7 @@ class _$UserDetailsCopyWithImpl<$Res, $Val extends UserDetails>
     Object? lon = null,
     Object? age = null,
     Object? rating = null,
+    Object? chatUserList = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -163,6 +167,10 @@ class _$UserDetailsCopyWithImpl<$Res, $Val extends UserDetails>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
+      chatUserList: null == chatUserList
+          ? _value.chatUserList
+          : chatUserList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ) as $Val);
   }
 }
@@ -189,7 +197,8 @@ abstract class _$$_UserDetailsCopyWith<$Res>
       @JsonKey(name: 'lat') double lat,
       @JsonKey(name: 'lon') double lon,
       @JsonKey(name: 'age') int age,
-      @JsonKey(name: 'rating') double rating});
+      @JsonKey(name: 'rating') double rating,
+      @JsonKey(name: 'chatUserList') List<String> chatUserList});
 }
 
 /// @nodoc
@@ -217,6 +226,7 @@ class __$$_UserDetailsCopyWithImpl<$Res>
     Object? lon = null,
     Object? age = null,
     Object? rating = null,
+    Object? chatUserList = null,
   }) {
     return _then(_$_UserDetails(
       uid: null == uid
@@ -275,6 +285,10 @@ class __$$_UserDetailsCopyWithImpl<$Res>
           ? _value.rating
           : rating // ignore: cast_nullable_to_non_nullable
               as double,
+      chatUserList: null == chatUserList
+          ? _value._chatUserList
+          : chatUserList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
     ));
   }
 }
@@ -296,8 +310,10 @@ class _$_UserDetails implements _UserDetails {
       @JsonKey(name: 'lat') required this.lat,
       @JsonKey(name: 'lon') required this.lon,
       @JsonKey(name: 'age') required this.age,
-      @JsonKey(name: 'rating') required this.rating})
-      : _preferences = preferences;
+      @JsonKey(name: 'rating') required this.rating,
+      @JsonKey(name: 'chatUserList') required final List<String> chatUserList})
+      : _preferences = preferences,
+        _chatUserList = chatUserList;
 
   factory _$_UserDetails.fromJson(Map<String, dynamic> json) =>
       _$$_UserDetailsFromJson(json);
@@ -350,10 +366,18 @@ class _$_UserDetails implements _UserDetails {
   @override
   @JsonKey(name: 'rating')
   final double rating;
+  final List<String> _chatUserList;
+  @override
+  @JsonKey(name: 'chatUserList')
+  List<String> get chatUserList {
+    if (_chatUserList is EqualUnmodifiableListView) return _chatUserList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_chatUserList);
+  }
 
   @override
   String toString() {
-    return 'UserDetails(uid: $uid, email: $email, firstName: $firstName, lastName: $lastName, role: $role, birthday: $birthday, about: $about, gender: $gender, preferences: $preferences, profilePicURL: $profilePicURL, lat: $lat, lon: $lon, age: $age, rating: $rating)';
+    return 'UserDetails(uid: $uid, email: $email, firstName: $firstName, lastName: $lastName, role: $role, birthday: $birthday, about: $about, gender: $gender, preferences: $preferences, profilePicURL: $profilePicURL, lat: $lat, lon: $lon, age: $age, rating: $rating, chatUserList: $chatUserList)';
   }
 
   @override
@@ -379,7 +403,9 @@ class _$_UserDetails implements _UserDetails {
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.lon, lon) || other.lon == lon) &&
             (identical(other.age, age) || other.age == age) &&
-            (identical(other.rating, rating) || other.rating == rating));
+            (identical(other.rating, rating) || other.rating == rating) &&
+            const DeepCollectionEquality()
+                .equals(other._chatUserList, _chatUserList));
   }
 
   @JsonKey(ignore: true)
@@ -399,7 +425,8 @@ class _$_UserDetails implements _UserDetails {
       lat,
       lon,
       age,
-      rating);
+      rating,
+      const DeepCollectionEquality().hash(_chatUserList));
 
   @JsonKey(ignore: true)
   @override
@@ -417,20 +444,36 @@ class _$_UserDetails implements _UserDetails {
 
 abstract class _UserDetails implements UserDetails {
   const factory _UserDetails(
-      {@JsonKey(name: 'uid') required final String uid,
-      @JsonKey(name: 'email') required final String email,
-      @JsonKey(name: 'firstName') required final String firstName,
-      @JsonKey(name: 'lastName') required final String lastName,
-      @JsonKey(name: 'role') required final String role,
-      @JsonKey(name: 'birthday') required final String birthday,
-      @JsonKey(name: 'about') required final String about,
-      @JsonKey(name: 'gender') required final String gender,
-      @JsonKey(name: 'preferences') required final List<String> preferences,
-      @JsonKey(name: 'profilePicURL') required final String profilePicURL,
-      @JsonKey(name: 'lat') required final double lat,
-      @JsonKey(name: 'lon') required final double lon,
-      @JsonKey(name: 'age') required final int age,
-      @JsonKey(name: 'rating') required final double rating}) = _$_UserDetails;
+      {@JsonKey(name: 'uid')
+          required final String uid,
+      @JsonKey(name: 'email')
+          required final String email,
+      @JsonKey(name: 'firstName')
+          required final String firstName,
+      @JsonKey(name: 'lastName')
+          required final String lastName,
+      @JsonKey(name: 'role')
+          required final String role,
+      @JsonKey(name: 'birthday')
+          required final String birthday,
+      @JsonKey(name: 'about')
+          required final String about,
+      @JsonKey(name: 'gender')
+          required final String gender,
+      @JsonKey(name: 'preferences')
+          required final List<String> preferences,
+      @JsonKey(name: 'profilePicURL')
+          required final String profilePicURL,
+      @JsonKey(name: 'lat')
+          required final double lat,
+      @JsonKey(name: 'lon')
+          required final double lon,
+      @JsonKey(name: 'age')
+          required final int age,
+      @JsonKey(name: 'rating')
+          required final double rating,
+      @JsonKey(name: 'chatUserList')
+          required final List<String> chatUserList}) = _$_UserDetails;
 
   factory _UserDetails.fromJson(Map<String, dynamic> json) =
       _$_UserDetails.fromJson;
@@ -477,6 +520,9 @@ abstract class _UserDetails implements UserDetails {
   @override
   @JsonKey(name: 'rating')
   double get rating;
+  @override
+  @JsonKey(name: 'chatUserList')
+  List<String> get chatUserList;
   @override
   @JsonKey(ignore: true)
   _$$_UserDetailsCopyWith<_$_UserDetails> get copyWith =>

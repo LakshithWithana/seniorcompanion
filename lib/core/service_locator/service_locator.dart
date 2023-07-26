@@ -6,6 +6,10 @@ import 'package:seniorcompanion/core/loacation/data/data_provider/location_data_
 import 'package:seniorcompanion/core/loacation/data/data_provider/location_data_provider_impl.dart';
 import 'package:seniorcompanion/core/loacation/data/repository/location_repository.dart';
 import 'package:seniorcompanion/core/loacation/data/repository/location_repository_impl.dart';
+import 'package:seniorcompanion/features/chat/data/data_provider/chat_data_provider.dart';
+import 'package:seniorcompanion/features/chat/data/data_provider/chat_data_provider_impl.dart';
+import 'package:seniorcompanion/features/chat/data/repositories/chat_repository.dart';
+import 'package:seniorcompanion/features/chat/data/repositories/chat_repository_impl.dart';
 import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider.dart';
 import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider_impl.dart';
 import 'package:seniorcompanion/features/profile/data/repositories/profile_repository.dart';
@@ -106,6 +110,16 @@ void setupLocator() {
 
   registerLazySingleton<SearchRepository>(
       SearchRepositoryImpl(searchDataProvider: locator()));
+  //!
+
+  //! chat data
+  registerLazySingleton<ChatDataProvider>(ChatDataProviderImpl(
+    firebaseAuth: locator(),
+    firebaseFirestore: locator(),
+  ));
+
+  registerLazySingleton<ChatRepository>(
+      ChatRepositoryImpl(chatDataProvider: locator()));
   //!
 }
 
