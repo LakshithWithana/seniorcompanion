@@ -79,7 +79,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     final birthday = value;
     emit(state.copyWith(
       birthday: birthday,
-      validated: birthday == "null"
+      validated: birthday == "null" || birthday == ""
           ? false
           : true &&
               Formz.validate([

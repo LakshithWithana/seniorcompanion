@@ -5,7 +5,7 @@ class SearchState extends Equatable {
     this.gender = "anyone",
     this.startAge = 20,
     this.endAge = 70,
-    this.distance = 0,
+    this.distance = 1,
     this.startTime = "",
     this.endTime = "",
     this.status = FormzSubmissionStatus.initial,

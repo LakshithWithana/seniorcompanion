@@ -54,6 +54,9 @@
     "save": "Save",
 
     "search": "Search",
+    "notifications": "Notifications",
+    "settings": "Settings",
+
     "iAmLookingForACaregiver" : "I'm looking for a Caregiver",
     "iAmLookingForACareRecipient" : "I'm looking for a Care Recipient",
     "caregiverGender": "Caregiver Gender",
@@ -76,5 +79,20 @@
     "searchResults": "Search Results",
     "years": "Years",
     "select": "Select",
-    "chat": "Chat" 
+    "chat": "Chat" ,
+
+    "searchSettings": "Search Settings",
+    "editProfile": "Edit Profile",
+    "emergencySettings": "Emergency Settings",
+    "inviteFriends": "Invite Friends",
+    "termsAndConditions": "Terms and Conditions",
+    "helpAndFaq": "Help and FAQ",
+    "aboutUs": "About Us",
+    "logOut": "Log Out",
+
+    "emergencyCallNo" : "Emergency Call No.",
+    "doctorCallNo" : "Doctor Call No.",
+    "ambulanceCallNo" : "Ambulance Call No.",
+
+    "update": "Update"
 }

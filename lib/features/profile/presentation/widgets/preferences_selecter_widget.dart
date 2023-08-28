@@ -22,134 +22,134 @@ class PreferencesSelecterWidget extends StatelessWidget {
           fontSize: 14.0,
           fontWeight: FontWeight.bold,
         ),
-        // const Wrap(
-        //   spacing: 10.0,
-        //   runSpacing: 10.0,
-        //   children: [
-        //     SingleItem(name: "artLover"),
-        //     SingleItem(name: "adviser"),
-        //     SingleItem(name: "aide"),
-        //     SingleItem(name: "bookWarm"),
-        //     SingleItem(name: "boardGamer"),
-        //     SingleItem(name: "buddy"),
-        //     SingleItem(name: "cleaner"),
-        //     SingleItem(name: "companion"),
-        //     SingleItem(name: "communicator"),
-        //     SingleItem(name: "cook"),
-        //     SingleItem(name: "confidente"),
-        //     SingleItem(name: "custodian"),
-        //     SingleItem(name: "driver"),
-        //     SingleItem(name: "friend"),
-        //     SingleItem(name: "filmFanatic"),
-        //     SingleItem(name: "guide"),
-        //     SingleItem(name: "hangout"),
-        //     SingleItem(name: "healer"),
-        //     SingleItem(name: "helper"),
-        //     SingleItem(name: "houseSitter"),
-        //     SingleItem(name: "instructor"),
-        //     SingleItem(name: "nurse"),
-        //     SingleItem(name: "psychoTherapist"),
-        //     SingleItem(name: "sidekick"),
-        //     SingleItem(name: "sportsLover"),
-        //     SingleItem(name: "therapist"),
-        //     SingleItem(name: "trainer"),
-        //     SingleItem(name: "traveller"),
-        //   ],
-        // ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        const Wrap(
+          spacing: 10.0,
+          runSpacing: 5.0,
           children: [
             SingleItem(name: "artLover"),
             SingleItem(name: "adviser"),
             SingleItem(name: "aide"),
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "bookWarm"),
             SingleItem(name: "boardGamer"),
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "buddy"),
             SingleItem(name: "cleaner"),
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "companion"),
             SingleItem(name: "communicator"),
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "cook"),
             SingleItem(name: "confidente"),
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "custodian"),
             SingleItem(name: "driver"),
             SingleItem(name: "friend"),
-            // SingleItem(name: "filmFanatic")
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "filmFanatic"),
             SingleItem(name: "guide"),
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "hangout"),
             SingleItem(name: "healer"),
             SingleItem(name: "helper"),
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "houseSitter"),
             SingleItem(name: "instructor"),
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "nurse"),
             SingleItem(name: "psychoTherapist"),
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "sidekick"),
             SingleItem(name: "sportsLover"),
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "therapist"),
             SingleItem(name: "trainer"),
-          ],
-        ),
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
             SingleItem(name: "traveller"),
           ],
         ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "artLover"),
+        //     SingleItem(name: "adviser"),
+        //     SingleItem(name: "aide"),
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "bookWarm"),
+        //     SingleItem(name: "boardGamer"),
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "buddy"),
+        //     SingleItem(name: "cleaner"),
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "companion"),
+        //     SingleItem(name: "communicator"),
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "cook"),
+        //     SingleItem(name: "confidente"),
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "custodian"),
+        //     SingleItem(name: "driver"),
+        //     SingleItem(name: "friend"),
+        //     // SingleItem(name: "filmFanatic")
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "filmFanatic"),
+        //     SingleItem(name: "guide"),
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "hangout"),
+        //     SingleItem(name: "healer"),
+        //     SingleItem(name: "helper"),
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "houseSitter"),
+        //     SingleItem(name: "instructor"),
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "nurse"),
+        //     SingleItem(name: "psychoTherapist"),
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "sidekick"),
+        //     SingleItem(name: "sportsLover"),
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "therapist"),
+        //     SingleItem(name: "trainer"),
+        //   ],
+        // ),
+        // const Row(
+        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //   children: [
+        //     SingleItem(name: "traveller"),
+        //   ],
+        // ),
       ],
     );
   }
@@ -173,7 +173,9 @@ class SingleItem extends StatelessWidget {
           builder: (context, state) {
             return ElevatedButton(
               onPressed: stateP.preferences.contains(name.tr())
-                  ? null
+                  ? () => contextP
+                      .read<ProfileCubit>()
+                      .removePreferencesSelection(name.tr())
                   : () => contextP
                       .read<ProfileCubit>()
                       .addPreferencesSelection(name.tr()),
@@ -196,38 +198,14 @@ class SingleItem extends StatelessWidget {
                 height: 40.0,
                 // width: 110.0.w,
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Center(
-                    child: Row(
-                      children: [
-                        CustomText(
-                          text: name.tr().toUpperCase(),
-                          fontSize: 16.0.sp,
-                          color: stateP.preferences.contains(name.tr())
-                              ? white
-                              : (state.user.role == "CG"
-                                  ? mainBlue
-                                  : mainOrange),
-                          fontWeight: FontWeight.bold,
-                        ),
-                        const SizedBox(width: 5.0),
-                        stateP.preferences.contains(name.tr())
-                            ? InkWell(
-                                onTap: () {
-                                  contextP
-                                      .read<ProfileCubit>()
-                                      .removePreferencesSelection(name.tr());
-                                },
-                                child: Icon(
-                                  Icons.cancel,
-                                  color: (state.user.role == "CG"
-                                      ? Colors.red
-                                      : yellow),
-                                ),
-                              )
-                            : const SizedBox()
-                      ],
-                    ),
+                  padding: const EdgeInsets.all(10.0),
+                  child: CustomText(
+                    text: name.tr().toUpperCase(),
+                    fontSize: 16.0.sp,
+                    color: stateP.preferences.contains(name.tr())
+                        ? white
+                        : (state.user.role == "CG" ? mainBlue : mainOrange),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

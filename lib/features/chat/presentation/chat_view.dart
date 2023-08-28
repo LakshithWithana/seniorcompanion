@@ -25,199 +25,213 @@ class ChatView extends StatelessWidget {
       }
     }
 
+    final ScrollController _scrollController = ScrollController();
+
     return SingleChildScrollView(
+      controller: _scrollController,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 20.0),
         child: BlocBuilder<AppBloc, AppState>(
           builder: (contextA, stateA) {
-            return FutureBuilder(
-              future: FirebaseFirestore.instance
-                  .collection("users")
-                  .where("uid", isEqualTo: stateA.user.uid)
-                  .get(),
-              builder: (BuildContext contextB, AsyncSnapshot snapshot) {
-                if (snapshot.hasData) {
-                  return SizedBox(
-                    height: 400.0,
-                    child: ListView.builder(
-                      itemCount: (snapshot.data.docs.first.data()
-                              as dynamic)['chatUserList']
-                          .length,
-                      itemBuilder: (BuildContext context, int index) {
-                        // return Text((snapshot.data.docs.first.data()
-                        //     as dynamic)['chatUserList'][index]);
-                        return FutureBuilder(
-                          future: FirebaseFirestore.instance
-                              .collection("users")
-                              .where("uid",
-                                  isEqualTo: (snapshot.data.docs.first.data()
-                                      as dynamic)['chatUserList'][index])
-                              .get(),
-                          builder:
-                              (BuildContext context, AsyncSnapshot snapshotN) {
-                            if (snapshotN.hasData) {
-                              // return Text((snapshotN.data.docs.first.data()
-                              //     as dynamic)['firstName']);
-                              return Card(
-                                color: Colors.white,
-                                elevation: 0.0,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(7.0),
-                                    side: const BorderSide(color: black)),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => BlocProvider(
-                                                create: (context) => ChatCubit(
-                                                    chatRepository: locator<
-                                                        ChatRepository>()),
-                                                child: ChatRoom(
-                                                  chatRoomID: _getChatRoomID(
-                                                      stateA.user.uid,
-                                                      (snapshotN.data.docs.first
-                                                              .data()
-                                                          as dynamic)['uid']),
-                                                  myID: stateA.user.uid,
-                                                  recipeintID: (snapshot
-                                                          .data.docs.first
-                                                          .data() as dynamic)[
-                                                      'chatUserList'][index],
-                                                  recipeintName: (snapshotN
-                                                              .data.docs.first
-                                                              .data() as dynamic)[
-                                                          'firstName'] +
-                                                      " " +
-                                                      (snapshotN.data.docs.first
-                                                                  .data()
-                                                              as dynamic)[
-                                                          'lastName'],
-                                                  role: (snapshotN
-                                                          .data.docs.first
-                                                          .data()
-                                                      as dynamic)['role'],
-                                                ),
-                                              )),
-                                    );
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.symmetric(
-                                        vertical: 10.0),
-                                    child: ListTile(
-                                      leading: CircleAvatar(
-                                        radius: 35.0,
-                                        backgroundImage: NetworkImage(
-                                            (snapshotN.data.docs.first.data()
-                                                as dynamic)['profilePicURL']),
-                                      ),
-                                      title: CustomText(
-                                        text:
-                                            "${(snapshotN.data.docs.first.data() as dynamic)['firstName']} ${(snapshotN.data.docs.first.data() as dynamic)['lastName']}",
-                                        fontSize: 20.0.sp,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      subtitle: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Row(
-                                            children: [
-                                              CustomText(
-                                                text:
-                                                    "${(snapshotN.data.docs.first.data() as dynamic)['age']} Years - ",
-                                                fontSize: 18.0.sp,
-                                                color: secondaryFontColor,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                              CustomText(
-                                                text: (snapshotN.data.docs.first
+            return BlocBuilder<ChatCubit, ChatState>(
+              builder: (contextC, stateC) {
+                contextC.read<ChatCubit>().getChatList(myUid: stateA.user.uid);
+                return FutureBuilder(
+                  future: stateC.chatList,
+                  builder: (BuildContext contextB, AsyncSnapshot snapshot) {
+                    if (snapshot.hasData) {
+                      return SizedBox(
+                        height: 400.0,
+                        child: ListView.builder(
+                          itemCount: (snapshot.data.docs.first.data()
+                                  as dynamic)['chatUserList']
+                              .length,
+                          itemBuilder: (BuildContext context, int index) {
+                            // TODO: check this is why giving always first user details only!!!
+                            // contextC.read<ChatCubit>().getSingleChatPerson(
+                            //     userUid: (snapshot.data.docs.first.data()
+                            //         as dynamic)['chatUserList'][index]);
+                            return FutureBuilder(
+                              future:
+                                  // stateC.singleChatPerson,
+                                  FirebaseFirestore.instance
+                                      .collection("users")
+                                      .where("uid",
+                                          isEqualTo: (snapshot.data.docs.first
+                                                      .data()
+                                                  as dynamic)['chatUserList']
+                                              [index])
+                                      .get(),
+                              builder: (BuildContext context,
+                                  AsyncSnapshot snapshotN) {
+                                if (snapshotN.hasData) {
+                                  return Card(
+                                    color: Colors.white,
+                                    elevation: 0.0,
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(7.0),
+                                        side: const BorderSide(color: black)),
+                                    child: InkWell(
+                                      onTap: () {
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => BlocProvider(
+                                              create: (context) => ChatCubit(
+                                                  chatRepository: locator<
+                                                      ChatRepository>()),
+                                              child: ChatRoom(
+                                                chatRoomID: _getChatRoomID(
+                                                    stateA.user.uid,
+                                                    (snapshotN.data.docs.first
                                                             .data()
-                                                        as dynamic)['gender']
-                                                    .toUpperCase(),
-                                                fontSize: 18.0.sp,
-                                                color: secondaryFontColor,
-                                                fontWeight: FontWeight.normal,
+                                                        as dynamic)['uid']),
+                                                myID: stateA.user.uid,
+                                                recipeintID: (snapshot
+                                                        .data.docs.first
+                                                        .data() as dynamic)[
+                                                    'chatUserList'][index],
+                                                recipeintName: (snapshotN
+                                                            .data.docs.first
+                                                            .data() as dynamic)[
+                                                        'firstName'] +
+                                                    " " +
+                                                    (snapshotN.data.docs.first
+                                                            .data()
+                                                        as dynamic)['lastName'],
+                                                role: (snapshotN.data.docs.first
+                                                    .data() as dynamic)['role'],
                                               ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 10.0),
+                                        child: ListTile(
+                                          leading: CircleAvatar(
+                                            radius: 35.0,
+                                            backgroundImage: NetworkImage(
+                                                (snapshotN
+                                                        .data.docs.first
+                                                        .data() as dynamic)[
+                                                    'profilePicURL']),
+                                          ),
+                                          title: CustomText(
+                                            text:
+                                                "${(snapshotN.data.docs.first.data() as dynamic)['firstName']} ${(snapshotN.data.docs.first.data() as dynamic)['lastName']}",
+                                            fontSize: 20.0.sp,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                          subtitle: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  CustomText(
+                                                    text:
+                                                        "${(snapshotN.data.docs.first.data() as dynamic)['age']} Years - ",
+                                                    fontSize: 18.0.sp,
+                                                    color: secondaryFontColor,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                                  CustomText(
+                                                    text: (snapshotN
+                                                                .data.docs.first
+                                                                .data()
+                                                            as dynamic)['gender']
+                                                        .toUpperCase(),
+                                                    fontSize: 18.0.sp,
+                                                    color: secondaryFontColor,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
+                                                ],
+                                              ),
+                                              // Row(
+                                              //   children: [
+                                              //     CustomText(
+                                              //       text:
+                                              //           "${(snapshotN.data.docs.first.data() as dynamic)['rating']}",
+                                              //       fontSize: 16.0.sp,
+                                              //     ),
+                                              //     CustomText(
+                                              //       text: "/5.0",
+                                              //       fontSize: 14.0.sp,
+                                              //       color: secondaryFontColor,
+                                              //     ),
+                                              //     const SizedBox(width: 10.0),
+                                              //     RatingStars(
+                                              //         ratingScroe: double.parse(
+                                              //             (snapshotN.data.docs.first
+                                              //                             .data()
+                                              //                         as dynamic)[
+                                              //                     'rating']
+                                              //                 .toString())),
+                                              //   ],
+                                              // ),
                                             ],
                                           ),
-                                          // Row(
-                                          //   children: [
-                                          //     CustomText(
-                                          //       text:
-                                          //           "${(snapshotN.data.docs.first.data() as dynamic)['rating']}",
-                                          //       fontSize: 16.0.sp,
-                                          //     ),
-                                          //     CustomText(
-                                          //       text: "/5.0",
-                                          //       fontSize: 14.0.sp,
-                                          //       color: secondaryFontColor,
-                                          //     ),
-                                          //     const SizedBox(width: 10.0),
-                                          //     RatingStars(
-                                          //         ratingScroe: double.parse(
-                                          //             (snapshotN.data.docs.first
-                                          //                             .data()
-                                          //                         as dynamic)[
-                                          //                     'rating']
-                                          //                 .toString())),
-                                          //   ],
-                                          // ),
-                                        ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                              );
-                            } else {
-                              return Shimmer.fromColors(
-                                baseColor: secondaryFontColor.withOpacity(0.4),
-                                highlightColor: white,
-                                child: ListTile(
-                                  leading: const CircleAvatar(
-                                    radius: 35.0,
-                                    backgroundColor: secondaryColor,
-                                  ),
-                                  title: Container(
-                                    color: secondaryColor,
-                                    width: 100.0,
-                                    height: 20.0.sp,
-                                  ),
-                                  subtitle: Container(
-                                    color: secondaryColor,
-                                    width: 100.0,
-                                    height: 18.0.sp,
-                                  ),
-                                ),
-                              );
-                            }
+                                  );
+                                } else {
+                                  return Shimmer.fromColors(
+                                    baseColor:
+                                        secondaryFontColor.withOpacity(0.4),
+                                    highlightColor: white,
+                                    child: ListTile(
+                                      leading: const CircleAvatar(
+                                        radius: 35.0,
+                                        backgroundColor: secondaryColor,
+                                      ),
+                                      title: Container(
+                                        color: secondaryColor,
+                                        width: 100.0,
+                                        height: 20.0.sp,
+                                      ),
+                                      subtitle: Container(
+                                        color: secondaryColor,
+                                        width: 100.0,
+                                        height: 18.0.sp,
+                                      ),
+                                    ),
+                                  );
+                                }
+                              },
+                            );
                           },
-                        );
-                      },
-                    ),
-                  );
-                } else {
-                  return Shimmer.fromColors(
-                    baseColor: secondaryFontColor.withOpacity(0.4),
-                    highlightColor: white,
-                    child: ListTile(
-                      leading: const CircleAvatar(
-                        radius: 35.0,
-                        backgroundColor: secondaryColor,
-                      ),
-                      title: Container(
-                        color: secondaryColor,
-                        width: 100.0,
-                        height: 20.0.sp,
-                      ),
-                      subtitle: Container(
-                        color: secondaryColor,
-                        width: 100.0,
-                        height: 18.0.sp,
-                      ),
-                    ),
-                  );
-                }
+                        ),
+                      );
+                    } else {
+                      return Shimmer.fromColors(
+                        baseColor: secondaryFontColor.withOpacity(0.4),
+                        highlightColor: white,
+                        child: ListTile(
+                          leading: const CircleAvatar(
+                            radius: 35.0,
+                            backgroundColor: secondaryColor,
+                          ),
+                          title: Container(
+                            color: secondaryColor,
+                            width: 100.0,
+                            height: 20.0.sp,
+                          ),
+                          subtitle: Container(
+                            color: secondaryColor,
+                            width: 100.0,
+                            height: 18.0.sp,
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                );
               },
             );
           },

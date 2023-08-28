@@ -73,4 +73,30 @@ class ChatRepositoryImpl implements ChatRepository {
       return left(e.toString());
     }
   }
+
+  @override
+  Future<Either<String, Future<QuerySnapshot<Object?>>>> getChatList(
+      {required String myUid}) async {
+    try {
+      final result = _chatDataProvider.getChatList(myUid: myUid);
+      return right(result);
+    } on ChatFailure catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, Future<QuerySnapshot<Object?>>>> getSingleChatPerson(
+      {required String userUid}) async {
+    try {
+      final result = _chatDataProvider.getSingleChatPerson(userUid: userUid);
+      return right(result);
+    } on ChatFailure catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
 }

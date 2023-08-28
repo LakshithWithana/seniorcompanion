@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:seniorcompanion/app/cubit/blocked_status_cubit.dart';
+import 'package:seniorcompanion/core/service_locator/service_locator.dart';
 import 'package:seniorcompanion/features/user_home/presentation/pages/user_home_view.dart';
 
 class UserHomePage extends StatelessWidget {
@@ -10,6 +13,10 @@ class UserHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return UserHomeView(role: role);
+    return BlocProvider(
+      create: (context) =>
+          BlockedStatusCubit(blockedAccountRepository: locator()),
+      child: UserHomeView(role: role),
+    );
   }
 }

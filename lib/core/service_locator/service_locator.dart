@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
+import 'package:seniorcompanion/app/data/data_provider/blocked_account/bloc_account_data_provider_impl.dart';
+import 'package:seniorcompanion/app/data/data_provider/blocked_account/block_account_data_provider.dart';
+import 'package:seniorcompanion/app/data/repository/blocked_account/blocked_account_repoository_impl.dart';
+import 'package:seniorcompanion/app/data/repository/blocked_account/blocked_account_repository.dart';
 import 'package:seniorcompanion/core/cache/cache.dart';
 import 'package:seniorcompanion/core/loacation/data/data_provider/location_data_provider.dart';
 import 'package:seniorcompanion/core/loacation/data/data_provider/location_data_provider_impl.dart';
@@ -10,6 +14,10 @@ import 'package:seniorcompanion/features/chat/data/data_provider/chat_data_provi
 import 'package:seniorcompanion/features/chat/data/data_provider/chat_data_provider_impl.dart';
 import 'package:seniorcompanion/features/chat/data/repositories/chat_repository.dart';
 import 'package:seniorcompanion/features/chat/data/repositories/chat_repository_impl.dart';
+import 'package:seniorcompanion/features/notifications/emergency_and_reminders/data/data_provider/emergency_data_provider.dart';
+import 'package:seniorcompanion/features/notifications/emergency_and_reminders/data/data_provider/emergency_data_provider_impl.dart';
+import 'package:seniorcompanion/features/notifications/emergency_and_reminders/data/repository/emergency_repository_impl.dart';
+import 'package:seniorcompanion/features/notifications/emergency_and_reminders/data/repository/emergency_repositoy.dart';
 import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider.dart';
 import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider_impl.dart';
 import 'package:seniorcompanion/features/profile/data/repositories/profile_repository.dart';
@@ -18,6 +26,10 @@ import 'package:seniorcompanion/features/search/data/data_provider/search_data_p
 import 'package:seniorcompanion/features/search/data/data_provider/search_data_provider_impl.dart';
 import 'package:seniorcompanion/features/search/data/repository/search_repository.dart';
 import 'package:seniorcompanion/features/search/data/repository/search_repository_impl.dart';
+import 'package:seniorcompanion/features/settings/data/data_providers/settings_data_provider.dart';
+import 'package:seniorcompanion/features/settings/data/data_providers/settings_data_provider_impl.dart';
+import 'package:seniorcompanion/features/settings/data/repositories/settings_repository.dart';
+import 'package:seniorcompanion/features/settings/data/repositories/settings_repository_impl.dart';
 
 import '../../app/data/data_provider/auth_data_provider.dart';
 import '../../app/data/data_provider/auth_data_provider_impl.dart';
@@ -79,6 +91,14 @@ void setupLocator() {
   ));
   //!
 
+  //! blocked user status
+  registerLazySingleton<BlockAccountDataProvider>(BlockAccountDataProviderImpl(
+      firebaseAuth: locator(), firebaseFirestore: locator()));
+
+  registerLazySingleton<BlockedAccountRepository>(
+      BlockedAccountRepositoryImpl(locator()));
+  //!
+
   //! Profile data
   registerLazySingleton<ProfileDataProvider>(ProfileDataProviderImpl(
     firebaseAuth: locator(),
@@ -120,6 +140,26 @@ void setupLocator() {
 
   registerLazySingleton<ChatRepository>(
       ChatRepositoryImpl(chatDataProvider: locator()));
+  //!
+
+  //! emergency
+  registerLazySingleton<EmergencyDataProvider>(EmergencyDataProviderImpl(
+    firebaseAuth: locator(),
+    firebaseFirestore: locator(),
+  ));
+
+  registerLazySingleton<EmergencyRepository>(
+      EmergencyRepositoryImpl(emergencyDataProvider: locator()));
+  //!
+
+  //! settings
+  registerLazySingleton<SettingsDataProvider>(SettingsDataProviderImpl(
+    firebaseAuth: locator(),
+    firebaseFirestore: locator(),
+  ));
+
+  registerLazySingleton<SettingsRepository>(
+      SettingsRepositoryImpl(settingsDataProvider: locator()));
   //!
 }
 

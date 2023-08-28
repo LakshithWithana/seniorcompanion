@@ -50,6 +50,16 @@ mixin _$UserDetails {
   double get rating => throw _privateConstructorUsedError;
   @JsonKey(name: 'chatUserList')
   List<String> get chatUserList => throw _privateConstructorUsedError;
+  @JsonKey(name: 'ambulanceNumber')
+  String get ambulanceNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'doctorNumber')
+  String get doctorNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'emergencyNumber')
+  String get emergencyNumber => throw _privateConstructorUsedError;
+  @JsonKey(name: 'tmpBlock')
+  bool get tmpBlock => throw _privateConstructorUsedError;
+  @JsonKey(name: 'pmtBlock')
+  bool get pmtBlock => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -78,7 +88,12 @@ abstract class $UserDetailsCopyWith<$Res> {
       @JsonKey(name: 'lon') double lon,
       @JsonKey(name: 'age') int age,
       @JsonKey(name: 'rating') double rating,
-      @JsonKey(name: 'chatUserList') List<String> chatUserList});
+      @JsonKey(name: 'chatUserList') List<String> chatUserList,
+      @JsonKey(name: 'ambulanceNumber') String ambulanceNumber,
+      @JsonKey(name: 'doctorNumber') String doctorNumber,
+      @JsonKey(name: 'emergencyNumber') String emergencyNumber,
+      @JsonKey(name: 'tmpBlock') bool tmpBlock,
+      @JsonKey(name: 'pmtBlock') bool pmtBlock});
 }
 
 /// @nodoc
@@ -109,6 +124,11 @@ class _$UserDetailsCopyWithImpl<$Res, $Val extends UserDetails>
     Object? age = null,
     Object? rating = null,
     Object? chatUserList = null,
+    Object? ambulanceNumber = null,
+    Object? doctorNumber = null,
+    Object? emergencyNumber = null,
+    Object? tmpBlock = null,
+    Object? pmtBlock = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -171,6 +191,26 @@ class _$UserDetailsCopyWithImpl<$Res, $Val extends UserDetails>
           ? _value.chatUserList
           : chatUserList // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      ambulanceNumber: null == ambulanceNumber
+          ? _value.ambulanceNumber
+          : ambulanceNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      doctorNumber: null == doctorNumber
+          ? _value.doctorNumber
+          : doctorNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      emergencyNumber: null == emergencyNumber
+          ? _value.emergencyNumber
+          : emergencyNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      tmpBlock: null == tmpBlock
+          ? _value.tmpBlock
+          : tmpBlock // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pmtBlock: null == pmtBlock
+          ? _value.pmtBlock
+          : pmtBlock // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -198,7 +238,12 @@ abstract class _$$_UserDetailsCopyWith<$Res>
       @JsonKey(name: 'lon') double lon,
       @JsonKey(name: 'age') int age,
       @JsonKey(name: 'rating') double rating,
-      @JsonKey(name: 'chatUserList') List<String> chatUserList});
+      @JsonKey(name: 'chatUserList') List<String> chatUserList,
+      @JsonKey(name: 'ambulanceNumber') String ambulanceNumber,
+      @JsonKey(name: 'doctorNumber') String doctorNumber,
+      @JsonKey(name: 'emergencyNumber') String emergencyNumber,
+      @JsonKey(name: 'tmpBlock') bool tmpBlock,
+      @JsonKey(name: 'pmtBlock') bool pmtBlock});
 }
 
 /// @nodoc
@@ -227,6 +272,11 @@ class __$$_UserDetailsCopyWithImpl<$Res>
     Object? age = null,
     Object? rating = null,
     Object? chatUserList = null,
+    Object? ambulanceNumber = null,
+    Object? doctorNumber = null,
+    Object? emergencyNumber = null,
+    Object? tmpBlock = null,
+    Object? pmtBlock = null,
   }) {
     return _then(_$_UserDetails(
       uid: null == uid
@@ -289,6 +339,26 @@ class __$$_UserDetailsCopyWithImpl<$Res>
           ? _value._chatUserList
           : chatUserList // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      ambulanceNumber: null == ambulanceNumber
+          ? _value.ambulanceNumber
+          : ambulanceNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      doctorNumber: null == doctorNumber
+          ? _value.doctorNumber
+          : doctorNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      emergencyNumber: null == emergencyNumber
+          ? _value.emergencyNumber
+          : emergencyNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+      tmpBlock: null == tmpBlock
+          ? _value.tmpBlock
+          : tmpBlock // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pmtBlock: null == pmtBlock
+          ? _value.pmtBlock
+          : pmtBlock // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -311,7 +381,12 @@ class _$_UserDetails implements _UserDetails {
       @JsonKey(name: 'lon') required this.lon,
       @JsonKey(name: 'age') required this.age,
       @JsonKey(name: 'rating') required this.rating,
-      @JsonKey(name: 'chatUserList') required final List<String> chatUserList})
+      @JsonKey(name: 'chatUserList') required final List<String> chatUserList,
+      @JsonKey(name: 'ambulanceNumber') required this.ambulanceNumber,
+      @JsonKey(name: 'doctorNumber') required this.doctorNumber,
+      @JsonKey(name: 'emergencyNumber') required this.emergencyNumber,
+      @JsonKey(name: 'tmpBlock') required this.tmpBlock,
+      @JsonKey(name: 'pmtBlock') required this.pmtBlock})
       : _preferences = preferences,
         _chatUserList = chatUserList;
 
@@ -376,8 +451,24 @@ class _$_UserDetails implements _UserDetails {
   }
 
   @override
+  @JsonKey(name: 'ambulanceNumber')
+  final String ambulanceNumber;
+  @override
+  @JsonKey(name: 'doctorNumber')
+  final String doctorNumber;
+  @override
+  @JsonKey(name: 'emergencyNumber')
+  final String emergencyNumber;
+  @override
+  @JsonKey(name: 'tmpBlock')
+  final bool tmpBlock;
+  @override
+  @JsonKey(name: 'pmtBlock')
+  final bool pmtBlock;
+
+  @override
   String toString() {
-    return 'UserDetails(uid: $uid, email: $email, firstName: $firstName, lastName: $lastName, role: $role, birthday: $birthday, about: $about, gender: $gender, preferences: $preferences, profilePicURL: $profilePicURL, lat: $lat, lon: $lon, age: $age, rating: $rating, chatUserList: $chatUserList)';
+    return 'UserDetails(uid: $uid, email: $email, firstName: $firstName, lastName: $lastName, role: $role, birthday: $birthday, about: $about, gender: $gender, preferences: $preferences, profilePicURL: $profilePicURL, lat: $lat, lon: $lon, age: $age, rating: $rating, chatUserList: $chatUserList, ambulanceNumber: $ambulanceNumber, doctorNumber: $doctorNumber, emergencyNumber: $emergencyNumber, tmpBlock: $tmpBlock, pmtBlock: $pmtBlock)';
   }
 
   @override
@@ -405,28 +496,44 @@ class _$_UserDetails implements _UserDetails {
             (identical(other.age, age) || other.age == age) &&
             (identical(other.rating, rating) || other.rating == rating) &&
             const DeepCollectionEquality()
-                .equals(other._chatUserList, _chatUserList));
+                .equals(other._chatUserList, _chatUserList) &&
+            (identical(other.ambulanceNumber, ambulanceNumber) ||
+                other.ambulanceNumber == ambulanceNumber) &&
+            (identical(other.doctorNumber, doctorNumber) ||
+                other.doctorNumber == doctorNumber) &&
+            (identical(other.emergencyNumber, emergencyNumber) ||
+                other.emergencyNumber == emergencyNumber) &&
+            (identical(other.tmpBlock, tmpBlock) ||
+                other.tmpBlock == tmpBlock) &&
+            (identical(other.pmtBlock, pmtBlock) ||
+                other.pmtBlock == pmtBlock));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      uid,
-      email,
-      firstName,
-      lastName,
-      role,
-      birthday,
-      about,
-      gender,
-      const DeepCollectionEquality().hash(_preferences),
-      profilePicURL,
-      lat,
-      lon,
-      age,
-      rating,
-      const DeepCollectionEquality().hash(_chatUserList));
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        uid,
+        email,
+        firstName,
+        lastName,
+        role,
+        birthday,
+        about,
+        gender,
+        const DeepCollectionEquality().hash(_preferences),
+        profilePicURL,
+        lat,
+        lon,
+        age,
+        rating,
+        const DeepCollectionEquality().hash(_chatUserList),
+        ambulanceNumber,
+        doctorNumber,
+        emergencyNumber,
+        tmpBlock,
+        pmtBlock
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -473,7 +580,17 @@ abstract class _UserDetails implements UserDetails {
       @JsonKey(name: 'rating')
           required final double rating,
       @JsonKey(name: 'chatUserList')
-          required final List<String> chatUserList}) = _$_UserDetails;
+          required final List<String> chatUserList,
+      @JsonKey(name: 'ambulanceNumber')
+          required final String ambulanceNumber,
+      @JsonKey(name: 'doctorNumber')
+          required final String doctorNumber,
+      @JsonKey(name: 'emergencyNumber')
+          required final String emergencyNumber,
+      @JsonKey(name: 'tmpBlock')
+          required final bool tmpBlock,
+      @JsonKey(name: 'pmtBlock')
+          required final bool pmtBlock}) = _$_UserDetails;
 
   factory _UserDetails.fromJson(Map<String, dynamic> json) =
       _$_UserDetails.fromJson;
@@ -523,6 +640,21 @@ abstract class _UserDetails implements UserDetails {
   @override
   @JsonKey(name: 'chatUserList')
   List<String> get chatUserList;
+  @override
+  @JsonKey(name: 'ambulanceNumber')
+  String get ambulanceNumber;
+  @override
+  @JsonKey(name: 'doctorNumber')
+  String get doctorNumber;
+  @override
+  @JsonKey(name: 'emergencyNumber')
+  String get emergencyNumber;
+  @override
+  @JsonKey(name: 'tmpBlock')
+  bool get tmpBlock;
+  @override
+  @JsonKey(name: 'pmtBlock')
+  bool get pmtBlock;
   @override
   @JsonKey(ignore: true)
   _$$_UserDetailsCopyWith<_$_UserDetails> get copyWith =>

@@ -44,7 +44,8 @@ class DistanceSelectionWidget extends StatelessWidget {
                 Slider(
                   activeColor: state.user.role == "CG" ? mainBlue : mainOrange,
                   value: stateP.distance.toDouble(),
-                  max: 10,
+                  min: 1,
+                  max: 100,
                   label: stateP.distance.toString(),
                   onChanged: (double value) {
                     contextP.read<SearchCubit>().distanceChanged(value);

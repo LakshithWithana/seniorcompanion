@@ -35,7 +35,9 @@ class _ChatRoomState extends State<ChatRoom> {
 
   String message = '';
   final _controller = TextEditingController();
-  final ScrollController _scrollController = ScrollController();
+  // final ScrollController _scrollController = ScrollController();
+
+  late final ScrollController _scrollController = ScrollController();
 
   bool sendButtonLoading = false;
 
@@ -47,47 +49,130 @@ class _ChatRoomState extends State<ChatRoom> {
     userCollection.doc(widget.recipeintID).update({
       'newMessageSent': false,
     });
+
+    // _scrollController = ScrollController() //keepScrollOffset: false removed
+    //   ..addListener(() {
+    //     setState(() {
+    //       _position = _scrollController.position;
+    //     });
+    //   });
+    // BlocProvider.of<ChatCubit>(context)
+    //     .createChat(myUid: widget.myID, partnerUid: widget.recipeintID);
+    // BlocProvider.of<ChatCubit>(context)
+    //     .getChatRoom(myUid: widget.myID, partnerUid: widget.recipeintID);
+    // BlocProvider.of<ChatCubit>(context)
+    //     .getChat(myUid: widget.myID, partnerUid: widget.recipeintID);
+
     super.initState();
   }
 
   @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<ChatCubit, ChatState>(
-      builder: (context, state) {
-        return StreamBuilder<Object>(
-          stream: state.chatStream,
-          // ChatService(
-          //         chatRoomID: widget.chatRoomID,
-          //         myID: widget.myID,
-          //         recipientID: widget.recipeintID)
-          //     .chatRoomDetails,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              // ChatRoomModel chatRoom = snapshot.data;
-              return Scaffold(
-                appBar: AppBar(
-                  title: CustomText(
-                    text: widget.recipeintName.toUpperCase(),
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  toolbarHeight: 80.0,
+    BlocProvider.of<ChatCubit>(context)
+        .createChat(myUid: widget.myID, partnerUid: widget.recipeintID);
+    BlocProvider.of<ChatCubit>(context)
+        .getChatRoom(myUid: widget.myID, partnerUid: widget.recipeintID);
+    BlocProvider.of<ChatCubit>(context)
+        .getChat(myUid: widget.myID, partnerUid: widget.recipeintID);
+
+    const snackBar = SnackBar(
+      content: Text('User reported!'),
+    );
+    return Scaffold(
+      appBar: AppBar(
+        title: CustomText(
+          text: widget.recipeintName.toUpperCase(),
+          fontSize: 24.0,
+          fontWeight: FontWeight.bold,
+        ),
+        toolbarHeight: 80.0,
+        actions: [
+          IconButton(
+            onPressed: () {
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text('Report this user'),
+                  content: const Text(
+                      'If this user behave inappropriate you can report.'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'Cancel'),
+                      child: const Text('Cancel'),
+                    ),
+                    TextButton(
+                      onPressed: () async {
+                        await FirebaseFirestore.instance
+                            .collection("report")
+                            .doc(widget.recipeintID)
+                            .set({
+                          "user_id": widget.recipeintID,
+                          "reported_by": widget.myID,
+                        });
+                        Navigator.pop(context, 'Successfully Reported');
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      },
+                      child: const Text('Report'),
+                    ),
+                  ],
                 ),
-                body: Padding(
-                  padding: const EdgeInsets.all(8.0),
+              );
+            },
+            icon: Icon(Icons.report),
+          ),
+        ],
+      ),
+      body: BlocBuilder<ChatCubit, ChatState>(
+        builder: (contextC, stateC) {
+          // contextC
+          //     .read<ChatCubit>()
+          //     .createChat(myUid: widget.myID, partnerUid: widget.recipeintID);
+          // contextC
+          //     .read<ChatCubit>()
+          //     .getChatRoom(myUid: widget.myID, partnerUid: widget.recipeintID);
+          // contextC
+          //     .read<ChatCubit>()
+          //     .getChat(myUid: widget.myID, partnerUid: widget.recipeintID);
+          // BlocProvider.of<ChatCubit>(context)
+          //     .createChat(myUid: widget.myID, partnerUid: widget.recipeintID);
+          // BlocProvider.of<ChatCubit>(context)
+          //     .getChatRoom(myUid: widget.myID, partnerUid: widget.recipeintID);
+          // BlocProvider.of<ChatCubit>(context)
+          //     .getChat(myUid: widget.myID, partnerUid: widget.recipeintID);
+
+          return StreamBuilder<Object>(
+            stream: stateC.chatStream,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                // ChatRoomModel chatRoom = snapshot.data;
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
                   child: SingleChildScrollView(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.7,
+                          height: MediaQuery.of(context).size.height * 0.75,
                           child: FutureBuilder(
-                            future: chat
-                                .where('chatID', isEqualTo: widget.chatRoomID)
-                                .get(),
+                            future: stateC.chat,
                             builder:
                                 (BuildContext context, AsyncSnapshot snapshot) {
                               if (snapshot.hasData) {
+                                // Timer(
+                                //   const Duration(milliseconds: 1),
+                                //   () => _scrollController.animateTo(
+                                //       _scrollController
+                                //           .position.maxScrollExtent,
+                                //       duration:
+                                //           const Duration(milliseconds: 500),
+                                //       curve: Curves.ease),
+                                // );
                                 // final myMessages =
                                 //     snapshot.data.docs.toList() ?? [];
                                 List myMessages = snapshot.data.docs.toList()[0]
@@ -110,17 +195,18 @@ class _ChatRoomState extends State<ChatRoom> {
                                   return aTimestamp.compareTo(bTimestamp);
                                 });
                                 Timer(
-                                    const Duration(milliseconds: 1),
-                                    () => _scrollController.animateTo(
-                                        _scrollController
-                                            .position.maxScrollExtent,
-                                        duration:
-                                            const Duration(milliseconds: 500),
-                                        curve: Curves.ease));
-                                print(allMessages.length);
+                                  const Duration(milliseconds: 1),
+                                  () => _scrollController.animateTo(
+                                      _scrollController
+                                          .position.maxScrollExtent,
+                                      duration:
+                                          const Duration(milliseconds: 500),
+                                      curve: Curves.ease),
+                                );
+
                                 return ListView.builder(
-                                  controller: _scrollController,
                                   itemCount: allMessages.length,
+                                  controller: _scrollController,
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     return Column(
@@ -148,8 +234,8 @@ class _ChatRoomState extends State<ChatRoom> {
                                                         ),
                                                         color:
                                                             widget.role == "CG"
-                                                                ? mainBlue
-                                                                : mainOrange),
+                                                                ? mainOrange
+                                                                : mainBlue),
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
@@ -187,8 +273,8 @@ class _ChatRoomState extends State<ChatRoom> {
                                                         ),
                                                         color:
                                                             widget.role == "CG"
-                                                                ? mainOrange
-                                                                : mainBlue),
+                                                                ? mainBlue
+                                                                : mainOrange),
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
@@ -221,140 +307,134 @@ class _ChatRoomState extends State<ChatRoom> {
                         ),
                         Container(
                           width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.07,
+                          height: MediaQuery.of(context).size.height * 0.09,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8.0),
-                            // color: Colors.grey[900],
+                            color: Colors.grey[200],
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.8,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.06,
-                                child: TextFormField(
-                                  style: const TextStyle(color: mainFontColor),
-                                  decoration: InputDecoration(
-                                    contentPadding: const EdgeInsets.all(10),
-                                    filled: true,
-                                    fillColor: Colors.grey[200],
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: const BorderSide(
-                                          color: black,
-                                          width: 2.0,
-                                          style: BorderStyle.solid),
-                                      borderRadius: BorderRadius.circular(15.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.75,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.06,
+                                  child: TextFormField(
+                                    style:
+                                        const TextStyle(color: mainFontColor),
+                                    decoration: InputDecoration(
+                                      contentPadding: const EdgeInsets.all(10),
+                                      filled: true,
+                                      fillColor: Colors.grey[200],
+                                      enabledBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: widget.role == "CG"
+                                                ? mainBlue
+                                                : mainOrange,
+                                            width: 2.0,
+                                            style: BorderStyle.solid),
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderSide: BorderSide(
+                                            color: widget.role == "CG"
+                                                ? mainBlue
+                                                : mainOrange,
+                                            width: 2.0,
+                                            style: BorderStyle.solid),
+                                        borderRadius:
+                                            BorderRadius.circular(15.0),
+                                      ),
                                     ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: widget.role == "CG"
-                                              ? mainBlue
-                                              : mainOrange,
-                                          width: 2.0,
-                                          style: BorderStyle.solid),
-                                      borderRadius: BorderRadius.circular(15.0),
-                                    ),
+                                    controller: _controller,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        message = value;
+                                      });
+                                    },
                                   ),
-                                  controller: _controller,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      message = value;
-                                    });
-                                  },
                                 ),
-                              ),
-                              SizedBox(
-                                width: MediaQuery.of(context).size.width * 0.1,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.05,
-                                child: IconButton(
-                                  icon: sendButtonLoading == true
-                                      ? const CircularProgressIndicator(
-                                          backgroundColor: mainOrange,
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                                  mainBlue),
-                                        )
-                                      : Icon(
-                                          Icons.send,
-                                          color: widget.role == "CG"
-                                              ? mainOrange
-                                              : mainBlue,
-                                          size: 30.0,
-                                        ),
-                                  onPressed: message != ''
-                                      ? () async {
-                                          setState(() {
-                                            sendButtonLoading = true;
-                                          });
-                                          await chat
-                                              .doc(widget.chatRoomID)
-                                              .update({
-                                            widget.myID:
-                                                FieldValue.arrayRemove([
-                                              {
-                                                'message': '',
-                                                'timestamp': 0,
-                                                'sentBy': widget.myID,
-                                              }
-                                            ])
-                                          });
-                                          await chat
-                                              .doc(widget.chatRoomID)
-                                              .update({
-                                            widget.myID: FieldValue.arrayUnion([
-                                              {
-                                                'message': message,
-                                                'timestamp': DateTime.now()
-                                                    .microsecondsSinceEpoch,
-                                                'sentBy': widget.myID,
-                                              }
-                                            ])
-                                          });
-                                          await userCollection
-                                              .doc(widget.recipeintID)
-                                              .update({
-                                            'unreadMessages': true,
-                                          });
-                                          await userCollection
-                                              .doc(widget.myID)
-                                              .update({
-                                            'newMessageSent': true,
-                                          });
-                                          Timer(
-                                              const Duration(milliseconds: 1),
-                                              () => _scrollController.animateTo(
+                                SizedBox(
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.05,
+                                  child: IconButton(
+                                    icon: sendButtonLoading == true
+                                        ? const CircularProgressIndicator(
+                                            backgroundColor: mainOrange,
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                                    mainBlue),
+                                          )
+                                        : Icon(
+                                            Icons.send,
+                                            color: widget.role == "CG"
+                                                ? mainBlue
+                                                : mainOrange,
+                                            size: 30.0,
+                                          ),
+                                    onPressed: message != ''
+                                        ? () {
+                                            setState(() {
+                                              sendButtonLoading = true;
+                                            });
+
+                                            context
+                                                .read<ChatCubit>()
+                                                .sendMessage(
+                                                    myUid: widget.myID,
+                                                    partnerUid:
+                                                        widget.recipeintID,
+                                                    message: message);
+
+                                            Timer(
+                                                const Duration(
+                                                    milliseconds: 1000), () {
+                                              _scrollController.animateTo(
                                                   _scrollController
                                                       .position.maxScrollExtent,
                                                   duration: const Duration(
                                                       milliseconds: 500),
-                                                  curve: Curves.ease));
-                                          _controller.clear();
-                                          message = '';
-                                          setState(() {
-                                            sendButtonLoading = false;
-                                          });
-                                        }
-                                      : null,
+                                                  curve: Curves.ease);
+                                              BlocProvider.of<ChatCubit>(
+                                                      context)
+                                                  .getChat(
+                                                      myUid: widget.myID,
+                                                      partnerUid:
+                                                          widget.recipeintID);
+                                            });
+                                            _controller.clear();
+                                            message = '';
+                                            setState(() {
+                                              sendButtonLoading = false;
+                                            });
+                                          }
+                                        : null,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
-                ),
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        );
-      },
+                );
+              } else {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+          );
+        },
+      ),
     );
   }
 }

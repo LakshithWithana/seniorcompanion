@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:seniorcompanion/core/constants/colors.dart';
-import 'package:seniorcompanion/features/notifications/emergency_and_reminders/emergency_and_reminders_tab_view.dart';
 import 'package:seniorcompanion/features/notifications/notifications/notification_tab_view.dart';
+
+import '../../emergency_and_reminders/presentation/emergency_and_reminders_tab_page.dart';
 
 class NotificationView extends StatelessWidget {
   const NotificationView({super.key});
@@ -20,21 +21,23 @@ class NotificationView extends StatelessWidget {
     );
     return DefaultTabController(
       length: 2,
-      child: Column(
-        children: [
-          tabbar,
-          SizedBox(
-            height: MediaQuery.of(context).size.height -
-                tabbar.preferredSize.height -
-                150,
-            child: const TabBarView(
-              children: [
-                EmergencyAndRemindersTabView(),
-                NotificationTabView(),
-              ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            tabbar,
+            SizedBox(
+              height: MediaQuery.of(context).size.height -
+                  tabbar.preferredSize.height -
+                  150,
+              child: const TabBarView(
+                children: [
+                  EmergencyAndRemindersTabPage(),
+                  NotificationTabView(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

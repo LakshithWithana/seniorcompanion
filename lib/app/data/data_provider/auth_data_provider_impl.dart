@@ -177,6 +177,11 @@ class AuthDataProviderImpl implements AuthDataProvider {
         "age": 0,
         "rating": 5.0,
         "chatUserList": [],
+        "emergencyNumber": "",
+        "doctorNumber": "",
+        "ambulanceNumber": "",
+        "tmpBlock": false,
+        "pmtBlock": false,
       }).then((value) async {
         final ClaimsModel cModel = ClaimsModel(
             userId: result.user!.uid,
@@ -216,6 +221,13 @@ class AuthDataProviderImpl implements AuthDataProvider {
 
 extension on firebase_auth.User {
   SCUser get toUser {
-    return SCUser(uid: uid, email: email!, role: "", profileUpdated: false);
+    return SCUser(
+      uid: uid,
+      email: email!,
+      role: "",
+      profileUpdated: false,
+      tmpBlock: false,
+      pmtBlock: false,
+    );
   }
 }

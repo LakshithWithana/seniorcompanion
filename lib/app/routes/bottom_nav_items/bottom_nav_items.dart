@@ -3,28 +3,39 @@ import 'package:flutter/material.dart';
 import 'package:seniorcompanion/features/chat/presentation/chat_page.dart';
 import 'package:seniorcompanion/features/notifications/presentation/pages/notification_page.dart';
 import 'package:seniorcompanion/features/search/presentation/pages/search_page.dart';
-
-import '../../../core/shared/widgets/custom_text.dart';
+import 'package:seniorcompanion/features/settings/presentation/settings_page.dart';
 
 List<BottomNavigationBarItem> bottomNavItems = <BottomNavigationBarItem>[
   BottomNavigationBarItem(
-    icon: const Icon(Icons.search_outlined),
+    icon: Image.asset(
+      "assets/images/icons/search_inac.png",
+      scale: 1.5,
+    ),
     label: 'search'.tr(),
   ),
   BottomNavigationBarItem(
-    icon: const Icon(Icons.forum_outlined),
+    icon: Image.asset(
+      "assets/images/icons/chat_inac.png",
+      scale: 1.5,
+    ),
     label: 'chat'.tr(),
   ),
+  // BottomNavigationBarItem(
+  //   icon: const Icon(Icons.favorite_outline),
+  //   label: 'wellbeing'.tr(),
+  // ),
   BottomNavigationBarItem(
-    icon: const Icon(Icons.favorite_outline),
-    label: 'wellbeing'.tr(),
-  ),
-  BottomNavigationBarItem(
-    icon: const Icon(Icons.notifications_none_outlined),
+    icon: Image.asset(
+      "assets/images/icons/notifications_inac.png",
+      scale: 1.5,
+    ),
     label: 'notifications'.tr(),
   ),
   BottomNavigationBarItem(
-    icon: const Icon(Icons.settings_outlined),
+    icon: Image.asset(
+      "assets/images/icons/profile_inac.png",
+      scale: 1.5,
+    ),
     label: 'settings'.tr(),
   ),
 ];
@@ -32,15 +43,6 @@ List<BottomNavigationBarItem> bottomNavItems = <BottomNavigationBarItem>[
 List<Widget> bottomNavScreen = <Widget>[
   const SearchPage(),
   const ChatPage(),
-  CustomText(
-    text: "wellbeing".tr().toUpperCase(),
-    fontSize: 24.0,
-    fontWeight: FontWeight.bold,
-  ),
   const NotificationPage(),
-  CustomText(
-    text: "settings".tr().toUpperCase(),
-    fontSize: 24.0,
-    fontWeight: FontWeight.bold,
-  ),
+  const SettingsPage(),
 ];

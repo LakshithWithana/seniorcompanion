@@ -24,4 +24,12 @@ abstract class ChatRepository {
     required String partnerUid,
     required String message,
   });
+
+  Future<Either<String, Future<QuerySnapshot<Object?>>>> getChatList({
+    required String myUid,
+  });
+
+  Future<Either<String, Future<QuerySnapshot<Object?>>>> getSingleChatPerson({
+    required String userUid,
+  });
 }

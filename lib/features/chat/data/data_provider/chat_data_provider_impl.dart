@@ -103,10 +103,6 @@ class ChatDataProviderImpl implements ChatDataProvider {
   @override
   Future<QuerySnapshot<Object?>> getChat(
       {required String myUid, required String partnerUid}) {
-    //chat collection reference
-    final CollectionReference chatCollection = FirebaseFirestore.instance
-        .collection(FirebaseConstants.chatCollectionName);
-
     final result = chatCollection
         .where('chatID', isEqualTo: _getChatRoomID(myUid, partnerUid))
         .get();
@@ -139,11 +135,11 @@ class ChatDataProviderImpl implements ChatDataProvider {
     });
     await userCollection.doc(partnerUid).update({
       'unreadMessages': true,
-      'chatUserList': FieldValue.arrayRemove([myUid]),
+      // 'chatUserList': FieldValue.arrayRemove([myUid]),
     });
     await userCollection.doc(myUid).update({
       'newMessageSent': true,
-      'chatUserList': FieldValue.arrayRemove([partnerUid]),
+      // 'chatUserList': FieldValue.arrayRemove([partnerUid]),
     });
     await userCollection.doc(partnerUid).update({
       'chatUserList': FieldValue.arrayUnion([myUid]),
@@ -153,5 +149,16 @@ class ChatDataProviderImpl implements ChatDataProvider {
     });
 
     return unit;
+  }
+
+  @override
+  Future<QuerySnapshot<Object?>> getChatList({required String myUid}) {
+    return userCollection.where("uid", isEqualTo: myUid).get();
+  }
+
+  @override
+  Future<QuerySnapshot<Object?>> getSingleChatPerson(
+      {required String userUid}) {
+    return userCollection.where("uid", isEqualTo: userUid).get();
   }
 }

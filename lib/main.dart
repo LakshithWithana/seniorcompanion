@@ -1,6 +1,8 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:seniorcompanion/app/bloc/app_bloc.dart';
 import 'package:seniorcompanion/app/bloc/app_bloc_observer.dart';
 import 'package:seniorcompanion/app/routes/bloc/main_page_routes_bloc.dart';
@@ -156,6 +158,17 @@ class AppView extends StatelessWidget {
         state: context.select((AppBloc bloc) => bloc.state.status),
         onGeneratePages: onGenerateAppViewPages,
       ),
+      // AnimatedSplashScreen(
+      //   duration: 3000,
+      //   splash: Image.asset("assets/images/logo.png"),
+      //   splashTransition: SplashTransition.fadeTransition,
+      //   pageTransitionType: PageTransitionType.fade,
+      //   backgroundColor: mainColor,
+      //   nextScreen: FlowBuilder<AppStatus>(
+      //     state: context.select((AppBloc bloc) => bloc.state.status),
+      //     onGeneratePages: onGenerateAppViewPages,
+      //   ),
+      // ),
     );
   }
 }

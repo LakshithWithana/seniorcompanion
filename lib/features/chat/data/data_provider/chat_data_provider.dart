@@ -29,4 +29,12 @@ abstract class ChatDataProvider {
     required String partnerUid,
     required String message,
   });
+
+  Future<QuerySnapshot<Object?>> getChatList({
+    required String myUid,
+  });
+
+  Future<QuerySnapshot<Object?>> getSingleChatPerson({
+    required String userUid,
+  });
 }

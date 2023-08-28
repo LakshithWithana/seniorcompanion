@@ -27,6 +27,11 @@ _$_UserDetails _$$_UserDetailsFromJson(Map<String, dynamic> json) =>
       chatUserList: (json['chatUserList'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      ambulanceNumber: json['ambulanceNumber'] as String,
+      doctorNumber: json['doctorNumber'] as String,
+      emergencyNumber: json['emergencyNumber'] as String,
+      tmpBlock: json['tmpBlock'] as bool,
+      pmtBlock: json['pmtBlock'] as bool,
     );
 
 Map<String, dynamic> _$$_UserDetailsToJson(_$_UserDetails instance) =>
@@ -46,4 +51,9 @@ Map<String, dynamic> _$$_UserDetailsToJson(_$_UserDetails instance) =>
       'age': instance.age,
       'rating': instance.rating,
       'chatUserList': instance.chatUserList,
+      'ambulanceNumber': instance.ambulanceNumber,
+      'doctorNumber': instance.doctorNumber,
+      'emergencyNumber': instance.emergencyNumber,
+      'tmpBlock': instance.tmpBlock,
+      'pmtBlock': instance.pmtBlock,
     };

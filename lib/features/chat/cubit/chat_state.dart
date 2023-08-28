@@ -11,6 +11,10 @@ class ChatState extends Equatable {
     this.chat,
     this.chatRetrieved = false,
     this.isSent = false,
+    this.chatList,
+    this.chatListRetrieved = false,
+    this.singleChatPerson,
+    this.singleChatPersonRetrieved = false,
   });
 
   final String myUid;
@@ -22,6 +26,10 @@ class ChatState extends Equatable {
   final Future<QuerySnapshot<Object?>>? chat;
   final bool chatRetrieved;
   final bool isSent;
+  final Future<QuerySnapshot<Object?>>? chatList;
+  final bool chatListRetrieved;
+  final Future<QuerySnapshot<Object?>>? singleChatPerson;
+  final bool singleChatPersonRetrieved;
 
   @override
   List<Object?> get props => [
@@ -33,6 +41,10 @@ class ChatState extends Equatable {
         chat,
         chatRetrieved,
         isSent,
+        chatList,
+        chatListRetrieved,
+        singleChatPerson,
+        singleChatPersonRetrieved,
       ];
 
   ChatState copyWith({
@@ -45,6 +57,10 @@ class ChatState extends Equatable {
     Future<QuerySnapshot<Object?>>? chat,
     bool? chatRetrieved,
     bool? isSent,
+    Future<QuerySnapshot<Object?>>? chatList,
+    bool? chatListRetrieved,
+    Future<QuerySnapshot<Object?>>? singleChatPerson,
+    bool? singleChatPersonRetrieved,
   }) {
     return ChatState(
       myUid: myUid ?? this.myUid,
@@ -56,6 +72,11 @@ class ChatState extends Equatable {
       chat: chat ?? this.chat,
       chatRetrieved: chatRetrieved ?? this.chatRetrieved,
       isSent: isSent ?? this.isSent,
+      chatList: chatList ?? this.chatList,
+      chatListRetrieved: chatListRetrieved ?? this.chatListRetrieved,
+      singleChatPerson: singleChatPerson ?? this.singleChatPerson,
+      singleChatPersonRetrieved:
+          singleChatPersonRetrieved ?? this.singleChatPersonRetrieved,
     );
   }
 }

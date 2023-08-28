@@ -120,12 +120,12 @@ class SearchView extends StatelessWidget {
               const SearchButtonWidget(),
               // const SearchList(),
               const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  authRepository.signOutUser();
-                },
-                child: const Text("Logout"),
-              ),
+              // ElevatedButton(
+              //   onPressed: () {
+              //     authRepository.signOutUser();
+              //   },
+              //   child: const Text("Logout"),
+              // ),
             ],
           ),
         ),

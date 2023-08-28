@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +21,9 @@ class SingleSearchResultView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    const snackBar = SnackBar(
+      content: Text('User reported!'),
+    );
     return BlocBuilder<SearchCubit, SearchState>(
       builder: (context, state) {
         return Scaffold(
@@ -32,6 +36,42 @@ class SingleSearchResultView extends StatelessWidget {
               fontSize: 24.0,
               fontWeight: FontWeight.w700,
             ),
+            actions: [
+              IconButton(
+                onPressed: () {
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: const Text('Report this user'),
+                      content: const Text(
+                          'If this user behave inappropriate you can report.'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Cancel'),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () async {
+                            await FirebaseFirestore.instance
+                                .collection("report")
+                                .doc(state.searchResult![index].uid)
+                                .set({
+                              "user_id": state.searchResult![index].uid,
+                              "reported_by": "",
+                            });
+                            Navigator.pop(context, 'Successfully Reported');
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          },
+                          child: const Text('Report'),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                icon: Icon(Icons.report),
+              ),
+            ],
           ),
           body: SingleChildScrollView(
             child: Padding(

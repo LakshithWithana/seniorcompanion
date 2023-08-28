@@ -20,6 +20,8 @@ mixin _$SCUser {
   String get email => throw _privateConstructorUsedError;
   String get role => throw _privateConstructorUsedError;
   bool get profileUpdated => throw _privateConstructorUsedError;
+  bool get tmpBlock => throw _privateConstructorUsedError;
+  bool get pmtBlock => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $SCUserCopyWith<SCUser> get copyWith => throw _privateConstructorUsedError;
@@ -30,7 +32,13 @@ abstract class $SCUserCopyWith<$Res> {
   factory $SCUserCopyWith(SCUser value, $Res Function(SCUser) then) =
       _$SCUserCopyWithImpl<$Res, SCUser>;
   @useResult
-  $Res call({String uid, String email, String role, bool profileUpdated});
+  $Res call(
+      {String uid,
+      String email,
+      String role,
+      bool profileUpdated,
+      bool tmpBlock,
+      bool pmtBlock});
 }
 
 /// @nodoc
@@ -50,6 +58,8 @@ class _$SCUserCopyWithImpl<$Res, $Val extends SCUser>
     Object? email = null,
     Object? role = null,
     Object? profileUpdated = null,
+    Object? tmpBlock = null,
+    Object? pmtBlock = null,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -68,6 +78,14 @@ class _$SCUserCopyWithImpl<$Res, $Val extends SCUser>
           ? _value.profileUpdated
           : profileUpdated // ignore: cast_nullable_to_non_nullable
               as bool,
+      tmpBlock: null == tmpBlock
+          ? _value.tmpBlock
+          : tmpBlock // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pmtBlock: null == pmtBlock
+          ? _value.pmtBlock
+          : pmtBlock // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -78,7 +96,13 @@ abstract class _$$_SCUserCopyWith<$Res> implements $SCUserCopyWith<$Res> {
       __$$_SCUserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String uid, String email, String role, bool profileUpdated});
+  $Res call(
+      {String uid,
+      String email,
+      String role,
+      bool profileUpdated,
+      bool tmpBlock,
+      bool pmtBlock});
 }
 
 /// @nodoc
@@ -95,6 +119,8 @@ class __$$_SCUserCopyWithImpl<$Res>
     Object? email = null,
     Object? role = null,
     Object? profileUpdated = null,
+    Object? tmpBlock = null,
+    Object? pmtBlock = null,
   }) {
     return _then(_$_SCUser(
       uid: null == uid
@@ -113,6 +139,14 @@ class __$$_SCUserCopyWithImpl<$Res>
           ? _value.profileUpdated
           : profileUpdated // ignore: cast_nullable_to_non_nullable
               as bool,
+      tmpBlock: null == tmpBlock
+          ? _value.tmpBlock
+          : tmpBlock // ignore: cast_nullable_to_non_nullable
+              as bool,
+      pmtBlock: null == pmtBlock
+          ? _value.pmtBlock
+          : pmtBlock // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -124,7 +158,9 @@ class _$_SCUser extends _SCUser {
       {required this.uid,
       required this.email,
       required this.role,
-      required this.profileUpdated})
+      required this.profileUpdated,
+      required this.tmpBlock,
+      required this.pmtBlock})
       : super._();
 
   @override
@@ -135,10 +171,14 @@ class _$_SCUser extends _SCUser {
   final String role;
   @override
   final bool profileUpdated;
+  @override
+  final bool tmpBlock;
+  @override
+  final bool pmtBlock;
 
   @override
   String toString() {
-    return 'SCUser(uid: $uid, email: $email, role: $role, profileUpdated: $profileUpdated)';
+    return 'SCUser(uid: $uid, email: $email, role: $role, profileUpdated: $profileUpdated, tmpBlock: $tmpBlock, pmtBlock: $pmtBlock)';
   }
 
   @override
@@ -150,12 +190,16 @@ class _$_SCUser extends _SCUser {
             (identical(other.email, email) || other.email == email) &&
             (identical(other.role, role) || other.role == role) &&
             (identical(other.profileUpdated, profileUpdated) ||
-                other.profileUpdated == profileUpdated));
+                other.profileUpdated == profileUpdated) &&
+            (identical(other.tmpBlock, tmpBlock) ||
+                other.tmpBlock == tmpBlock) &&
+            (identical(other.pmtBlock, pmtBlock) ||
+                other.pmtBlock == pmtBlock));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, uid, email, role, profileUpdated);
+  int get hashCode => Object.hash(
+      runtimeType, uid, email, role, profileUpdated, tmpBlock, pmtBlock);
 
   @JsonKey(ignore: true)
   @override
@@ -169,7 +213,9 @@ abstract class _SCUser extends SCUser {
       {required final String uid,
       required final String email,
       required final String role,
-      required final bool profileUpdated}) = _$_SCUser;
+      required final bool profileUpdated,
+      required final bool tmpBlock,
+      required final bool pmtBlock}) = _$_SCUser;
   const _SCUser._() : super._();
 
   @override
@@ -180,6 +226,10 @@ abstract class _SCUser extends SCUser {
   String get role;
   @override
   bool get profileUpdated;
+  @override
+  bool get tmpBlock;
+  @override
+  bool get pmtBlock;
   @override
   @JsonKey(ignore: true)
   _$$_SCUserCopyWith<_$_SCUser> get copyWith =>

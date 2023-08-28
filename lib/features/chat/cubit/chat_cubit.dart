@@ -11,7 +11,7 @@ part 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
   final ChatRepository _chatRepository;
-  StreamSubscription<ChatRoomModel>? _chatRoomModelStreamSubscription;
+  // StreamSubscription<ChatRoomModel>? _chatRoomModelStreamSubscription;
   ChatCubit({required ChatRepository chatRepository})
       : _chatRepository = chatRepository,
         super(const ChatState());
@@ -106,6 +106,51 @@ class ChatCubit extends Cubit<ChatState> {
     } catch (e) {
       if (!isClosed) {
         emit(state.copyWith(isSent: false));
+      }
+    }
+  }
+
+  Future<void> getChatList({
+    required String myUid,
+  }) async {
+    try {
+      var result = await _chatRepository.getChatList(myUid: myUid);
+
+      result.fold((l) {
+        if (!isClosed) {
+          emit(state.copyWith(chatListRetrieved: false));
+        }
+      }, (r) {
+        if (!isClosed) {
+          emit(state.copyWith(chatListRetrieved: true, chatList: r));
+        }
+      });
+    } catch (e) {
+      if (!isClosed) {
+        emit(state.copyWith(chatListRetrieved: false));
+      }
+    }
+  }
+
+  Future<void> getSingleChatPerson({
+    required String userUid,
+  }) async {
+    try {
+      var result = await _chatRepository.getSingleChatPerson(userUid: userUid);
+
+      result.fold((l) {
+        if (!isClosed) {
+          emit(state.copyWith(singleChatPersonRetrieved: false));
+        }
+      }, (r) {
+        if (!isClosed) {
+          emit(state.copyWith(
+              singleChatPersonRetrieved: true, singleChatPerson: r));
+        }
+      });
+    } catch (e) {
+      if (!isClosed) {
+        emit(state.copyWith(singleChatPersonRetrieved: false));
       }
     }
   }
