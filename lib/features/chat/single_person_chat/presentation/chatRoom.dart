@@ -124,7 +124,7 @@ class _ChatRoomState extends State<ChatRoom> {
                 ),
               );
             },
-            icon: Icon(Icons.report),
+            icon: const Icon(Icons.report),
           ),
         ],
       ),

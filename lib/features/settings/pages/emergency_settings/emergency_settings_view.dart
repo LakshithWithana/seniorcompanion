@@ -59,13 +59,13 @@ class _EmergencySettingsViewState extends State<EmergencySettingsView> {
             builder: (contextU, stateU) {
               return Column(
                 children: [
-                  Divider(),
+                  const Divider(),
                   CustomText(
                     text:
                         'You can enter or change your "Emergency Call" number here.',
                     fontSize: 16.0.sp,
                   ),
-                  SizedBox(height: 10.0),
+                  const SizedBox(height: 10.0),
                   CustomTextFormField(
                     initialValue: emergencyPhoneNumber,
                     hintText: "emergencyCallNo".tr(),
@@ -95,14 +95,14 @@ class _EmergencySettingsViewState extends State<EmergencySettingsView> {
                       },
                     ),
                   ),
-                  Divider(),
+                  const Divider(),
                   //------------------------------------------------------------
                   CustomText(
                     text:
                         'You can enter or change your "Doctor\'s Phone" number here.',
                     fontSize: 16.0.sp,
                   ),
-                  SizedBox(height: 10.0),
+                  const SizedBox(height: 10.0),
                   CustomTextFormField(
                     initialValue: doctorPhoneNumber,
                     hintText: "doctorCallNo".tr(),
@@ -131,14 +131,14 @@ class _EmergencySettingsViewState extends State<EmergencySettingsView> {
                       },
                     ),
                   ),
-                  Divider(),
+                  const Divider(),
                   //------------------------------------------------------------
                   CustomText(
                     text:
                         'You can enter or change your "Ambulance Call" number here.',
                     fontSize: 16.0.sp,
                   ),
-                  SizedBox(height: 10.0),
+                  const SizedBox(height: 10.0),
                   CustomTextFormField(
                     initialValue: ambulancePhoneNumber,
                     hintText: "ambulanceCallNo".tr(),

@@ -25,10 +25,10 @@ class ChatView extends StatelessWidget {
       }
     }
 
-    final ScrollController _scrollController = ScrollController();
+    final ScrollController scrollController = ScrollController();
 
     return SingleChildScrollView(
-      controller: _scrollController,
+      controller: scrollController,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 20.0),
         child: BlocBuilder<AppBloc, AppState>(

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seniorcompanion/core/constants/colors.dart';
 import 'package:seniorcompanion/core/shared/widgets/custom_text.dart';
 
 class BlockScreenView extends StatelessWidget {
@@ -22,7 +21,7 @@ class BlockScreenView extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(20.0),
         child: Center(
           child: SingleChildScrollView(
             child: Column(
@@ -33,10 +32,10 @@ class BlockScreenView extends StatelessWidget {
                         ? "Your account is permanently blocked by the Admin! No longer you can use this app!"
                         : "Your account is temporary blocked by the Admin! Account will restore in some days.",
                     fontSize: 18.0.sp),
-                SizedBox(height: 40.0),
+                const SizedBox(height: 40.0),
                 CustomText(
                   text:
-                      "Why you see this blocked screen?\n * Your account may contain inappopriate images in your account.\n * You may sent unwanted messages to other users.",
+                      "Why you see this blocked screen?\n * Your account may contain inappopriate images in your account.\n * You may have sent unwanted messages to other users.",
                   fontSize: 16.0.sp,
                   color: Colors.grey,
                 ),

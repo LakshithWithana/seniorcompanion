@@ -4,6 +4,7 @@ import 'package:seniorcompanion/features/search/data/data_provider/search_data_p
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:seniorcompanion/features/search/data/failures/search_failure.dart';
 import '../../../../core/constants/firebase_constants.dart';
+import 'dart:math' show asin, cos, pi, pow, sin, sqrt;
 
 class SearchDataProviderImpl implements SearchDataProvider {
   final firebase_auth.FirebaseAuth _firebaseAuth;
@@ -28,6 +29,25 @@ class SearchDataProviderImpl implements SearchDataProvider {
     final Stream<List<UserDetails>> rResult;
     final user = _firebaseAuth.currentUser;
 
+    double _toRadians(double degrees) => degrees * pi / 180;
+
+    num _haversin(double radians) => pow(sin(radians / 2), 2);
+
+    double distance(double lat1, double lon1, double lat2, double lon2) {
+      const r = 6372.8; // Earth radius in kilometers
+
+      final dLat = _toRadians(lat2 - lat1);
+      final dLon = _toRadians(lon2 - lon1);
+      final lat1Radians = _toRadians(lat1);
+      final lat2Radians = _toRadians(lat2);
+
+      final a = _haversin(dLat) +
+          cos(lat1Radians) * cos(lat2Radians) * _haversin(dLon);
+      final c = 2 * asin(sqrt(a));
+
+      return r * c;
+    }
+
     if (user != null) {
       final search = _firebaseFirestore
           .collection(FirebaseConstants.usersCollectionName)
@@ -35,10 +55,7 @@ class SearchDataProviderImpl implements SearchDataProvider {
           .where("age", isLessThanOrEqualTo: endAge)
           // .where("email", isNotEqualTo: user.email)
           .where("role", isEqualTo: role == "CR" ? "CG" : "CR")
-          .where("gender",
-              isEqualTo: gender == "anyone"
-                  ? null
-                  : gender) //TODO: check and give right gender
+          .where("gender", isEqualTo: gender == "anyone" ? null : gender)
           .snapshots()
           .map((querySnapshot) => querySnapshot.docs
               .map((e) => UserDetails.fromJson(e.data()))

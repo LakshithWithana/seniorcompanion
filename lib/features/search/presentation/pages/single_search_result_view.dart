@@ -69,7 +69,7 @@ class SingleSearchResultView extends StatelessWidget {
                     ),
                   );
                 },
-                icon: Icon(Icons.report),
+                icon: const Icon(Icons.report),
               ),
             ],
           ),

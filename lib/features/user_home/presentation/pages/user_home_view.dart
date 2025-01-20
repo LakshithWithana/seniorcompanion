@@ -4,8 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seniorcompanion/app/cubit/blocked_status_cubit.dart';
 import 'package:seniorcompanion/app/routes/bloc/main_page_routes_bloc.dart';
 import 'package:seniorcompanion/core/constants/colors.dart';
-import 'package:seniorcompanion/core/service_locator/service_locator.dart';
-import 'package:seniorcompanion/core/user_details/cubit/cubit/user_details_cubit.dart';
 import 'package:seniorcompanion/features/block_screen/presentation/block_screen_page.dart';
 
 // import '../../../../app/routes/bottom_nav_items/bottom_nav_items.dart';
