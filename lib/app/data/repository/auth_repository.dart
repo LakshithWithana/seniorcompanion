@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:logger/logger.dart';
-import 'package:seniorcompanion/core/models/sc_user/sc_user_model.dart';
+import 'package:newseniiorcompaniion/core/models/sc_user/sc_user_model.dart';
 
 import '../../../core/errors/failures/failures.dart';
 import '../../../core/form_models/email.dart';
@@ -28,9 +28,21 @@ abstract class AuthRepository {
   Future<Either<String, Unit>> loginWithEmailAndPassword(
       {required Email email, required Password password});
 
+  Future<Either<String, Unit>> loginWithGoogle();
+
+  Future<Either<String, Unit>> loginWithFacebook();
+
+  Future<Either<String, Unit>> loginWithApple();
+
   ///Register method
   Future<Either<String, Unit>> registerWithEmailAndPassword(
       {required Email email, required Password password, required String role});
+
+  Future<Either<String, Unit>> registerWithGoogle({required String role});
+
+  Future<Either<String, Unit>> registerWithApple({required String role});
+
+  Future<Either<String, Unit>> registerWithFacebook({required String role});
 
   ///This will return the current Firebase User as a stream
   Stream<firebase_auth.User?> get firebaseUser;

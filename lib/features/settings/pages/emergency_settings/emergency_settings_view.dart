@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'package:seniorcompanion/core/user_details/cubit/cubit/user_details_cubit.dart';
+import 'package:newseniiorcompaniion/core/user_details/cubit/cubit/user_details_cubit.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../../core/shared/widgets/custom_text.dart';
@@ -12,11 +12,11 @@ import '../../../notifications/emergency_and_reminders/cubit/emergency_cubit.dar
 
 class EmergencySettingsView extends StatefulWidget {
   const EmergencySettingsView({
-    Key? key,
+    super.key,
     this.emergencyPhoneNumber,
     this.doctorPhoneNumber,
     this.ambulancePhoneNumber,
-  }) : super(key: key);
+  });
   final String? emergencyPhoneNumber;
   final String? doctorPhoneNumber;
   final String? ambulancePhoneNumber;
@@ -43,12 +43,14 @@ class _EmergencySettingsViewState extends State<EmergencySettingsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
+        backgroundColor: white,
         shadowColor: Theme.of(context).shadowColor,
         centerTitle: false,
         title: CustomText(
           text: "emergencySettings".tr().toUpperCase(),
-          fontSize: 24.0,
+          fontSize: 22.0,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -60,10 +62,10 @@ class _EmergencySettingsViewState extends State<EmergencySettingsView> {
               return Column(
                 children: [
                   const Divider(),
-                  CustomText(
+                  const CustomText(
                     text:
                         'You can enter or change your "Emergency Call" number here.',
-                    fontSize: 16.0.sp,
+                    fontSize: 16.0,
                   ),
                   const SizedBox(height: 10.0),
                   CustomTextFormField(
@@ -86,7 +88,7 @@ class _EmergencySettingsViewState extends State<EmergencySettingsView> {
                       ),
                       child: CustomText(
                         text: 'save'.tr().toUpperCase(),
-                        fontSize: 16.0.sp,
+                        fontSize: 16.0,
                         fontWeight: FontWeight.bold,
                         color: mainColor,
                       ),
@@ -97,10 +99,10 @@ class _EmergencySettingsViewState extends State<EmergencySettingsView> {
                   ),
                   const Divider(),
                   //------------------------------------------------------------
-                  CustomText(
+                  const CustomText(
                     text:
                         'You can enter or change your "Doctor\'s Phone" number here.',
-                    fontSize: 16.0.sp,
+                    fontSize: 16.0,
                   ),
                   const SizedBox(height: 10.0),
                   CustomTextFormField(
@@ -122,7 +124,7 @@ class _EmergencySettingsViewState extends State<EmergencySettingsView> {
                       ),
                       child: CustomText(
                         text: 'save'.tr().toUpperCase(),
-                        fontSize: 16.0.sp,
+                        fontSize: 16.0,
                         fontWeight: FontWeight.bold,
                         color: mainColor,
                       ),
@@ -133,10 +135,10 @@ class _EmergencySettingsViewState extends State<EmergencySettingsView> {
                   ),
                   const Divider(),
                   //------------------------------------------------------------
-                  CustomText(
+                  const CustomText(
                     text:
                         'You can enter or change your "Ambulance Call" number here.',
-                    fontSize: 16.0.sp,
+                    fontSize: 16.0,
                   ),
                   const SizedBox(height: 10.0),
                   CustomTextFormField(
@@ -159,7 +161,7 @@ class _EmergencySettingsViewState extends State<EmergencySettingsView> {
                       ),
                       child: CustomText(
                         text: 'save'.tr().toUpperCase(),
-                        fontSize: 16.0.sp,
+                        fontSize: 16.0,
                         fontWeight: FontWeight.bold,
                         color: mainColor,
                       ),

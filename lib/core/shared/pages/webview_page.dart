@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:newseniiorcompaniion/core/constants/colors.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewPage extends StatelessWidget {
@@ -31,7 +32,9 @@ class WebViewPage extends StatelessWidget {
       ..loadRequest(Uri.parse(url));
 
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
+        backgroundColor: white,
         title: Text(
           title,
           style: const TextStyle(
@@ -39,21 +42,6 @@ class WebViewPage extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        // leading: Container(
-        //   width: 10.0,
-        //   decoration: const BoxDecoration(
-        //     image: DecorationImage(
-        //       image: AssetImage("assets/images/png_assets/back button.png"),
-        //       // fit: BoxFit.cover,
-        //     ),
-        //   ),
-        //   child: InkWell(
-        //     onTap: () {
-        //       Navigator.pop(context);
-        //     },
-        //   ),
-        // ),
-        // leadingWidth: 40.0,
       ),
       body: Column(
         children: [

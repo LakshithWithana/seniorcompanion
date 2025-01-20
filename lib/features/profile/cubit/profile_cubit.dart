@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:seniorcompanion/features/profile/data/repositories/profile_repository.dart';
+import 'package:newseniiorcompaniion/core/models/user_details_model/user_details_model.dart';
+import 'package:newseniiorcompaniion/core/user_details/cubit/cubit/user_details_cubit.dart';
+import 'package:newseniiorcompaniion/features/profile/data/repositories/profile_repository.dart';
 
 import '../../../core/form_models/general_field.dart';
 
@@ -20,14 +22,16 @@ class ProfileCubit extends Cubit<ProfileState> {
     emit(state.copyWith(
       profilePicUrl: path,
       status: FormzSubmissionStatus.initial,
-      validated: state.profilePicUrl == ""
+      validated: state.birthday == ""
           ? false
-          : true &&
-              Formz.validate([
-                state.lastName,
-                state.firstName,
-                state.about,
-              ]),
+          : true && state.preferences.isEmpty
+              ? false
+              : true &&
+                  Formz.validate([
+                    state.lastName,
+                    state.firstName,
+                    state.about,
+                  ]),
     ));
   }
 
@@ -49,9 +53,11 @@ class ProfileCubit extends Cubit<ProfileState> {
                   state.lastName,
                   state.about,
                 ]) &&
-                state.profilePicUrl == ""
+                state.preferences.isEmpty
             ? false
-            : true,
+            : true && state.birthday != ""
+                ? true
+                : false,
         status: FormzSubmissionStatus.initial,
       ),
     );
@@ -67,9 +73,11 @@ class ProfileCubit extends Cubit<ProfileState> {
                   state.firstName,
                   state.about,
                 ]) &&
-                state.profilePicUrl == ""
+                state.preferences.isEmpty
             ? false
-            : true,
+            : true && state.birthday != ""
+                ? true
+                : false,
         status: FormzSubmissionStatus.initial,
       ),
     );
@@ -82,11 +90,14 @@ class ProfileCubit extends Cubit<ProfileState> {
       validated: birthday == "null" || birthday == ""
           ? false
           : true &&
-              Formz.validate([
-                state.lastName,
-                state.firstName,
-                state.about,
-              ]),
+                  Formz.validate([
+                    state.lastName,
+                    state.firstName,
+                    state.about,
+                  ]) &&
+                  state.preferences.isEmpty
+              ? false
+              : true,
       status: FormzSubmissionStatus.initial,
     ));
   }
@@ -95,8 +106,13 @@ class ProfileCubit extends Cubit<ProfileState> {
     final about = GeneralField.dirty(value);
     emit(state.copyWith(
       about: about,
-      validated: Formz.validate([about, state.firstName, state.lastName]) &&
-              state.profilePicUrl == ""
+      validated: Formz.validate([about, state.firstName, state.lastName])
+              // &&
+              //         state.profilePicUrl == ""
+              //     ? false
+              //     : true
+              &&
+              state.preferences.isEmpty
           ? false
           : true && state.birthday != ""
               ? true
@@ -157,6 +173,29 @@ class ProfileCubit extends Cubit<ProfileState> {
     } catch (e) {
       if (!isClosed) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));
+      }
+    }
+  }
+
+  Future<void> getUserDetails() async {
+    try {
+      var result = await _profileRepository.getUserDetails();
+      result.fold((l) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(userDetailsFetchingError: l),
+          );
+        }
+      }, (r) {
+        emit(
+          state.copyWith(userDetails: r),
+        );
+      });
+    } catch (e) {
+      if (!isClosed) {
+        emit(
+          state.copyWith(userDetailsFetchingError: e.toString()),
+        );
       }
     }
   }

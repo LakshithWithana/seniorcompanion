@@ -12,9 +12,14 @@ abstract class SettingsRepository {
     required GeneralField firstName,
     required GeneralField lastName,
     required GeneralField about,
+    required String firstNameLastValue,
+    required String lastNameLastValue,
+    required String aboutLastValue,
   });
 
   Future<Either<String, Unit>> uploadProfileImage({
     required File file,
   });
+
+  Future<Either<String, Unit>> deleteAccount();
 }

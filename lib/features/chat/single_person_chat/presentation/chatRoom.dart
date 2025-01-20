@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seniorcompanion/features/chat/cubit/chat_cubit.dart';
+import 'package:newseniiorcompaniion/features/chat/cubit/chat_cubit.dart';
+import 'package:newseniiorcompaniion/features/chat/view_chat_person_profile/presentation/view_chat_person_profile_page.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../../core/shared/widgets/custom_text.dart';
@@ -50,19 +51,6 @@ class _ChatRoomState extends State<ChatRoom> {
       'newMessageSent': false,
     });
 
-    // _scrollController = ScrollController() //keepScrollOffset: false removed
-    //   ..addListener(() {
-    //     setState(() {
-    //       _position = _scrollController.position;
-    //     });
-    //   });
-    // BlocProvider.of<ChatCubit>(context)
-    //     .createChat(myUid: widget.myID, partnerUid: widget.recipeintID);
-    // BlocProvider.of<ChatCubit>(context)
-    //     .getChatRoom(myUid: widget.myID, partnerUid: widget.recipeintID);
-    // BlocProvider.of<ChatCubit>(context)
-    //     .getChat(myUid: widget.myID, partnerUid: widget.recipeintID);
-
     super.initState();
   }
 
@@ -85,11 +73,25 @@ class _ChatRoomState extends State<ChatRoom> {
       content: Text('User reported!'),
     );
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
-        title: CustomText(
-          text: widget.recipeintName.toUpperCase(),
-          fontSize: 24.0,
-          fontWeight: FontWeight.bold,
+        title: InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => ViewChatPersonProfilePage(
+                  chatUserId: widget.recipeintID,
+                  role: widget.role,
+                ),
+              ),
+            );
+          },
+          child: CustomText(
+            text: widget.recipeintName.toUpperCase(),
+            fontSize: 22.0,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         toolbarHeight: 80.0,
         actions: [
@@ -130,22 +132,6 @@ class _ChatRoomState extends State<ChatRoom> {
       ),
       body: BlocBuilder<ChatCubit, ChatState>(
         builder: (contextC, stateC) {
-          // contextC
-          //     .read<ChatCubit>()
-          //     .createChat(myUid: widget.myID, partnerUid: widget.recipeintID);
-          // contextC
-          //     .read<ChatCubit>()
-          //     .getChatRoom(myUid: widget.myID, partnerUid: widget.recipeintID);
-          // contextC
-          //     .read<ChatCubit>()
-          //     .getChat(myUid: widget.myID, partnerUid: widget.recipeintID);
-          // BlocProvider.of<ChatCubit>(context)
-          //     .createChat(myUid: widget.myID, partnerUid: widget.recipeintID);
-          // BlocProvider.of<ChatCubit>(context)
-          //     .getChatRoom(myUid: widget.myID, partnerUid: widget.recipeintID);
-          // BlocProvider.of<ChatCubit>(context)
-          //     .getChat(myUid: widget.myID, partnerUid: widget.recipeintID);
-
           return StreamBuilder<Object>(
             stream: stateC.chatStream,
             builder: (context, snapshot) {
@@ -153,159 +139,144 @@ class _ChatRoomState extends State<ChatRoom> {
                 // ChatRoomModel chatRoom = snapshot.data;
                 return Padding(
                   padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.75,
-                          child: FutureBuilder(
-                            future: stateC.chat,
-                            builder:
-                                (BuildContext context, AsyncSnapshot snapshot) {
-                              if (snapshot.hasData) {
-                                // Timer(
-                                //   const Duration(milliseconds: 1),
-                                //   () => _scrollController.animateTo(
-                                //       _scrollController
-                                //           .position.maxScrollExtent,
-                                //       duration:
-                                //           const Duration(milliseconds: 500),
-                                //       curve: Curves.ease),
-                                // );
-                                // final myMessages =
-                                //     snapshot.data.docs.toList() ?? [];
-                                List myMessages = snapshot.data.docs.toList()[0]
-                                        [widget.myID] ??
-                                    [];
-                                List recipientMessages = snapshot.data.docs
-                                        .toList()[0][widget.recipeintID] ??
-                                    [];
-                                myMessages.removeWhere(
-                                    (element) => element['message'] == '');
-                                recipientMessages.removeWhere(
-                                    (element) => element['message'] == '');
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.7,
+                        child: FutureBuilder(
+                          future: stateC.chat,
+                          builder:
+                              (BuildContext context, AsyncSnapshot snapshot) {
+                            if (snapshot.hasData) {
+                              List myMessages = snapshot.data.docs.toList()[0]
+                                      [widget.myID] ??
+                                  [];
+                              List recipientMessages = snapshot.data.docs
+                                      .toList()[0][widget.recipeintID] ??
+                                  [];
+                              myMessages.removeWhere(
+                                  (element) => element['message'] == '');
+                              recipientMessages.removeWhere(
+                                  (element) => element['message'] == '');
 
-                                List allMessages = List.from(myMessages)
-                                  ..addAll(recipientMessages);
-                                allMessages.sort((a, b) {
-                                  int aTimestamp = a['timestamp'];
-                                  int bTimestamp = b['timestamp'];
+                              List allMessages = List.from(myMessages)
+                                ..addAll(recipientMessages);
+                              allMessages.sort((a, b) {
+                                int aTimestamp = a['timestamp'];
+                                int bTimestamp = b['timestamp'];
 
-                                  return aTimestamp.compareTo(bTimestamp);
-                                });
-                                Timer(
-                                  const Duration(milliseconds: 1),
-                                  () => _scrollController.animateTo(
-                                      _scrollController
-                                          .position.maxScrollExtent,
-                                      duration:
-                                          const Duration(milliseconds: 500),
-                                      curve: Curves.ease),
-                                );
+                                return aTimestamp.compareTo(bTimestamp);
+                              });
+                              Timer(
+                                const Duration(milliseconds: 1),
+                                () => _scrollController.animateTo(
+                                    _scrollController.position.maxScrollExtent,
+                                    duration: const Duration(milliseconds: 500),
+                                    curve: Curves.ease),
+                              );
 
-                                return ListView.builder(
-                                  itemCount: allMessages.length,
-                                  controller: _scrollController,
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    return Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        allMessages[index]['sentBy'] ==
-                                                widget.recipeintID
-                                            ? Row(
-                                                children: [
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  9.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  9.0),
-                                                          bottomRight:
-                                                              Radius.circular(
-                                                                  9.0),
-                                                        ),
-                                                        color:
-                                                            widget.role == "CG"
-                                                                ? mainOrange
-                                                                : mainBlue),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Text(
-                                                        allMessages[index]
-                                                                ['message']
-                                                            .toString(),
-                                                        style: const TextStyle(
-                                                            fontSize: 20.0,
-                                                            color: white),
+                              return ListView.builder(
+                                itemCount: allMessages.length,
+                                controller: _scrollController,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      allMessages[index]['sentBy'] ==
+                                              widget.recipeintID
+                                          ? Row(
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .only(
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                9.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                9.0),
+                                                        bottomRight:
+                                                            Radius.circular(
+                                                                9.0),
                                                       ),
+                                                      color: widget.role == "CG"
+                                                          ? mainBlue
+                                                          : mainOrange),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Text(
+                                                      allMessages[index]
+                                                              ['message']
+                                                          .toString(),
+                                                      style: const TextStyle(
+                                                          fontSize: 20.0,
+                                                          color: white),
                                                     ),
                                                   ),
-                                                ],
-                                              )
-                                            : Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                .only(
-                                                          topLeft:
-                                                              Radius.circular(
-                                                                  9.0),
-                                                          topRight:
-                                                              Radius.circular(
-                                                                  9.0),
-                                                          bottomLeft:
-                                                              Radius.circular(
-                                                                  9.0),
-                                                        ),
-                                                        color:
-                                                            widget.role == "CG"
-                                                                ? mainBlue
-                                                                : mainOrange),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Text(
-                                                        allMessages[index]
-                                                                ['message']
-                                                            .toString(),
-                                                        style: TextStyle(
-                                                            fontSize: 20.0,
-                                                            color: Colors
-                                                                .grey[200]),
+                                                ),
+                                              ],
+                                            )
+                                          : Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              children: [
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .only(
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                9.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                9.0),
+                                                        bottomLeft:
+                                                            Radius.circular(
+                                                                9.0),
                                                       ),
+                                                      color: widget.role == "CG"
+                                                          ? mainOrange
+                                                          : mainBlue),
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            8.0),
+                                                    child: Text(
+                                                      allMessages[index]
+                                                              ['message']
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                          fontSize: 20.0,
+                                                          color:
+                                                              Colors.grey[200]),
                                                     ),
                                                   ),
-                                                ],
-                                              ),
-                                        const SizedBox(height: 10.0),
-                                      ],
-                                    );
-                                  },
-                                );
-                              } else {
-                                return const Center(
-                                  child: CircularProgressIndicator(),
-                                );
-                              }
-                            },
-                          ),
+                                                ),
+                                              ],
+                                            ),
+                                      const SizedBox(height: 10.0),
+                                    ],
+                                  );
+                                },
+                              );
+                            } else {
+                              return const Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                          },
                         ),
-                        Container(
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 30.0),
+                        child: Container(
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * 0.09,
                           decoration: BoxDecoration(
@@ -333,8 +304,8 @@ class _ChatRoomState extends State<ChatRoom> {
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: widget.role == "CG"
-                                                ? mainBlue
-                                                : mainOrange,
+                                                ? mainOrange
+                                                : mainBlue,
                                             width: 2.0,
                                             style: BorderStyle.solid),
                                         borderRadius:
@@ -343,8 +314,8 @@ class _ChatRoomState extends State<ChatRoom> {
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
                                             color: widget.role == "CG"
-                                                ? mainBlue
-                                                : mainOrange,
+                                                ? mainOrange
+                                                : mainBlue,
                                             width: 2.0,
                                             style: BorderStyle.solid),
                                         borderRadius:
@@ -375,8 +346,8 @@ class _ChatRoomState extends State<ChatRoom> {
                                         : Icon(
                                             Icons.send,
                                             color: widget.role == "CG"
-                                                ? mainBlue
-                                                : mainOrange,
+                                                ? mainOrange
+                                                : mainBlue,
                                             size: 30.0,
                                           ),
                                     onPressed: message != ''
@@ -422,8 +393,8 @@ class _ChatRoomState extends State<ChatRoom> {
                             ),
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 );
               } else {

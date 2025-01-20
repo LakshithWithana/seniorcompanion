@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:seniorcompanion/core/models/sc_user/sc_user_model.dart';
+import 'package:newseniiorcompaniion/core/models/sc_user/sc_user_model.dart';
 
 import '../../../../core/custom_types/date_stamp.dart';
 import '../../../../core/models/custom_claims/claims_model.dart';

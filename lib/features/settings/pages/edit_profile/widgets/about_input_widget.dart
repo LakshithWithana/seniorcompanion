@@ -8,7 +8,13 @@ import '../../../../../core/shared/widgets/custom_text_form_field.dart';
 import '../../../cubit/settings_cubit.dart';
 
 class AboutInputWidget extends StatelessWidget {
-  const AboutInputWidget({super.key, required this.about});
+  const AboutInputWidget(
+      {super.key,
+      required this.about,
+      required this.firstName,
+      required this.lastName});
+  final String firstName;
+  final String lastName;
   final String about;
 
   @override
@@ -28,8 +34,9 @@ class AboutInputWidget extends StatelessWidget {
               hintText: "about".tr(),
               borderColor: mainColor,
               key: const Key("profile_form_about_input_field"),
-              onChanged: (about) =>
-                  contextP.read<SettingsCubit>().aboutChanged(about),
+              onChanged: (value) => contextP
+                  .read<SettingsCubit>()
+                  .aboutChanged(value, about, firstName, lastName),
               keyboardType: TextInputType.text,
               errorText: stateP.about.isNotValid && stateP.about.value != ""
                   ? "Please type a sentence described yourself"

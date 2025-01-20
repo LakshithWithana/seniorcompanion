@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:seniorcompanion/core/user_details/cubit/cubit/user_details_cubit.dart';
+import 'package:newseniiorcompaniion/core/user_details/cubit/cubit/user_details_cubit.dart';
 
 import '../../../../app/data/repository/auth_repository.dart';
 import '../../../../core/service_locator/service_locator.dart';

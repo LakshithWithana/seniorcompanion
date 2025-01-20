@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>285205140731-09g7cs7ttroqtl8vd3jmgt3jhsamrmr4.apps.googleusercontent.com</string>
+	<string>285205140731-n2lclibfr3d2tks4vdhhl1jnfednv2ju.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.285205140731-09g7cs7ttroqtl8vd3jmgt3jhsamrmr4</string>
+	<string>com.googleusercontent.apps.285205140731-n2lclibfr3d2tks4vdhhl1jnfednv2ju</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>285205140731-487cvhr2a14ncf9p2r4mucmdg8hkun51.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyCj37qZ-QEOCRUFi_mpgMI9SHME6n3hAus</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.doughnutlabs.seniorcompanion</string>
+	<string>com.doughnutlabs.newseniiorcompaniion</string>
 	<key>PROJECT_ID</key>
 	<string>senior-companion-app</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:285205140731:ios:48d7d021d4e5885ce84c5e</string>
+	<string>1:285205140731:ios:b390b6cecfd4942fe84c5e</string>
 </dict>
 </plist>

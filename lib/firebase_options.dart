@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCVm3LmMrSzVlQu_FgQSVkmzJIQj_S11Pc',
-    appId: '1:285205140731:android:7777cff57e6dded4e84c5e',
+    appId: '1:285205140731:android:5b30703503697f5fe84c5e',
     messagingSenderId: '285205140731',
     projectId: 'senior-companion-app',
     storageBucket: 'senior-companion-app.appspot.com',
@@ -59,11 +59,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyCj37qZ-QEOCRUFi_mpgMI9SHME6n3hAus',
-    appId: '1:285205140731:ios:48d7d021d4e5885ce84c5e',
+    appId: '1:285205140731:ios:b390b6cecfd4942fe84c5e',
     messagingSenderId: '285205140731',
     projectId: 'senior-companion-app',
     storageBucket: 'senior-companion-app.appspot.com',
-    iosClientId: '285205140731-09g7cs7ttroqtl8vd3jmgt3jhsamrmr4.apps.googleusercontent.com',
-    iosBundleId: 'com.doughnutlabs.seniorcompanion',
+    androidClientId: '285205140731-487cvhr2a14ncf9p2r4mucmdg8hkun51.apps.googleusercontent.com',
+    iosClientId: '285205140731-n2lclibfr3d2tks4vdhhl1jnfednv2ju.apps.googleusercontent.com',
+    iosBundleId: 'com.doughnutlabs.newseniiorcompaniion',
   );
+
 }

@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:seniorcompanion/features/chat/data/data_provider/chat_data_provider.dart';
-import 'package:seniorcompanion/features/chat/data/failures/chat_failures.dart';
-import 'package:seniorcompanion/features/chat/data/repositories/chat_repository.dart';
+import 'package:newseniiorcompaniion/features/chat/data/data_provider/chat_data_provider.dart';
+import 'package:newseniiorcompaniion/features/chat/data/failures/chat_failures.dart';
+import 'package:newseniiorcompaniion/features/chat/data/repositories/chat_repository.dart';
 
 import '../../../../core/models/chat_room_model/chat_room_model.dart';
 

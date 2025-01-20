@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:seniorcompanion/core/errors/exceptions/exceptions.dart';
-import 'package:seniorcompanion/core/loacation/data/failures/location_data_failures.dart';
+import 'package:newseniiorcompaniion/core/errors/exceptions/exceptions.dart';
+import 'package:newseniiorcompaniion/core/loacation/data/failures/location_data_failures.dart';
 
 import '../../../models/address_model/address_model.dart';
 import '../data_provider/location_data_provider.dart';

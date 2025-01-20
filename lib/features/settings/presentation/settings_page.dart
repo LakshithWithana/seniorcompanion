@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:seniorcompanion/features/settings/presentation/settings_view.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newseniiorcompaniion/app/data/repository/auth_repository.dart';
+import 'package:newseniiorcompaniion/core/service_locator/service_locator.dart';
+import 'package:newseniiorcompaniion/features/settings/cubit/settings_cubit.dart';
+import 'package:newseniiorcompaniion/features/settings/data/repositories/settings_repository.dart';
+import 'package:newseniiorcompaniion/features/settings/presentation/settings_view.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -8,6 +13,11 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SettingsView();
+    return BlocProvider(
+      create: (context) => SettingsCubit(
+          authRepository: locator<AuthRepository>(),
+          settingsRepository: locator<SettingsRepository>()),
+      child: SettingsView(),
+    );
   }
 }

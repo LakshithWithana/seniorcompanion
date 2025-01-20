@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:seniorcompanion/app/data/repository/auth_repository.dart';
-import 'package:seniorcompanion/core/models/sc_user/sc_user_model.dart';
-import 'package:seniorcompanion/core/models/user_details_model/user_details_model.dart';
-import 'package:seniorcompanion/core/user_details/data/repository/user_details_repository.dart';
+import 'package:newseniiorcompaniion/app/data/repository/auth_repository.dart';
+import 'package:newseniiorcompaniion/core/models/sc_user/sc_user_model.dart';
+import 'package:newseniiorcompaniion/core/models/user_details_model/user_details_model.dart';
+import 'package:newseniiorcompaniion/core/user_details/data/repository/user_details_repository.dart';
 
 part 'user_details_state.dart';
 part 'user_details_cubit.freezed.dart';

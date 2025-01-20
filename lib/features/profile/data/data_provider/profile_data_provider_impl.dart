@@ -2,14 +2,15 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:seniorcompanion/app/data/repository/custom_claims/custom_claims_repository.dart';
-import 'package:seniorcompanion/core/constants/firebase_constants.dart';
-import 'package:seniorcompanion/core/form_models/general_field.dart';
-import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider.dart';
+import 'package:newseniiorcompaniion/app/data/repository/custom_claims/custom_claims_repository.dart';
+import 'package:newseniiorcompaniion/core/constants/firebase_constants.dart';
+import 'package:newseniiorcompaniion/core/form_models/general_field.dart';
+import 'package:newseniiorcompaniion/core/models/user_details_model/user_details_model.dart';
+import 'package:newseniiorcompaniion/features/profile/data/data_provider/profile_data_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:seniorcompanion/features/profile/data/failures/profile_data_update_failure.dart';
+import 'package:newseniiorcompaniion/features/profile/data/failures/profile_data_update_failure.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:seniorcompanion/features/profile/data/failures/profile_picture_upload_failure.dart';
+import 'package:newseniiorcompaniion/features/profile/data/failures/profile_picture_upload_failure.dart';
 
 class ProfileDataProviderImpl implements ProfileDataProvider {
   final firebase_auth.FirebaseAuth _firebaseAuth;
@@ -69,6 +70,27 @@ class ProfileDataProviderImpl implements ProfileDataProvider {
       throw const ProfileDataUpdateFailure();
     }
     return rResult;
+  }
+
+  @override
+  Future<UserDetails> getUserDetails() async {
+    final user = _firebaseAuth.currentUser;
+    final UserDetails userDetails;
+    if (user != null) {
+      final userDetailsDocument = await _firebaseFirestore
+          .collection(FirebaseConstants.usersCollectionName)
+          .doc(user.uid)
+          .get()
+          .then((value) {
+        return UserDetails.fromJson(value.data()!);
+      }).onError((error, stackTrace) {
+        throw const ProfileDataUpdateFailure();
+      });
+      userDetails = userDetailsDocument;
+    } else {
+      throw const ProfileDataUpdateFailure();
+    }
+    return userDetails;
   }
 
   @override

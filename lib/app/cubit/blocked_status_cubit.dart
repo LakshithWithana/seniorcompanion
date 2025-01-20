@@ -1,8 +1,7 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:seniorcompanion/app/data/repository/blocked_account/blocked_account_repository.dart';
-import 'package:seniorcompanion/core/models/user_details_model/user_details_model.dart';
+import 'package:newseniiorcompaniion/app/data/repository/blocked_account/blocked_account_repository.dart';
+import 'package:newseniiorcompaniion/core/models/user_details_model/user_details_model.dart';
 
 part 'blocked_status_state.dart';
 

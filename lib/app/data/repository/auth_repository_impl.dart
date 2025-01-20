@@ -1,8 +1,14 @@
 import 'package:dartz/dartz.dart';
-import 'package:seniorcompanion/app/data/repository/auth_repository.dart';
-import 'package:seniorcompanion/core/form_models/email.dart';
-import 'package:seniorcompanion/core/form_models/password.dart';
-import 'package:seniorcompanion/core/models/sc_user/sc_user_model.dart';
+import 'package:newseniiorcompaniion/app/data/failures/login_with_apple_failure.dart';
+import 'package:newseniiorcompaniion/app/data/failures/login_with_fb_failure.dart';
+import 'package:newseniiorcompaniion/app/data/failures/login_with_google_failure.dart';
+import 'package:newseniiorcompaniion/app/data/failures/signup_with_apple_failures.dart';
+import 'package:newseniiorcompaniion/app/data/failures/signup_with_fb_failures.dart';
+import 'package:newseniiorcompaniion/app/data/failures/signup_with_google_failure.dart';
+import 'package:newseniiorcompaniion/app/data/repository/auth_repository.dart';
+import 'package:newseniiorcompaniion/core/form_models/email.dart';
+import 'package:newseniiorcompaniion/core/form_models/password.dart';
+import 'package:newseniiorcompaniion/core/models/sc_user/sc_user_model.dart';
 
 import '../../../core/errors/exceptions/exceptions.dart';
 import '../../../core/errors/failures/failures.dart';
@@ -43,6 +49,42 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
+  Future<Either<String, Unit>> loginWithGoogle() async {
+    try {
+      await _authDataProvider.logInWithGoogle();
+      return right(unit);
+    } on LogInWithGoogleFailure catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> loginWithFacebook() async {
+    try {
+      await _authDataProvider.logInWithFacebook();
+      return right(unit);
+    } on LogInWithFacebookFailure catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> loginWithApple() async {
+    try {
+      await _authDataProvider.logInWithApple();
+      return right(unit);
+    } on LogInWithAppleFailure catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
   Future<Either<String, Unit>> registerWithEmailAndPassword(
       {required Email email,
       required Password password,
@@ -56,6 +98,47 @@ class AuthRepositoryImpl extends AuthRepository {
 
       return right(unit);
     } on SignUpWithEmailAndPasswordFailure catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> registerWithGoogle(
+      {required String role}) async {
+    try {
+      await _authDataProvider.registerWithGoogle(role: role);
+
+      return right(unit);
+    } on SignUpWithGoogleFailure catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> registerWithApple({required String role}) async {
+    try {
+      await _authDataProvider.registerWithApple(role: role);
+
+      return right(unit);
+    } on SignUpWithAppleFailure catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> registerWithFacebook(
+      {required String role}) async {
+    try {
+      await _authDataProvider.registerWithFacebook(role: role);
+
+      return right(unit);
+    } on SignUpWithFacebookFailure catch (e) {
       return left(e.message);
     } catch (e) {
       return left(e.toString());

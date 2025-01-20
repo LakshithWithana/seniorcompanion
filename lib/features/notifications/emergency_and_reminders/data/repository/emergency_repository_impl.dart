@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:seniorcompanion/core/form_models/general_field.dart';
-import 'package:seniorcompanion/features/notifications/emergency_and_reminders/data/data_provider/emergency_data_provider.dart';
-import 'package:seniorcompanion/features/notifications/emergency_and_reminders/data/failures/emergency_no_update_failure.dart';
-import 'package:seniorcompanion/features/notifications/emergency_and_reminders/data/repository/emergency_repositoy.dart';
+import 'package:newseniiorcompaniion/core/form_models/general_field.dart';
+import 'package:newseniiorcompaniion/features/notifications/emergency_and_reminders/data/data_provider/emergency_data_provider.dart';
+import 'package:newseniiorcompaniion/features/notifications/emergency_and_reminders/data/failures/emergency_no_update_failure.dart';
+import 'package:newseniiorcompaniion/features/notifications/emergency_and_reminders/data/repository/emergency_repositoy.dart';
 
 class EmergencyRepositoryImpl implements EmergencyRepository {
   final EmergencyDataProvider _emergencyDataProvider;

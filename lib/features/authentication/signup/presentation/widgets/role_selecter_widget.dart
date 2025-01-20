@@ -29,59 +29,69 @@ class _RoleSelecterWidgetState extends State<RoleSelecterWidget> {
               fontSize: 14.0,
               fontWeight: FontWeight.bold,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                  onPressed: () =>
-                      context.read<SignupCubit>().roleChanged("CG"),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: state.role == "CG" ? mainBlue : white,
-                    padding: const EdgeInsets.all(0),
-                    shape: const RoundedRectangleBorder(
-                      side: BorderSide(color: mainBlue, width: 2.0),
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                maxHeight: 50.0,
+                maxWidth: 353.0,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ElevatedButton(
+                    onPressed: () =>
+                        context.read<SignupCubit>().roleChanged("CG"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: state.role == "CG" ? mainBlue : white,
+                      padding: const EdgeInsets.all(0),
+                      shape: const RoundedRectangleBorder(
+                        side: BorderSide(color: mainBlue, width: 2.0),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
                     ),
-                  ),
-                  child: SizedBox(
-                    height: 50.0,
-                    width: 170.0.w,
-                    child: Center(
-                      child: CustomText(
-                        text: "caregiver".tr().toUpperCase(),
-                        fontSize: 16.0,
-                        color: state.role == "CG" ? white : mainBlue,
-                        fontWeight: FontWeight.bold,
+                    child: SizedBox(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width < 393
+                          ? 160.0
+                          : 170.0,
+                      child: Center(
+                        child: CustomText(
+                          text: "caregiver".tr().toUpperCase(),
+                          fontSize: 16.0,
+                          color: state.role == "CG" ? white : mainBlue,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                ),
-                ElevatedButton(
-                  onPressed: () =>
-                      context.read<SignupCubit>().roleChanged("CR"),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.all(0),
-                    backgroundColor: state.role == "CR" ? mainOrange : white,
-                    shape: const RoundedRectangleBorder(
-                      side: BorderSide(color: mainOrange, width: 2.0),
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  ElevatedButton(
+                    onPressed: () =>
+                        context.read<SignupCubit>().roleChanged("CR"),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.all(0),
+                      backgroundColor: state.role == "CR" ? mainOrange : white,
+                      shape: const RoundedRectangleBorder(
+                        side: BorderSide(color: mainOrange, width: 2.0),
+                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                      ),
                     ),
-                  ),
-                  child: SizedBox(
-                    height: 50.0,
-                    width: 170.0.w,
-                    child: Center(
-                      child: CustomText(
-                        textAlignment: TextAlign.left,
-                        text: "careRecipient".tr().toUpperCase(),
-                        fontSize: 16.0.sp,
-                        color: state.role == "CR" ? white : mainOrange,
-                        fontWeight: FontWeight.bold,
+                    child: SizedBox(
+                      height: 50.0,
+                      width: MediaQuery.of(context).size.width < 393
+                          ? 160.0
+                          : 170.0,
+                      child: Center(
+                        child: CustomText(
+                          textAlignment: TextAlign.left,
+                          text: "careRecipient".tr().toUpperCase(),
+                          fontSize: 16.0,
+                          color: state.role == "CR" ? white : mainOrange,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         );

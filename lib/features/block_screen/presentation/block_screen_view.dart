@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seniorcompanion/core/shared/widgets/custom_text.dart';
+import 'package:newseniiorcompaniion/core/shared/widgets/custom_text.dart';
 
 class BlockScreenView extends StatelessWidget {
   BlockScreenView({

@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:seniorcompanion/core/models/chat_model/chat_model.dart';
+import 'package:newseniiorcompaniion/core/models/chat_model/chat_model.dart';
 
 part 'full_chat_model.freezed.dart';
 part 'full_chat_model.g.dart';

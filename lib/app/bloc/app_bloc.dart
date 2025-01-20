@@ -45,6 +45,10 @@ class AppBloc extends Bloc<AppEvent, AppState> {
               user: user,
             )));
 
+    // _userSubscription = _authRepository.scUser
+    //     .distinct((prev, next) => prev.uid == next.uid)
+    //     .listen((user) => add(AppEvent.authStatusChanged(user: user)));
+
     // _userDetailsSubscription =
     //     _authRepository.currentUserDetails.listen((user) {});
 

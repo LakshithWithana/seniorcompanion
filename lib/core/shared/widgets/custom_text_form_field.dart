@@ -52,8 +52,13 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
-          // height: widget.height ?? 30.0,
+        ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxHeight: 95.0,
+            maxWidth: 353.0,
+          ),
+          // width: 353,
+          // height: 100,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -66,7 +71,7 @@ class CustomTextFormField extends StatelessWidget {
                 enabled: enabled,
                 style: TextStyle(
                   color: black,
-                  fontSize: fontSize ?? 16.0.w,
+                  fontSize: fontSize ?? 16.0,
                 ),
                 decoration: InputDecoration(
                   errorText: errorText,
@@ -118,7 +123,7 @@ class CustomTextFormField extends StatelessWidget {
                 readOnly: readOnly == null ? false : readOnly!,
                 keyboardType: keyboardType,
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 0.0),
             ],
           ),
         ),

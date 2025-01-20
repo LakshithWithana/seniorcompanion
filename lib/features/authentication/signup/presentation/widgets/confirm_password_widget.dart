@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seniorcompanion/features/authentication/signup/cubit/signup_cubit.dart';
+import 'package:newseniiorcompaniion/features/authentication/signup/cubit/signup_cubit.dart';
 
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/shared/widgets/custom_text_form_field.dart';

@@ -47,9 +47,13 @@ class CustomElevatedButton extends StatelessWidget {
               : const BorderRadius.all(Radius.circular(10.0)),
         ),
       ),
-      child: SizedBox(
-        width: isHalf == null || isHalf == false ? screensize.width : 170.0.w,
-        height: height,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(
+          maxHeight: 50.0,
+          maxWidth: 300.0,
+        ),
+        // width: isHalf == null || isHalf == false ? screensize.width : 170.0.w,
+        // height: height,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
           child: Center(
@@ -62,7 +66,7 @@ class CustomElevatedButton extends StatelessWidget {
                           Text(
                             label!.toUpperCase(),
                             style: TextStyle(
-                              fontSize: 16.0.sp,
+                              fontSize: 16.0,
                               fontWeight: FontWeight.bold,
                               color: isNegative != null || isNegative == true
                                   ? labelColor
@@ -74,7 +78,7 @@ class CustomElevatedButton extends StatelessWidget {
                     : Text(
                         label!.toUpperCase(),
                         style: TextStyle(
-                          fontSize: 20.0.sp,
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                           color: isNegative != null || isNegative == true
                               ? labelColor

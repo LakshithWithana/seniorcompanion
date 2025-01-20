@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seniorcompanion/features/search/cubit/search_cubit.dart';
+import 'package:newseniiorcompaniion/features/search/cubit/search_cubit.dart';
 
 class SearchList extends StatelessWidget {
   const SearchList({super.key});

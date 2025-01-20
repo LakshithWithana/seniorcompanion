@@ -19,14 +19,24 @@ class LoginButtonWidget extends StatelessWidget {
       builder: (context, state) {
         return (state.status == FormzSubmissionStatus.inProgress ||
                 state.status == FormzSubmissionStatus.success)
-            ? const Center(child: CircularProgressIndicator())
-            : CustomElevatedButton(
-                key: const Key("login_form_login_button"),
-                backgroundColor: mainColor,
-                label: "login".tr(),
-                onPressed: state.validated
-                    ? () => context.read<LoginCubit>().loginWithCredentials()
-                    : null,
+            ? ConstrainedBox(
+                constraints: const BoxConstraints(
+                  maxHeight: 50.0,
+                  maxWidth: 350.0,
+                ),
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              )
+            : Center(
+                child: CustomElevatedButton(
+                  key: const Key("login_form_login_button"),
+                  backgroundColor: mainColor,
+                  label: "login".tr(),
+                  onPressed: state.validated
+                      ? () => context.read<LoginCubit>().loginWithCredentials()
+                      : null,
+                ),
               );
       },
     );

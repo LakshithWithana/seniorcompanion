@@ -4,10 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seniorcompanion/app/bloc/app_bloc.dart';
-import 'package:seniorcompanion/core/constants/colors.dart';
-import 'package:seniorcompanion/features/chat/cubit/chat_cubit.dart';
-import 'package:seniorcompanion/features/search/cubit/search_cubit.dart';
+import 'package:newseniiorcompaniion/app/bloc/app_bloc.dart';
+import 'package:newseniiorcompaniion/core/constants/colors.dart';
+import 'package:newseniiorcompaniion/features/chat/cubit/chat_cubit.dart';
+import 'package:newseniiorcompaniion/features/search/cubit/search_cubit.dart';
 
 import '../../../../core/shared/widgets/custom_text.dart';
 
@@ -104,7 +104,7 @@ class _SinglePersonChatViewState extends State<SinglePersonChatView> {
                               children: [
                                 SizedBox(
                                   height:
-                                      MediaQuery.of(context).size.height * 0.77,
+                                      MediaQuery.of(context).size.height * 0.75,
                                   child: FutureBuilder(
                                     future: stateC.chat,
                                     builder: (BuildContext context,

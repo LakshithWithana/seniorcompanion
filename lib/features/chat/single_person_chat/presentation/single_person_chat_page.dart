@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seniorcompanion/features/chat/single_person_chat/presentation/single_person_chat_view.dart';
+import 'package:newseniiorcompaniion/features/chat/single_person_chat/presentation/single_person_chat_view.dart';
 
 import '../../../../core/service_locator/service_locator.dart';
 import '../../cubit/chat_cubit.dart';

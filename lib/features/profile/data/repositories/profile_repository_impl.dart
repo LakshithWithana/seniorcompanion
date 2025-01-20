@@ -1,11 +1,12 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:seniorcompanion/core/form_models/general_field.dart';
-import 'package:seniorcompanion/features/profile/data/data_provider/profile_data_provider.dart';
-import 'package:seniorcompanion/features/profile/data/failures/profile_data_update_failure.dart';
-import 'package:seniorcompanion/features/profile/data/failures/profile_picture_upload_failure.dart';
-import 'package:seniorcompanion/features/profile/data/repositories/profile_repository.dart';
+import 'package:newseniiorcompaniion/core/form_models/general_field.dart';
+import 'package:newseniiorcompaniion/core/models/user_details_model/user_details_model.dart';
+import 'package:newseniiorcompaniion/features/profile/data/data_provider/profile_data_provider.dart';
+import 'package:newseniiorcompaniion/features/profile/data/failures/profile_data_update_failure.dart';
+import 'package:newseniiorcompaniion/features/profile/data/failures/profile_picture_upload_failure.dart';
+import 'package:newseniiorcompaniion/features/profile/data/repositories/profile_repository.dart';
 
 class ProfileRepositoryImpl extends ProfileRepository {
   final ProfileDataProvider _profileDataProvider;
@@ -49,6 +50,16 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return right(unit);
     } on ProfilePictureUploadFailure catch (e) {
       return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, UserDetails>> getUserDetails() async {
+    try {
+      final userDetails = await _profileDataProvider.getUserDetails();
+      return right(userDetails);
     } catch (e) {
       return left(e.toString());
     }

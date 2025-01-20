@@ -1,6 +1,6 @@
-# seniorcompanion
+# newseniiorcompaniion
 
-Senior Companion Flutter project.
+Seniior Companiion Flutter app.
 
 ## Getting Started
 

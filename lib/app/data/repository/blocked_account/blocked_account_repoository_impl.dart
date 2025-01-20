@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:seniorcompanion/app/data/data_provider/blocked_account/block_account_data_provider.dart';
-import 'package:seniorcompanion/app/data/failures/blocked_account_failure/blocked_account_failure.dart';
-import 'package:seniorcompanion/app/data/repository/blocked_account/blocked_account_repository.dart';
-import 'package:seniorcompanion/core/models/user_details_model/user_details_model.dart';
+import 'package:newseniiorcompaniion/app/data/data_provider/blocked_account/block_account_data_provider.dart';
+import 'package:newseniiorcompaniion/app/data/failures/blocked_account_failure/blocked_account_failure.dart';
+import 'package:newseniiorcompaniion/app/data/repository/blocked_account/blocked_account_repository.dart';
+import 'package:newseniiorcompaniion/core/models/user_details_model/user_details_model.dart';
 
 class BlockedAccountRepositoryImpl implements BlockedAccountRepository {
   final BlockAccountDataProvider blockAccountDataProvider;

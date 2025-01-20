@@ -1,9 +1,10 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:seniorcompanion/features/settings/data/data_providers/settings_data_provider.dart';
-import 'package:seniorcompanion/features/settings/data/failures/settings_update_failure.dart';
-import 'package:seniorcompanion/features/settings/data/repositories/settings_repository.dart';
+import 'package:newseniiorcompaniion/features/settings/data/data_providers/settings_data_provider.dart';
+import 'package:newseniiorcompaniion/features/settings/data/failures/profile_deletion_failure.dart';
+import 'package:newseniiorcompaniion/features/settings/data/failures/settings_update_failure.dart';
+import 'package:newseniiorcompaniion/features/settings/data/repositories/settings_repository.dart';
 
 import '../../../../core/form_models/general_field.dart';
 import '../../../profile/data/failures/profile_data_update_failure.dart';
@@ -35,12 +36,18 @@ class SettingsRepositoryImpl extends SettingsRepository {
     required GeneralField firstName,
     required GeneralField lastName,
     required GeneralField about,
+    required String firstNameLastValue,
+    required String lastNameLastValue,
+    required String aboutLastValue,
   }) async {
     try {
       await _settingsDataProvider.updateUserProfileData(
         firstName: firstName,
         lastName: lastName,
         about: about,
+        firstNameLastValue: firstNameLastValue,
+        lastNameLastValue: lastNameLastValue,
+        aboutLastValue: aboutLastValue,
       );
 
       return right(unit);
@@ -60,6 +67,18 @@ class SettingsRepositoryImpl extends SettingsRepository {
 
       return right(unit);
     } on ProfilePictureUploadFailure catch (e) {
+      return left(e.message);
+    } catch (e) {
+      return left(e.toString());
+    }
+  }
+
+  @override
+  Future<Either<String, Unit>> deleteAccount() async {
+    try {
+      await _settingsDataProvider.deleteAccount();
+      return right(unit);
+    } on ProfileDeletionFailure catch (e) {
       return left(e.message);
     } catch (e) {
       return left(e.toString());

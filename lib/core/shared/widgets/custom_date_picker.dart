@@ -54,7 +54,11 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        ConstrainedBox(
+          constraints: const BoxConstraints(
+            maxHeight: 95.0,
+            maxWidth: 353.0,
+          ),
           // height: widget.height ?? 30.0,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:seniorcompanion/features/notifications/emergency_and_reminders/data/repository/emergency_repositoy.dart';
+import 'package:newseniiorcompaniion/features/notifications/emergency_and_reminders/data/repository/emergency_repositoy.dart';
 
 import '../../../../core/form_models/general_field.dart';
 

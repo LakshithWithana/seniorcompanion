@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:seniorcompanion/core/cache/cache.dart';
-import 'package:seniorcompanion/core/models/sc_user/sc_user_model.dart';
+import 'package:newseniiorcompaniion/core/cache/cache.dart';
+import 'package:newseniiorcompaniion/core/models/sc_user/sc_user_model.dart';
 
 import '../../../../core/custom_types/date_stamp.dart';
 import '../../../../core/errors/exceptions/exceptions.dart';

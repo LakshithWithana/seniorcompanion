@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:seniorcompanion/core/constants/firebase_constants.dart';
-import 'package:seniorcompanion/core/models/user_details_model/user_details_model.dart';
+import 'package:newseniiorcompaniion/core/constants/firebase_constants.dart';
+import 'package:newseniiorcompaniion/core/models/user_details_model/user_details_model.dart';
 
 import 'block_account_data_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:seniorcompanion/app/data/repository/auth_repository.dart';
+import 'package:newseniiorcompaniion/app/data/repository/auth_repository.dart';
 
 import '../../../../../core/form_models/email.dart';
 import '../../../../../core/form_models/password.dart';
@@ -44,6 +44,90 @@ class LoginCubit extends Cubit<LoginState> {
         email: state.email,
         password: state.password,
       );
+
+      result.fold((l) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(
+                status: FormzSubmissionStatus.failure, errorMessage: l),
+          );
+        }
+      }, (r) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(status: FormzSubmissionStatus.success),
+          );
+        }
+      });
+    } catch (e) {
+      if (!isClosed) {
+        emit(
+          state.copyWith(status: FormzSubmissionStatus.failure),
+        );
+      }
+    }
+  }
+
+  Future<void> loginWithGoogle() async {
+    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+    try {
+      var result = await _authRepository.loginWithGoogle();
+
+      result.fold((l) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(
+                status: FormzSubmissionStatus.failure, errorMessage: l),
+          );
+        }
+      }, (r) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(status: FormzSubmissionStatus.success),
+          );
+        }
+      });
+    } catch (e) {
+      if (!isClosed) {
+        emit(
+          state.copyWith(status: FormzSubmissionStatus.failure),
+        );
+      }
+    }
+  }
+
+  Future<void> loginWithApple() async {
+    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+    try {
+      var result = await _authRepository.loginWithApple();
+
+      result.fold((l) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(
+                status: FormzSubmissionStatus.failure, errorMessage: l),
+          );
+        }
+      }, (r) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(status: FormzSubmissionStatus.success),
+          );
+        }
+      });
+    } catch (e) {
+      if (!isClosed) {
+        emit(
+          state.copyWith(status: FormzSubmissionStatus.failure),
+        );
+      }
+    }
+  }
+
+  Future<void> loginWithFacebook() async {
+    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+    try {
+      var result = await _authRepository.loginWithFacebook();
 
       result.fold((l) {
         if (!isClosed) {

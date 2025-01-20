@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:seniorcompanion/core/form_models/general_field.dart';
+import 'package:newseniiorcompaniion/core/form_models/general_field.dart';
+import 'package:newseniiorcompaniion/core/models/user_details_model/user_details_model.dart';
 
 abstract class ProfileDataProvider {
   Future<Unit> updateUserProfileData({
@@ -14,4 +15,6 @@ abstract class ProfileDataProvider {
   });
 
   Future<Unit> uploadProfileImage({required File file});
+
+  Future<UserDetails> getUserDetails();
 }

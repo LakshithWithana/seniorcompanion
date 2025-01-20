@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:seniorcompanion/features/chat/presentation/chat_page.dart';
-import 'package:seniorcompanion/features/notifications/presentation/pages/notification_page.dart';
-import 'package:seniorcompanion/features/search/presentation/pages/search_page.dart';
-import 'package:seniorcompanion/features/settings/presentation/settings_page.dart';
+import 'package:newseniiorcompaniion/features/chat/presentation/chat_page.dart';
+import 'package:newseniiorcompaniion/features/notifications/presentation/pages/notification_page.dart';
+import 'package:newseniiorcompaniion/features/search/presentation/pages/search_page.dart';
+import 'package:newseniiorcompaniion/features/settings/presentation/settings_page.dart';
 
 List<BottomNavigationBarItem> bottomNavItems = <BottomNavigationBarItem>[
   BottomNavigationBarItem(
@@ -15,7 +15,7 @@ List<BottomNavigationBarItem> bottomNavItems = <BottomNavigationBarItem>[
   ),
   BottomNavigationBarItem(
     icon: Image.asset(
-      "assets/images/icons/chat_inac.png",
+      "assets/images/icons/Icons_chat.png",
       scale: 1.5,
     ),
     label: 'chat'.tr(),

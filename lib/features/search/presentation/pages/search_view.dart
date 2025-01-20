@@ -1,17 +1,17 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:formz/formz.dart';
-import 'package:seniorcompanion/app/data/repository/auth_repository.dart';
-import 'package:seniorcompanion/core/service_locator/service_locator.dart';
-import 'package:seniorcompanion/core/shared/widgets/custom_text.dart';
-import 'package:seniorcompanion/core/shared/widgets/divider_widget.dart';
-import 'package:seniorcompanion/features/search/cubit/search_cubit.dart';
-import 'package:seniorcompanion/features/search/presentation/pages/search_result_view.dart';
-import 'package:seniorcompanion/features/search/presentation/widgets/age_selection_widget.dart';
-import 'package:seniorcompanion/features/search/presentation/widgets/distance_selection_widget.dart';
-import 'package:seniorcompanion/features/search/presentation/widgets/search_button_widget.dart';
+import 'package:newseniiorcompaniion/app/data/repository/auth_repository.dart';
+import 'package:newseniiorcompaniion/core/constants/colors.dart';
+import 'package:newseniiorcompaniion/core/service_locator/service_locator.dart';
+import 'package:newseniiorcompaniion/core/shared/widgets/custom_text.dart';
+import 'package:newseniiorcompaniion/core/shared/widgets/divider_widget.dart';
+import 'package:newseniiorcompaniion/features/search/cubit/search_cubit.dart';
+import 'package:newseniiorcompaniion/features/search/presentation/pages/search_result_view.dart';
+import 'package:newseniiorcompaniion/features/search/presentation/widgets/age_selection_widget.dart';
+import 'package:newseniiorcompaniion/features/search/presentation/widgets/distance_selection_widget.dart';
+import 'package:newseniiorcompaniion/features/search/presentation/widgets/search_button_widget.dart';
 
 import '../widgets/gender_selection_widget.dart';
 
@@ -23,28 +23,54 @@ class SearchView extends StatelessWidget {
     AuthRepository authRepository = locator<AuthRepository>();
     return BlocListener<SearchCubit, SearchState>(
       listener: (context, state) {
-        if (state.status == FormzSubmissionStatus.success &&
-            state.searchResult!.isNotEmpty &&
-            state.searchResult != null) {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => BlocProvider.value(
-                value: BlocProvider.of<SearchCubit>(context),
-                child: const SearchResultView(),
+        if (state.searchResult != null) {
+          if (state.status == FormzSubmissionStatus.success &&
+              state.searchResult!.isNotEmpty) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => BlocProvider.value(
+                  value: BlocProvider.of<SearchCubit>(context),
+                  child: const SearchResultView(),
+                ),
               ),
-            ),
-          );
+            );
+          } else {
+            authRepository.currentUser.role == "CG"
+                ? ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    backgroundColor: Colors.amber,
+                    content: Text(
+                      "No Care Recievers are near you!, Try again in a bit",
+                      style: TextStyle(
+                        color: black,
+                      ),
+                    ),
+                  ))
+                : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    backgroundColor: Colors.amber,
+                    content: Text(
+                      "No Care Givers are near you!, Try again in a bit",
+                      style: TextStyle(
+                        color: black,
+                      ),
+                    ),
+                  ));
+          }
         }
       },
       child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 20.0),
+          padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomText(
-                  text: "iAmLookingForACareRecipient".tr(), fontSize: 20.0.sp),
+              authRepository.currentUser.role == "CG"
+                  ? CustomText(
+                      text: "iAmLookingForACareRecipient".tr().toUpperCase(),
+                      fontSize: 18.0)
+                  : CustomText(
+                      text: "iAmLookingForACaregiver".tr().toUpperCase(),
+                      fontSize: 18.0),
               const SizedBox(height: 20.0),
               const GenderSelctionWidget(),
               const DividerWidget(),

@@ -2,10 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seniorcompanion/core/constants/colors.dart';
-import 'package:seniorcompanion/features/search/cubit/search_cubit.dart';
-import 'package:seniorcompanion/features/search/presentation/pages/single_search_result_view.dart';
-import 'package:seniorcompanion/features/search/presentation/widgets/search_result_page/rating_stars.dart';
+import 'package:newseniiorcompaniion/core/constants/colors.dart';
+import 'package:newseniiorcompaniion/features/search/cubit/search_cubit.dart';
+import 'package:newseniiorcompaniion/features/search/presentation/pages/single_search_result_view.dart';
+import 'package:newseniiorcompaniion/features/search/presentation/widgets/search_result_page/rating_stars.dart';
 
 import '../../../../core/shared/widgets/custom_text.dart';
 
@@ -22,12 +22,12 @@ class SearchResultView extends StatelessWidget {
             centerTitle: false,
             title: CustomText(
               text: "searchResults".tr().toUpperCase(),
-              fontSize: 24.0,
+              fontSize: 22.0,
               fontWeight: FontWeight.bold,
             ),
           ),
           body: Padding(
-            padding: const EdgeInsets.fromLTRB(20.0, 0, 20.0, 20.0),
+            padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 20.0),
             child: ListView.builder(
               itemCount: state.searchResult!.length,
               itemBuilder: (BuildContext context, int index) {
@@ -35,8 +35,8 @@ class SearchResultView extends StatelessWidget {
                   color: Colors.white,
                   elevation: 0.0,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(7.0),
-                      side: const BorderSide(color: black)),
+                      borderRadius: BorderRadius.circular(15.0),
+                      side: const BorderSide(color: mainColor, width: 2.0)),
                   child: InkWell(
                     onTap: () {
                       Navigator.push(
@@ -60,7 +60,7 @@ class SearchResultView extends StatelessWidget {
                         title: CustomText(
                           text:
                               "${state.searchResult![index].firstName} ${state.searchResult![index].lastName}",
-                          fontSize: 20.0.sp,
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                         subtitle: Column(
@@ -71,14 +71,14 @@ class SearchResultView extends StatelessWidget {
                                 CustomText(
                                   text:
                                       "${state.searchResult![index].age} Years - ",
-                                  fontSize: 18.0.sp,
+                                  fontSize: 18.0,
                                   color: secondaryFontColor,
                                   fontWeight: FontWeight.normal,
                                 ),
                                 CustomText(
                                   text: state.searchResult![index].gender
                                       .toUpperCase(),
-                                  fontSize: 18.0.sp,
+                                  fontSize: 18.0,
                                   color: secondaryFontColor,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -88,11 +88,11 @@ class SearchResultView extends StatelessWidget {
                               children: [
                                 CustomText(
                                   text: "${state.searchResult![index].rating}",
-                                  fontSize: 16.0.sp,
+                                  fontSize: 16.0,
                                 ),
                                 CustomText(
                                   text: "/5.0",
-                                  fontSize: 14.0.sp,
+                                  fontSize: 14.0,
                                   color: secondaryFontColor,
                                 ),
                                 const SizedBox(width: 10.0),

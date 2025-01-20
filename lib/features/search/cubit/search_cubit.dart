@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:seniorcompanion/features/search/data/repository/search_repository.dart';
+import 'package:newseniiorcompaniion/features/search/data/repository/search_repository.dart';
 
 import '../../../core/models/user_details_model/user_details_model.dart';
 

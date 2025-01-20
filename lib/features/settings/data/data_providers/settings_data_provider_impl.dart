@@ -2,9 +2,11 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:seniorcompanion/features/settings/data/data_providers/settings_data_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:newseniiorcompaniion/features/settings/data/data_providers/settings_data_provider.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:seniorcompanion/features/settings/data/failures/settings_update_failure.dart';
+import 'package:newseniiorcompaniion/features/settings/data/failures/profile_deletion_failure.dart';
+import 'package:newseniiorcompaniion/features/settings/data/failures/settings_update_failure.dart';
 
 import '../../../../core/constants/firebase_constants.dart';
 import '../../../../core/form_models/general_field.dart';
@@ -51,6 +53,9 @@ class SettingsDataProviderImpl implements SettingsDataProvider {
     required GeneralField firstName,
     required GeneralField lastName,
     required GeneralField about,
+    required String firstNameLastValue,
+    required String lastNameLastValue,
+    required String aboutLastValue,
   }) async {
     final Unit rResult;
 
@@ -63,9 +68,10 @@ class SettingsDataProviderImpl implements SettingsDataProvider {
           .collection(FirebaseConstants.usersCollectionName)
           .doc(user.uid)
           .update({
-        "firstName": firstName.value,
-        "lastName": lastName.value,
-        "about": about.value,
+        "firstName":
+            firstName.value != "" ? firstName.value : firstNameLastValue,
+        "lastName": lastName.value != "" ? lastName.value : lastNameLastValue,
+        "about": about.value != "" ? about.value : aboutLastValue,
       }).then((value) async {
         return unit;
       }).onError((error, stackTrace) {
@@ -104,6 +110,28 @@ class SettingsDataProviderImpl implements SettingsDataProvider {
       rResult = uploadPhoto;
     } else {
       throw const ProfilePictureUploadFailure();
+    }
+    return rResult;
+  }
+
+  @override
+  Future<Unit> deleteAccount() async {
+    final user = _firebaseAuth.currentUser;
+    final Unit rResult;
+    if (user != null) {
+      final deletionResult =
+          await _firebaseAuth.currentUser!.delete().then((value) async {
+        await _firebaseFirestore
+            .collection(FirebaseConstants.usersCollectionName)
+            .doc(user.uid)
+            .delete();
+        return unit;
+      }).onError((error, stackTrace) {
+        throw const ProfileDeletionFailure();
+      });
+      rResult = deletionResult;
+    } else {
+      throw const ProfileDeletionFailure();
     }
     return rResult;
   }

@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seniorcompanion/app/bloc/app_bloc.dart';
-import 'package:seniorcompanion/features/search/cubit/search_cubit.dart';
+import 'package:newseniiorcompaniion/app/bloc/app_bloc.dart';
+import 'package:newseniiorcompaniion/features/search/cubit/search_cubit.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../../core/shared/widgets/custom_text.dart';
@@ -23,7 +23,7 @@ class AgeSelectionWidget extends StatelessWidget {
               children: [
                 CustomText(
                   text: "age".tr().toUpperCase(),
-                  fontSize: 16.0.sp,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                 ),
                 Row(
@@ -71,7 +71,7 @@ class AgeSelectionWidget extends StatelessWidget {
                       child: Center(
                         child: CustomText(
                           text: stateP.startAge.toString(),
-                          fontSize: 20.0.sp,
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -95,7 +95,7 @@ class AgeSelectionWidget extends StatelessWidget {
                       child: Center(
                         child: CustomText(
                           text: stateP.endAge.toString(),
-                          fontSize: 20.0.sp,
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

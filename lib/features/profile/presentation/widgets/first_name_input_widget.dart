@@ -1,23 +1,29 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seniorcompanion/app/bloc/app_bloc.dart';
-import 'package:seniorcompanion/features/profile/cubit/profile_cubit.dart';
+import 'package:newseniiorcompaniion/app/bloc/app_bloc.dart';
+import 'package:newseniiorcompaniion/core/models/user_details_model/user_details_model.dart';
+import 'package:newseniiorcompaniion/features/profile/cubit/profile_cubit.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../../core/shared/widgets/custom_text_form_field.dart';
 
 class FirstNameInputWidget extends StatelessWidget {
-  const FirstNameInputWidget({super.key});
+  FirstNameInputWidget({super.key, required this.firstName});
+  String? firstName = "";
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProfileCubit, ProfileState>(
       buildWhen: (previous, current) => previous.firstName != current.firstName,
       builder: (contextP, stateP) {
+        if (firstName != "") {
+          contextP.read<ProfileCubit>().firstNameChanged(firstName!);
+        }
         return BlocBuilder<AppBloc, AppState>(
           builder: (context, state) {
             return CustomTextFormField(
+              initialValue: firstName,
               roleType: state.user.role == "CR"
                   ? RoleType.careRecipient
                   : state.user.role == "CG"

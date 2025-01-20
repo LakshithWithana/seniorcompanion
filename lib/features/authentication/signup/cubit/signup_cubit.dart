@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import 'package:seniorcompanion/app/data/repository/auth_repository.dart';
+import 'package:newseniiorcompaniion/app/data/repository/auth_repository.dart';
 
 import '../../../../core/form_models/email.dart';
 import '../../../../core/form_models/password.dart';
@@ -66,6 +66,90 @@ class SignupCubit extends Cubit<SignupState> {
     try {
       var result = await _authRepository.registerWithEmailAndPassword(
           email: state.email, password: state.password, role: state.role);
+
+      result.fold((l) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(
+                status: FormzSubmissionStatus.failure, errorMessage: l),
+          );
+        }
+      }, (r) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(status: FormzSubmissionStatus.success),
+          );
+        }
+      });
+    } catch (e) {
+      if (!isClosed) {
+        emit(
+          state.copyWith(status: FormzSubmissionStatus.failure),
+        );
+      }
+    }
+  }
+
+  Future<void> registerWithGoogle() async {
+    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+    try {
+      var result = await _authRepository.registerWithGoogle(role: state.role);
+
+      result.fold((l) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(
+                status: FormzSubmissionStatus.failure, errorMessage: l),
+          );
+        }
+      }, (r) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(status: FormzSubmissionStatus.success),
+          );
+        }
+      });
+    } catch (e) {
+      if (!isClosed) {
+        emit(
+          state.copyWith(status: FormzSubmissionStatus.failure),
+        );
+      }
+    }
+  }
+
+  Future<void> registerWithFacebook() async {
+    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+    try {
+      var result = await _authRepository.registerWithFacebook(role: state.role);
+
+      result.fold((l) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(
+                status: FormzSubmissionStatus.failure, errorMessage: l),
+          );
+        }
+      }, (r) {
+        if (!isClosed) {
+          emit(
+            state.copyWith(status: FormzSubmissionStatus.success),
+          );
+        }
+      });
+    } catch (e) {
+      if (!isClosed) {
+        emit(
+          state.copyWith(status: FormzSubmissionStatus.failure),
+        );
+      }
+    }
+  }
+
+  Future<void> registerWithApple() async {
+    emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
+    try {
+      var result = await _authRepository.registerWithApple(role: state.role);
 
       result.fold((l) {
         if (!isClosed) {

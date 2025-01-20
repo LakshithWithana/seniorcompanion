@@ -1,19 +1,20 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seniorcompanion/app/bloc/app_bloc.dart';
-import 'package:seniorcompanion/app/bloc/app_bloc_observer.dart';
-import 'package:seniorcompanion/app/routes/bloc/main_page_routes_bloc.dart';
-import 'package:seniorcompanion/app/routes/routes.dart';
-import 'package:seniorcompanion/core/constants/colors.dart';
-import 'package:seniorcompanion/core/loacation/bloc/location_bloc.dart';
-import 'package:seniorcompanion/core/loacation/data/repository/location_repository.dart';
-import 'package:seniorcompanion/core/user_details/cubit/cubit/user_details_cubit.dart';
-import 'package:seniorcompanion/core/user_details/data/repository/user_details_repository.dart';
+import 'package:newseniiorcompaniion/app/bloc/app_bloc.dart';
+import 'package:newseniiorcompaniion/app/bloc/app_bloc_observer.dart';
+import 'package:newseniiorcompaniion/app/routes/bloc/main_page_routes_bloc.dart';
+import 'package:newseniiorcompaniion/app/routes/routes.dart';
+import 'package:newseniiorcompaniion/core/constants/colors.dart';
+import 'package:newseniiorcompaniion/core/loacation/bloc/location_bloc.dart';
+import 'package:newseniiorcompaniion/core/loacation/data/repository/location_repository.dart';
+import 'package:newseniiorcompaniion/core/user_details/cubit/cubit/user_details_cubit.dart';
+import 'package:newseniiorcompaniion/core/user_details/data/repository/user_details_repository.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flow_builder/flow_builder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'app/data/repository/auth_repository.dart';
 import 'app/data/repository/custom_claims/custom_claims_repository.dart';
@@ -34,6 +35,11 @@ Future<void> main() async {
   final CustomClaimsRepository customClaimsRepository =
       locator<CustomClaimsRepository>();
   final LocationRepository locationRepository = locator<LocationRepository>();
+
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  await prefs.setDouble('lat', 0.0);
+  await prefs.setDouble('lon', 0.0);
+
   runApp(
     EasyLocalization(
         supportedLocales: const [
@@ -147,26 +153,28 @@ class AppView extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         textTheme: GoogleFonts.interTextTheme(),
         colorScheme: ColorScheme.fromSeed(seedColor: mainColor),
         useMaterial3: true,
       ),
-      home: FlowBuilder<AppStatus>(
+      home:
+          // AnimatedSplashScreen(
+          //   duration: 3000,
+          //   splash: Image.asset("assets/images/logo.png"),
+          //   splashTransition: SplashTransition.fadeTransition,
+          //   pageTransitionType: PageTransitionType.fade,
+          //   backgroundColor: mainColor,
+          //   nextScreen: FlowBuilder<AppStatus>(
+          //     state: context.select((AppBloc bloc) => bloc.state.status),
+          //     onGeneratePages: onGenerateAppViewPages,
+          //   ),
+          // ),
+          FlowBuilder<AppStatus>(
         state: context.select((AppBloc bloc) => bloc.state.status),
         onGeneratePages: onGenerateAppViewPages,
       ),
-      // AnimatedSplashScreen(
-      //   duration: 3000,
-      //   splash: Image.asset("assets/images/logo.png"),
-      //   splashTransition: SplashTransition.fadeTransition,
-      //   pageTransitionType: PageTransitionType.fade,
-      //   backgroundColor: mainColor,
-      //   nextScreen: FlowBuilder<AppStatus>(
-      //     state: context.select((AppBloc bloc) => bloc.state.status),
-      //     onGeneratePages: onGenerateAppViewPages,
-      //   ),
-      // ),
     );
   }
 }

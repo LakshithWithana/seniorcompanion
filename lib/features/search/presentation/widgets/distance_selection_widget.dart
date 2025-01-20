@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seniorcompanion/features/search/cubit/search_cubit.dart';
+import 'package:newseniiorcompaniion/features/search/cubit/search_cubit.dart';
 
 import '../../../../app/bloc/app_bloc.dart';
 import '../../../../core/constants/colors.dart';
@@ -23,7 +23,7 @@ class DistanceSelectionWidget extends StatelessWidget {
               children: [
                 CustomText(
                   text: "distance".tr().toUpperCase(),
-                  fontSize: 16.0.sp,
+                  fontSize: 16.0,
                   fontWeight: FontWeight.bold,
                 ),
                 Row(
@@ -76,12 +76,12 @@ class DistanceSelectionWidget extends StatelessWidget {
                           children: [
                             CustomText(
                               text: stateP.distance.toString(),
-                              fontSize: 20.0.sp,
+                              fontSize: 20.0,
                               fontWeight: FontWeight.bold,
                             ),
                             CustomText(
                               text: " KM",
-                              fontSize: 20.0.sp,
+                              fontSize: 20.0,
                               fontWeight: FontWeight.bold,
                               color: secondaryFontColor,
                             ),

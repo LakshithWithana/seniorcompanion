@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seniorcompanion/features/profile/cubit/profile_cubit.dart';
+import 'package:newseniiorcompaniion/features/profile/cubit/profile_cubit.dart';
 
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/shared/widgets/custom_text.dart';
@@ -32,115 +32,129 @@ class _GenderSelecterWidgetState extends State<GenderSelecterWidget> {
                   fontSize: 14.0,
                   fontWeight: FontWeight.bold,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () =>
-                          contextP.read<ProfileCubit>().genderChanged("female"),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: stateP.gender == "female"
-                            ? (state.user.role == "CG" ? mainBlue : mainOrange)
-                            : white,
-                        padding: const EdgeInsets.all(0),
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                              color: state.user.role == "CG"
+                ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    // maxHeight: 50.0,
+                    maxWidth: 353.0,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () => contextP
+                            .read<ProfileCubit>()
+                            .genderChanged("female"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: stateP.gender == "female"
+                              ? (state.user.role == "CG"
                                   ? mainBlue
-                                  : mainOrange,
-                              width: 2.0),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10.0)),
-                        ),
-                      ),
-                      child: SizedBox(
-                        height: 50.0,
-                        width: 110.0.w,
-                        child: Center(
-                          child: CustomText(
-                            text: "female".tr().toUpperCase(),
-                            fontSize: 16.0,
-                            color: stateP.gender == "female"
-                                ? white
-                                : (state.user.role == "CG"
+                                  : mainOrange)
+                              : white,
+                          padding: const EdgeInsets.all(0),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                color: state.user.role == "CG"
                                     ? mainBlue
-                                    : mainOrange),
-                            fontWeight: FontWeight.bold,
+                                    : mainOrange,
+                                width: 2.0),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10.0)),
+                          ),
+                        ),
+                        child: SizedBox(
+                          height: 50.0,
+                          width: 110.0,
+                          child: Center(
+                            child: CustomText(
+                              text: "female".tr().toUpperCase(),
+                              fontSize: 16.0,
+                              color: stateP.gender == "female"
+                                  ? white
+                                  : (state.user.role == "CG"
+                                      ? mainBlue
+                                      : mainOrange),
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () =>
-                          contextP.read<ProfileCubit>().genderChanged("male"),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: stateP.gender == "male"
-                            ? (state.user.role == "CG" ? mainBlue : mainOrange)
-                            : white,
-                        padding: const EdgeInsets.all(0),
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                              color: (state.user.role == "CG"
+                      ElevatedButton(
+                        onPressed: () =>
+                            contextP.read<ProfileCubit>().genderChanged("male"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: stateP.gender == "male"
+                              ? (state.user.role == "CG"
                                   ? mainBlue
-                                  : mainOrange),
-                              width: 2.0),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10.0)),
-                        ),
-                      ),
-                      child: SizedBox(
-                        height: 50.0,
-                        width: 110.0.w,
-                        child: Center(
-                          child: CustomText(
-                            text: "male".tr().toUpperCase(),
-                            fontSize: 16.0,
-                            color: stateP.gender == "male"
-                                ? white
-                                : (state.user.role == "CG"
+                                  : mainOrange)
+                              : white,
+                          padding: const EdgeInsets.all(0),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                color: (state.user.role == "CG"
                                     ? mainBlue
                                     : mainOrange),
-                            fontWeight: FontWeight.bold,
+                                width: 2.0),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10.0)),
+                          ),
+                        ),
+                        child: SizedBox(
+                          height: 50.0,
+                          width: 110.0,
+                          child: Center(
+                            child: CustomText(
+                              text: "male".tr().toUpperCase(),
+                              fontSize: 16.0,
+                              color: stateP.gender == "male"
+                                  ? white
+                                  : (state.user.role == "CG"
+                                      ? mainBlue
+                                      : mainOrange),
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () =>
-                          contextP.read<ProfileCubit>().genderChanged("other"),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: stateP.gender == "other"
-                            ? (state.user.role == "CG" ? mainBlue : mainOrange)
-                            : white,
-                        padding: const EdgeInsets.all(0),
-                        shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                              color: (state.user.role == "CG"
+                      ElevatedButton(
+                        onPressed: () => contextP
+                            .read<ProfileCubit>()
+                            .genderChanged("other"),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: stateP.gender == "other"
+                              ? (state.user.role == "CG"
                                   ? mainBlue
-                                  : mainOrange),
-                              width: 2.0),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(10.0)),
-                        ),
-                      ),
-                      child: SizedBox(
-                        height: 50.0,
-                        width: 110.0.w,
-                        child: Center(
-                          child: CustomText(
-                            text: "other".tr().toUpperCase(),
-                            fontSize: 16.0,
-                            color: stateP.gender == "other"
-                                ? white
-                                : (state.user.role == "CG"
+                                  : mainOrange)
+                              : white,
+                          padding: const EdgeInsets.all(0),
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                                color: (state.user.role == "CG"
                                     ? mainBlue
                                     : mainOrange),
-                            fontWeight: FontWeight.bold,
+                                width: 2.0),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10.0)),
+                          ),
+                        ),
+                        child: SizedBox(
+                          height: 50.0,
+                          width: 110.0,
+                          child: Center(
+                            child: CustomText(
+                              text: "other".tr().toUpperCase(),
+                              fontSize: 16.0,
+                              color: stateP.gender == "other"
+                                  ? white
+                                  : (state.user.role == "CG"
+                                      ? mainBlue
+                                      : mainOrange),
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             );

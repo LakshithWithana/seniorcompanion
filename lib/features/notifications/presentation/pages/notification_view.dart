@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seniorcompanion/core/constants/colors.dart';
-import 'package:seniorcompanion/features/notifications/notifications/notification_tab_view.dart';
+import 'package:newseniiorcompaniion/core/constants/colors.dart';
+import 'package:newseniiorcompaniion/features/notifications/notifications/notification_tab_view.dart';
 
 import '../../emergency_and_reminders/presentation/emergency_and_reminders_tab_page.dart';
 

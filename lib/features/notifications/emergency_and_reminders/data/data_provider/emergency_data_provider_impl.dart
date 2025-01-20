@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
-import 'package:seniorcompanion/core/form_models/general_field.dart';
+import 'package:newseniiorcompaniion/core/form_models/general_field.dart';
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
-import 'package:seniorcompanion/features/notifications/emergency_and_reminders/data/data_provider/emergency_data_provider.dart';
-import 'package:seniorcompanion/features/notifications/emergency_and_reminders/data/failures/emergency_no_update_failure.dart';
+import 'package:newseniiorcompaniion/features/notifications/emergency_and_reminders/data/data_provider/emergency_data_provider.dart';
+import 'package:newseniiorcompaniion/features/notifications/emergency_and_reminders/data/failures/emergency_no_update_failure.dart';
 
 import '../../../../../core/constants/firebase_constants.dart';
 

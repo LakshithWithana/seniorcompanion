@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:seniorcompanion/core/models/user_details_model/user_details_model.dart';
-import 'package:seniorcompanion/core/user_details/data/data_provider/user_details_data_provider.dart';
+import 'package:newseniiorcompaniion/core/models/user_details_model/user_details_model.dart';
+import 'package:newseniiorcompaniion/core/user_details/data/data_provider/user_details_data_provider.dart';
 
 import '../../../constants/firebase_constants.dart';
 import '../../../type_defs/type_defs.dart';

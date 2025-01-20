@@ -1,184 +1,260 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seniorcompanion/core/constants/colors.dart';
-import 'package:seniorcompanion/core/shared/widgets/custom_text.dart';
-import 'package:seniorcompanion/core/user_details/cubit/cubit/user_details_cubit.dart';
-import 'package:seniorcompanion/features/settings/pages/edit_profile/edit_profile_page.dart';
-import 'package:seniorcompanion/features/settings/pages/emergency_settings/emergency_settings_page.dart';
-import 'package:seniorcompanion/features/settings/pages/search_settings/search_settings_page.dart';
-
-import '../../../app/data/repository/auth_repository.dart';
-import '../../../core/service_locator/service_locator.dart';
+import 'package:newseniiorcompaniion/core/constants/colors.dart';
+import 'package:newseniiorcompaniion/core/shared/widgets/custom_text.dart';
+import 'package:newseniiorcompaniion/core/user_details/cubit/cubit/user_details_cubit.dart';
+import 'package:newseniiorcompaniion/features/settings/cubit/settings_cubit.dart';
+import 'package:newseniiorcompaniion/features/settings/pages/edit_profile/edit_profile_page.dart';
+import 'package:newseniiorcompaniion/features/settings/pages/emergency_settings/emergency_settings_page.dart';
+import 'package:newseniiorcompaniion/features/settings/pages/search_settings/search_settings_page.dart';
 import '../../../core/shared/pages/webview_page.dart';
 
 class SettingsView extends StatelessWidget {
   const SettingsView({super.key});
 
+  Widget _buildSettingsTile({
+    required String title,
+    required String iconPath,
+    required VoidCallback onTap,
+    Color? textColor,
+    Widget? leadingWidget,
+  }) {
+    return Column(
+      children: [
+        const Divider(height: 1),
+        ListTile(
+          onTap: onTap,
+          title: CustomText(
+            text: title.tr().toUpperCase(),
+            fontSize: 18.0,
+            color: textColor,
+          ),
+          leading: leadingWidget ??
+              Image.asset(
+                iconPath,
+                scale: 25,
+              ),
+        ),
+      ],
+    );
+  }
+
+  Future<void> _showConfirmationDialog({
+    required BuildContext context,
+    required String title,
+    required String content,
+    required String cancelText,
+    required String confirmText,
+    required VoidCallback onConfirm,
+    Color? titleColor,
+  }) {
+    return showDialog<void>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        backgroundColor: white,
+        title: CustomText(
+          text: title,
+          fontSize: 20.0,
+          fontWeight: FontWeight.bold,
+          color: titleColor,
+        ),
+        content: CustomText(
+          text: content,
+          fontSize: 16.0,
+        ),
+        actions: <Widget>[
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: Text(
+              confirmText,
+              style: const TextStyle(
+                color: Colors.red,
+              ),
+            ),
+            onPressed: () {
+              onConfirm();
+              Navigator.of(context).pop();
+            },
+          ),
+          TextButton(
+            style: TextButton.styleFrom(
+              textStyle: Theme.of(context).textTheme.labelLarge,
+            ),
+            child: Text(cancelText),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+        ],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    AuthRepository authRepository = locator<AuthRepository>();
-    return BlocBuilder<UserDetailsCubit, UserDetailsState>(
-      builder: (contextU, stateU) {
-        stateU.whenOrNull(
-          loaded: (userDetails) {},
-        );
+    return BlocConsumer<UserDetailsCubit, UserDetailsState>(
+      listener: (_, __) {},
+      builder: (context, userState) {
         return SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Divider(height: 1),
-              ListTile(
-                onTap: () {
-                  stateU.whenOrNull(
-                    loaded: (userDetails) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => SearchSettingsPage(
-                              preferences: userDetails.preferences),
-                        ),
+              Column(
+                children: [
+                  _buildSettingsTile(
+                    title: "searchSettings",
+                    iconPath: "assets/images/icons/Icons_search copy.png",
+                    onTap: () {
+                      userState.whenOrNull(
+                        loaded: (userDetails) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => SearchSettingsPage(
+                                  preferences: userDetails.preferences),
+                            ),
+                          );
+                        },
                       );
                     },
-                  );
-                },
-                title: CustomText(
-                  text: "searchSettings".tr(),
-                  fontSize: 20.0.sp,
-                ),
-                leading: const Icon(
-                  Icons.manage_search,
-                  color: mainColor,
-                ),
-              ),
-              const Divider(height: 1),
-              ListTile(
-                onTap: () {
-                  stateU.whenOrNull(
-                    loaded: (userDetails) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) =>
-                              EditProfilePage(userDetails: userDetails),
-                        ),
+                  ),
+                  _buildSettingsTile(
+                    title: "editProfile",
+                    iconPath: "assets/images/icons/Icons_edit profile copy.png",
+                    onTap: () {
+                      userState.whenOrNull(
+                        loaded: (userDetails) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) =>
+                                  EditProfilePage(userDetails: userDetails),
+                            ),
+                          );
+                        },
                       );
                     },
-                  );
-                },
-                title: CustomText(
-                  text: "editProfile".tr(),
-                  fontSize: 20.0.sp,
-                ),
-                leading: const Icon(
-                  Icons.co_present_rounded,
-                  color: mainColor,
-                ),
-              ),
-              const Divider(height: 1),
-              ListTile(
-                onTap: () {
-                  stateU.whenOrNull(
-                    loaded: (userDetails) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => EmergencySettingsPage(
-                            emergencyPhoneNumber: userDetails.emergencyNumber,
-                            doctorPhoneNumber: userDetails.doctorNumber,
-                            ambulancePhoneNumber: userDetails.ambulanceNumber,
-                          ),
-                        ),
+                  ),
+                  _buildSettingsTile(
+                    title: "emergencySettings",
+                    iconPath:
+                        "assets/images/icons/Icons_Emergency settings copy.png",
+                    onTap: () {
+                      userState.whenOrNull(
+                        loaded: (userDetails) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => EmergencySettingsPage(
+                                emergencyPhoneNumber:
+                                    userDetails.emergencyNumber,
+                                doctorPhoneNumber: userDetails.doctorNumber,
+                                ambulancePhoneNumber:
+                                    userDetails.ambulanceNumber,
+                              ),
+                            ),
+                          );
+                        },
                       );
                     },
-                  );
-                },
-                title: CustomText(
-                  text: "emergencySettings".tr(),
-                  fontSize: 20.0.sp,
-                ),
-                leading: const Icon(
-                  Icons.emergency,
-                  color: mainColor,
-                ),
+                  ),
+                  _buildSettingsTile(
+                    title: "inviteFriends",
+                    iconPath: "assets/images/icons/Icons_add friends copy.png",
+                    onTap: () {},
+                  ),
+                  _buildSettingsTile(
+                    title: "termsAndConditions",
+                    iconPath:
+                        "assets/images/icons/Icons_terms and condition copy.png",
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const WebViewPage(
+                            title: "Terms & Conditions",
+                            url:
+                                "https://www.seniiorcompaniion.com/terms-conditions/"),
+                      ),
+                    ),
+                  ),
+                  _buildSettingsTile(
+                    title: "helpAndFaq",
+                    iconPath:
+                        "assets/images/icons/Icons_help and facs copy.png",
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const WebViewPage(
+                            title: "FAQ",
+                            url: "https://www.seniiorcompaniion.com/home/faq/"),
+                      ),
+                    ),
+                  ),
+                  _buildSettingsTile(
+                    title: "aboutUs",
+                    iconPath: "assets/images/icons/Icons_about us copy.png",
+                    onTap: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => const WebViewPage(
+                            title: "About Us",
+                            url: "https://www.seniiorcompaniion.com/"),
+                      ),
+                    ),
+                  ),
+                  BlocBuilder<SettingsCubit, SettingsState>(
+                    builder: (context, _) => _buildSettingsTile(
+                      title: "logOut",
+                      iconPath: "",
+                      textColor: Colors.red,
+                      leadingWidget: const Icon(
+                        Icons.logout,
+                        size: 35,
+                        color: Colors.red,
+                      ),
+                      onTap: () => _showConfirmationDialog(
+                        context: context,
+                        title: "Logout",
+                        content:
+                            'You are going to logout. Do you wish to continue?',
+                        cancelText: 'Cancel',
+                        confirmText: 'Logout',
+                        onConfirm: () => context.read<SettingsCubit>().logOut(),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 100.0),
+                ],
               ),
-              const Divider(height: 1),
-              ListTile(
-                onTap: () {},
-                title: CustomText(
-                  text: "inviteFriends".tr(),
-                  fontSize: 20.0.sp,
-                ),
-                leading: const Icon(
-                  Icons.group_add,
-                  color: mainColor,
-                ),
-              ),
-              const Divider(height: 1),
-              ListTile(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const WebViewPage(
-                          title: "Terms & Conditions",
-                          url:
-                              "http://www.seniiorcompaniion.com/terms-conditions/")));
+              BlocConsumer<SettingsCubit, SettingsState>(
+                listener: (context, state) {
+                  if (state.deleteErrorMessage.isNotEmpty) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.deleteErrorMessage)),
+                    );
+                  }
                 },
-                title: CustomText(
-                  text: "termsAndConditions".tr(),
-                  fontSize: 20.0.sp,
-                ),
-                leading: const Icon(
-                  Icons.fact_check,
-                  color: mainColor,
-                ),
-              ),
-              const Divider(height: 1),
-              ListTile(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const WebViewPage(
-                          title: "Privacy Policy",
-                          url: "http://www.seniiorcompaniion.com/home/faq/")));
-                },
-                title: CustomText(
-                  text: "helpAndFaq".tr(),
-                  fontSize: 20.0.sp,
-                ),
-                leading: const Icon(
-                  Icons.help,
-                  color: mainColor,
-                ),
-              ),
-              const Divider(height: 1),
-              ListTile(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const WebViewPage(
-                          title: "Privacy Policy",
-                          url: "http://www.seniiorcompaniion.com/")));
-                },
-                title: CustomText(
-                  text: "aboutUs".tr(),
-                  fontSize: 20.0.sp,
-                ),
-                leading: const Icon(
-                  Icons.info_rounded,
-                  color: mainColor,
-                ),
-              ),
-              const Divider(height: 1),
-              ListTile(
-                onTap: () {
-                  authRepository.signOutUser();
-                },
-                title: CustomText(
-                  text: "logOut".tr(),
-                  fontSize: 20.0.sp,
-                  color: Colors.red,
-                ),
-                leading: const Icon(
-                  Icons.logout,
-                  color: Colors.red,
+                builder: (context, _) => _buildSettingsTile(
+                  title: "deleteAccount",
+                  iconPath: "",
+                  textColor: Colors.red,
+                  leadingWidget: const Icon(
+                    Icons.person_remove,
+                    size: 35,
+                    color: Colors.red,
+                  ),
+                  onTap: () => _showConfirmationDialog(
+                    context: context,
+                    title: "Account Deletion!",
+                    titleColor: Colors.red,
+                    content:
+                        'This will permently delete the account. Do you wish to continue?',
+                    cancelText: 'NO',
+                    confirmText: 'DELETE',
+                    onConfirm: () =>
+                        context.read<SettingsCubit>().deleteAccount(),
+                  ),
                 ),
               ),
             ],

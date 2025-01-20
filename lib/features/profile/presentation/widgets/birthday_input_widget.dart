@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seniorcompanion/core/shared/widgets/custom_date_picker.dart';
-import 'package:seniorcompanion/features/profile/cubit/profile_cubit.dart';
+import 'package:newseniiorcompaniion/core/shared/widgets/custom_date_picker.dart';
+import 'package:newseniiorcompaniion/features/profile/cubit/profile_cubit.dart';
 
 import '../../../../core/constants/colors.dart';
 

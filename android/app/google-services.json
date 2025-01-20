@@ -7,14 +7,22 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:285205140731:android:7777cff57e6dded4e84c5e",
+        "mobilesdk_app_id": "1:285205140731:android:5b30703503697f5fe84c5e",
         "android_client_info": {
-          "package_name": "com.doughnutlabs.seniorcompanion"
+          "package_name": "com.doughnutlabs.newseniiorcompaniion"
         }
       },
       "oauth_client": [
         {
-          "client_id": "285205140731-7nhg2ksu97alvg0c81bldu4u54n7vsa7.apps.googleusercontent.com",
+          "client_id": "285205140731-487cvhr2a14ncf9p2r4mucmdg8hkun51.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.doughnutlabs.newseniiorcompaniion",
+            "certificate_hash": "1316ff4c5e0d44f75df9c51f0a18ce8d6f255cf5"
+          }
+        },
+        {
+          "client_id": "285205140731-1bj09s48um4cg5k63rbkp6e4fo179sfd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "285205140731-7nhg2ksu97alvg0c81bldu4u54n7vsa7.apps.googleusercontent.com",
+              "client_id": "285205140731-1bj09s48um4cg5k63rbkp6e4fo179sfd.apps.googleusercontent.com",
               "client_type": 3
             },
             {

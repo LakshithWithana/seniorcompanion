@@ -1,31 +1,41 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seniorcompanion/core/shared/widgets/custom_elevated_buttons.dart';
-import 'package:seniorcompanion/features/settings/cubit/settings_cubit.dart';
+import 'package:newseniiorcompaniion/core/shared/widgets/custom_elevated_buttons.dart';
+import 'package:newseniiorcompaniion/features/settings/cubit/settings_cubit.dart';
 
 import '../../../../app/bloc/app_bloc.dart';
 import '../../../../core/constants/colors.dart';
 import '../../../../core/shared/widgets/custom_text.dart';
 
-class SearchSettingsView extends StatelessWidget {
+class SearchSettingsView extends StatefulWidget {
   const SearchSettingsView({super.key, required this.preferences});
   final List<String?> preferences;
 
   @override
-  Widget build(BuildContext context) {
-    for (var element in preferences) {
+  State<SearchSettingsView> createState() => _SearchSettingsViewState();
+}
+
+class _SearchSettingsViewState extends State<SearchSettingsView> {
+  @override
+  void initState() {
+    super.initState();
+    for (var element in widget.preferences) {
       context.read<SettingsCubit>().addPreferencesSelection(element!);
     }
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: white,
       appBar: AppBar(
+        backgroundColor: white,
         shadowColor: Theme.of(context).shadowColor,
         centerTitle: false,
         title: CustomText(
           text: "searchSettings".tr().toUpperCase(),
-          fontSize: 24.0,
+          fontSize: 22.0,
           fontWeight: FontWeight.bold,
         ),
       ),
@@ -33,120 +43,60 @@ class SearchSettingsView extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                key: const Key("search_settings_preferences_selecter"),
-                crossAxisAlignment: CrossAxisAlignment.start,
+              CustomText(
+                text: "preferences".tr().toUpperCase(),
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold,
+              ),
+              const Wrap(
+                spacing: 10.0,
+                runSpacing: 5.0,
                 children: [
-                  CustomText(
-                    text: "preferences".tr().toUpperCase(),
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.bold,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "artLover"),
-                      SinglePreference(name: "adviser"),
-                      SinglePreference(name: "aide"),
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "bookWarm"),
-                      SinglePreference(name: "boardGamer"),
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "buddy"),
-                      SinglePreference(name: "cleaner"),
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "companion"),
-                      SinglePreference(name: "communicator"),
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "cook"),
-                      SinglePreference(name: "confidente"),
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "custodian"),
-                      SinglePreference(name: "driver"),
-                      SinglePreference(name: "friend"),
-                      // SinglePreference(name: "filmFanatic")
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "filmFanatic"),
-                      SinglePreference(name: "guide"),
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "hangout"),
-                      SinglePreference(name: "healer"),
-                      SinglePreference(name: "helper"),
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "houseSitter"),
-                      SinglePreference(name: "instructor"),
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "nurse"),
-                      SinglePreference(name: "psychoTherapist"),
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "sidekick"),
-                      SinglePreference(name: "sportsLover"),
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "therapist"),
-                      SinglePreference(name: "trainer"),
-                    ],
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SinglePreference(name: "traveller"),
-                    ],
-                  ),
+                  SinglePreference(name: "adviser"),
+                  SinglePreference(name: "bingo"),
+                  SinglePreference(name: "boardGames"),
+                  SinglePreference(name: "bookDiscussions"),
+                  SinglePreference(name: "cardGames"),
+                  SinglePreference(name: "cookingAndBaking"),
+                  SinglePreference(name: "drawing"),
+                  SinglePreference(name: "drivingArround"),
+                  SinglePreference(name: "friend"),
+                  SinglePreference(name: "gardening"),
+                  SinglePreference(name: "healer"),
+                  SinglePreference(name: "knitting"),
+                  SinglePreference(name: "languageLearning"),
+                  SinglePreference(name: "listingToMusic"),
+                  SinglePreference(name: "memoryGames"),
+                  SinglePreference(name: "mindfulness"),
+                  SinglePreference(name: "natureExploration"),
+                  SinglePreference(name: "outdoorActivities"),
+                  SinglePreference(name: "painting"),
+                  SinglePreference(name: "petTherapy"),
+                  SinglePreference(name: "physicalActivity"),
+                  SinglePreference(name: "playAnInstrument"),
+                  SinglePreference(name: "puzzleGames"),
+                  SinglePreference(name: "readingClub"),
+                  SinglePreference(name: "relaxationExercises"),
+                  SinglePreference(name: "singingAlone"),
+                  SinglePreference(name: "socialActivities"),
+                  SinglePreference(name: "storytelling"),
+                  SinglePreference(name: "taiChi"),
+                  SinglePreference(name: "yoga"),
                 ],
               ),
               const SizedBox(height: 40.0),
-              CustomElevatedButton(
-                label: "Update",
-                onPressed: () {
-                  context.read<SettingsCubit>().updatePreferences();
-                },
-                backgroundColor: mainColor,
+              Center(
+                child: CustomElevatedButton(
+                  label: "Update",
+                  onPressed: () {
+                    context.read<SettingsCubit>().updatePreferences();
+                  },
+                  backgroundColor: mainColor,
+                ),
               ),
+              const SizedBox(height: 40.0),
             ],
           ),
         ),
@@ -173,7 +123,9 @@ class SinglePreference extends StatelessWidget {
           builder: (contextA, stateA) {
             return ElevatedButton(
               onPressed: stateS.preferences.contains(name.tr())
-                  ? null
+                  ? () => contextS
+                      .read<SettingsCubit>()
+                      .removePreferencesSelection(name.tr())
                   : () => contextS
                       .read<SettingsCubit>()
                       .addPreferencesSelection(name.tr()),
@@ -197,37 +149,13 @@ class SinglePreference extends StatelessWidget {
                 // width: 110.0.w,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Center(
-                    child: Row(
-                      children: [
-                        CustomText(
-                          text: name.tr().toUpperCase(),
-                          fontSize: 16.0.sp,
-                          color: stateS.preferences.contains(name.tr())
-                              ? white
-                              : (stateA.user.role == "CG"
-                                  ? mainBlue
-                                  : mainOrange),
-                          fontWeight: FontWeight.bold,
-                        ),
-                        const SizedBox(width: 5.0),
-                        stateS.preferences.contains(name.tr())
-                            ? InkWell(
-                                onTap: () {
-                                  contextS
-                                      .read<SettingsCubit>()
-                                      .removePreferencesSelection(name.tr());
-                                },
-                                child: Icon(
-                                  Icons.cancel,
-                                  color: (stateA.user.role == "CG"
-                                      ? Colors.red
-                                      : yellow),
-                                ),
-                              )
-                            : const SizedBox()
-                      ],
-                    ),
+                  child: CustomText(
+                    text: name.tr().toUpperCase(),
+                    fontSize: 16.0,
+                    color: stateS.preferences.contains(name.tr())
+                        ? white
+                        : (stateA.user.role == "CG" ? mainBlue : mainOrange),
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

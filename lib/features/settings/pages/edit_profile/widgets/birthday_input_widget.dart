@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seniorcompanion/app/bloc/app_bloc.dart';
-import 'package:seniorcompanion/features/settings/cubit/settings_cubit.dart';
+import 'package:newseniiorcompaniion/app/bloc/app_bloc.dart';
+import 'package:newseniiorcompaniion/features/settings/cubit/settings_cubit.dart';
 
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/shared/widgets/custom_text_form_field.dart';

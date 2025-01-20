@@ -3,9 +3,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seniorcompanion/app/bloc/app_bloc.dart';
-import 'package:seniorcompanion/features/chat/cubit/chat_cubit.dart';
-import 'package:seniorcompanion/features/search/cubit/search_cubit.dart';
+import 'package:newseniiorcompaniion/app/bloc/app_bloc.dart';
+import 'package:newseniiorcompaniion/features/chat/cubit/chat_cubit.dart';
+import 'package:newseniiorcompaniion/features/search/cubit/search_cubit.dart';
 
 import '../../../../core/constants/colors.dart';
 import '../../../../core/service_locator/service_locator.dart';
@@ -92,7 +92,7 @@ class SingleSearchResultView extends StatelessWidget {
                         title: CustomText(
                           text:
                               "${state.searchResult![index].firstName} ${state.searchResult![index].lastName}",
-                          fontSize: 20.0.sp,
+                          fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                         subtitle: Column(
@@ -103,14 +103,14 @@ class SingleSearchResultView extends StatelessWidget {
                                 CustomText(
                                   text:
                                       "${state.searchResult![index].age} Years - ",
-                                  fontSize: 18.0.sp,
+                                  fontSize: 18.0,
                                   color: secondaryFontColor,
                                   fontWeight: FontWeight.normal,
                                 ),
                                 CustomText(
                                   text: state.searchResult![index].gender
                                       .toUpperCase(),
-                                  fontSize: 18.0.sp,
+                                  fontSize: 18.0,
                                   color: secondaryFontColor,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -120,11 +120,11 @@ class SingleSearchResultView extends StatelessWidget {
                               children: [
                                 CustomText(
                                   text: "${state.searchResult![index].rating}",
-                                  fontSize: 16.0.sp,
+                                  fontSize: 16.0,
                                 ),
-                                CustomText(
+                                const CustomText(
                                   text: "/5.0",
-                                  fontSize: 14.0.sp,
+                                  fontSize: 14.0,
                                   color: secondaryFontColor,
                                 ),
                                 const SizedBox(width: 10.0),
@@ -139,59 +139,20 @@ class SingleSearchResultView extends StatelessWidget {
                       const SizedBox(height: 15.0),
                       CustomText(
                         text: "about".tr().toUpperCase(),
-                        fontSize: 20.0.sp,
+                        fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
                       CustomText(
                         text: state.searchResult![index].about,
-                        fontSize: 16.0.sp,
+                        fontSize: 16.0,
                         textAlignment: TextAlign.justify,
                       ),
                       const SizedBox(height: 15.0),
                       CustomText(
                         text: "preferences".tr().toUpperCase(),
-                        fontSize: 20.0.sp,
+                        fontSize: 20.0,
                         fontWeight: FontWeight.bold,
                       ),
-
-                      // ListView.builder(
-                      //   shrinkWrap: true,
-                      //   itemCount: state.searchResult![index].preferences.length,
-                      //   itemBuilder: (BuildContext context, int listIndex) {
-                      //     return BlocBuilder<AppBloc, AppState>(
-                      //       builder: (contextP, stateP) {
-                      //         return Column(
-                      //           crossAxisAlignment: CrossAxisAlignment.start,
-                      //           children: [
-                      //             Container(
-                      //               decoration: BoxDecoration(
-                      //                   color: stateP.user.role == "CG"
-                      //                       ? mainBlue
-                      //                       : mainOrange,
-                      //                   border: Border.all(
-                      //                     color: (stateP.user.role == "CG"
-                      //                         ? mainBlue
-                      //                         : mainOrange),
-                      //                   ),
-                      //                   borderRadius: const BorderRadius.all(
-                      //                       Radius.circular(10))),
-                      //               child: Padding(
-                      //                 padding: const EdgeInsets.all(8.0),
-                      //                 child: CustomText(
-                      //                   text: state.searchResult![index]
-                      //                       .preferences[listIndex],
-                      //                   fontSize: 18.0.sp,
-                      //                   color: white,
-                      //                 ),
-                      //               ),
-                      //             ),
-                      //             const SizedBox(height: 10.0),
-                      //           ],
-                      //         );
-                      //       },
-                      //     );
-                      //   },
-                      // ),
                       Wrap(
                         spacing: 10.0,
                         runSpacing: 10.0,
@@ -215,7 +176,7 @@ class SingleSearchResultView extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: CustomText(
                                     text: item,
-                                    fontSize: 18.0.sp,
+                                    fontSize: 18.0,
                                     color: white,
                                   ),
                                 ),
@@ -232,88 +193,50 @@ class SingleSearchResultView extends StatelessWidget {
                       return BlocProvider(
                         create: (context) => ChatCubit(
                             chatRepository: locator<ChatRepository>()),
-                        child: CustomElevatedButton(
-                          key: const Key(
-                              "single_search_result_page_chat_button"),
-                          backgroundColor: (stateP.user.role == "CG"
-                              ? mainBlue
-                              : mainOrange),
-                          label: "chat".tr().toUpperCase(),
-                          onPressed: () async {
-                            // contextC.read<ChatCubit>().createChat(
-                            //     myUid: stateP.user.uid,
-                            //     partnerUid: state.searchResult![index].uid);
-                            // contextC.read<ChatCubit>().getChatRoom(
-                            //     myUid: stateP.user.uid,
-                            //     partnerUid: state.searchResult![index].uid);
-                            // contextC.read<ChatCubit>().getChat(
-                            //     myUid: stateP.user.uid,
-                            //     partnerUid: state.searchResult![index].uid);
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => MultiBlocProvider(
-                                  providers: [
-                                    BlocProvider.value(
-                                      value:
-                                          BlocProvider.of<SearchCubit>(context),
+                        child: Center(
+                          child: CustomElevatedButton(
+                            key: const Key(
+                                "single_search_result_page_chat_button"),
+                            backgroundColor: (stateP.user.role == "CG"
+                                ? mainBlue
+                                : mainOrange),
+                            label: "chat".tr().toUpperCase(),
+                            onPressed: () async {
+                              // contextC.read<ChatCubit>().createChat(
+                              //     myUid: stateP.user.uid,
+                              //     partnerUid: state.searchResult![index].uid);
+                              // contextC.read<ChatCubit>().getChatRoom(
+                              //     myUid: stateP.user.uid,
+                              //     partnerUid: state.searchResult![index].uid);
+                              // contextC.read<ChatCubit>().getChat(
+                              //     myUid: stateP.user.uid,
+                              //     partnerUid: state.searchResult![index].uid);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => MultiBlocProvider(
+                                    providers: [
+                                      BlocProvider.value(
+                                        value: BlocProvider.of<SearchCubit>(
+                                            context),
+                                      ),
+                                      // BlocProvider.value(
+                                      //   value:
+                                      //       BlocProvider.of<ChatCubit>(contextC),
+                                      // ),
+                                    ],
+                                    child: SinglePersonChatPage(
+                                      index: index,
+                                      myUid: stateP.user.uid,
+                                      partnerUid:
+                                          state.searchResult![index].uid,
                                     ),
-                                    // BlocProvider.value(
-                                    //   value:
-                                    //       BlocProvider.of<ChatCubit>(contextC),
-                                    // ),
-                                  ],
-                                  child: SinglePersonChatPage(
-                                    index: index,
-                                    myUid: stateP.user.uid,
-                                    partnerUid: state.searchResult![index].uid,
                                   ),
                                 ),
-                              ),
-                            );
-                          },
+                              );
+                            },
+                          ),
                         ),
-                        // BlocBuilder<ChatCubit, ChatState>(
-                        //   builder: (contextC, stateC) {
-                        //     return CustomElevatedButton(
-                        //       key: const Key(
-                        //           "single_search_result_page_chat_button"),
-                        //       backgroundColor: (stateP.user.role == "CG"
-                        //           ? mainBlue
-                        //           : mainOrange),
-                        //       label: "chat".tr().toUpperCase(),
-                        //       onPressed: () async {
-                        //         contextC.read<ChatCubit>().createChat(
-                        //             myUid: stateP.user.uid,
-                        //             partnerUid: state.searchResult![index].uid);
-                        //         contextC.read<ChatCubit>().getChatRoom(
-                        //             myUid: stateP.user.uid,
-                        //             partnerUid: state.searchResult![index].uid);
-                        //         contextC.read<ChatCubit>().getChat(
-                        //             myUid: stateP.user.uid,
-                        //             partnerUid: state.searchResult![index].uid);
-                        //         Navigator.push(
-                        //           context,
-                        //           MaterialPageRoute(
-                        //             builder: (_) => MultiBlocProvider(
-                        //               providers: [
-                        //                 BlocProvider.value(
-                        //                   value: BlocProvider.of<SearchCubit>(
-                        //                       context),
-                        //                 ),
-                        //                 BlocProvider.value(
-                        //                   value: BlocProvider.of<ChatCubit>(
-                        //                       contextC),
-                        //                 ),
-                        //               ],
-                        //               child: SinglePersonChatPage(index: index),
-                        //             ),
-                        //           ),
-                        //         );
-                        //       },
-                        //     );
-                        //   },
-                        // ),
                       );
                     },
                   )

@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:seniorcompanion/features/profile/cubit/profile_cubit.dart';
+import 'package:newseniiorcompaniion/features/profile/cubit/profile_cubit.dart';
 
 import '../../../../../core/constants/colors.dart';
 import '../../../../../core/shared/widgets/custom_text.dart';
@@ -22,134 +22,48 @@ class PreferencesSelecterWidget extends StatelessWidget {
           fontSize: 14.0,
           fontWeight: FontWeight.bold,
         ),
-        const Wrap(
-          spacing: 10.0,
-          runSpacing: 5.0,
-          children: [
-            SingleItem(name: "artLover"),
-            SingleItem(name: "adviser"),
-            SingleItem(name: "aide"),
-            SingleItem(name: "bookWarm"),
-            SingleItem(name: "boardGamer"),
-            SingleItem(name: "buddy"),
-            SingleItem(name: "cleaner"),
-            SingleItem(name: "companion"),
-            SingleItem(name: "communicator"),
-            SingleItem(name: "cook"),
-            SingleItem(name: "confidente"),
-            SingleItem(name: "custodian"),
-            SingleItem(name: "driver"),
-            SingleItem(name: "friend"),
-            SingleItem(name: "filmFanatic"),
-            SingleItem(name: "guide"),
-            SingleItem(name: "hangout"),
-            SingleItem(name: "healer"),
-            SingleItem(name: "helper"),
-            SingleItem(name: "houseSitter"),
-            SingleItem(name: "instructor"),
-            SingleItem(name: "nurse"),
-            SingleItem(name: "psychoTherapist"),
-            SingleItem(name: "sidekick"),
-            SingleItem(name: "sportsLover"),
-            SingleItem(name: "therapist"),
-            SingleItem(name: "trainer"),
-            SingleItem(name: "traveller"),
-          ],
+        ConstrainedBox(
+          constraints: const BoxConstraints(
+            // maxHeight: 50.0,
+            maxWidth: 353.0,
+          ),
+          child: const Wrap(
+            spacing: 10.0,
+            runSpacing: 5.0,
+            children: [
+              SingleItem(name: "adviser"),
+              SingleItem(name: "bingo"),
+              SingleItem(name: "boardGames"),
+              SingleItem(name: "bookDiscussions"),
+              SingleItem(name: "cardGames"),
+              SingleItem(name: "cookingAndBaking"),
+              SingleItem(name: "drawing"),
+              SingleItem(name: "drivingArround"),
+              SingleItem(name: "friend"),
+              SingleItem(name: "gardening"),
+              SingleItem(name: "healer"),
+              SingleItem(name: "knitting"),
+              SingleItem(name: "languageLearning"),
+              SingleItem(name: "listingToMusic"),
+              SingleItem(name: "memoryGames"),
+              SingleItem(name: "mindfulness"),
+              SingleItem(name: "natureExploration"),
+              SingleItem(name: "outdoorActivities"),
+              SingleItem(name: "painting"),
+              SingleItem(name: "petTherapy"),
+              SingleItem(name: "physicalActivity"),
+              SingleItem(name: "playAnInstrument"),
+              SingleItem(name: "puzzleGames"),
+              SingleItem(name: "readingClub"),
+              SingleItem(name: "relaxationExercises"),
+              SingleItem(name: "singingAlone"),
+              SingleItem(name: "socialActivities"),
+              SingleItem(name: "storytelling"),
+              SingleItem(name: "taiChi"),
+              SingleItem(name: "yoga"),
+            ],
+          ),
         ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "artLover"),
-        //     SingleItem(name: "adviser"),
-        //     SingleItem(name: "aide"),
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "bookWarm"),
-        //     SingleItem(name: "boardGamer"),
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "buddy"),
-        //     SingleItem(name: "cleaner"),
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "companion"),
-        //     SingleItem(name: "communicator"),
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "cook"),
-        //     SingleItem(name: "confidente"),
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "custodian"),
-        //     SingleItem(name: "driver"),
-        //     SingleItem(name: "friend"),
-        //     // SingleItem(name: "filmFanatic")
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "filmFanatic"),
-        //     SingleItem(name: "guide"),
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "hangout"),
-        //     SingleItem(name: "healer"),
-        //     SingleItem(name: "helper"),
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "houseSitter"),
-        //     SingleItem(name: "instructor"),
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "nurse"),
-        //     SingleItem(name: "psychoTherapist"),
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "sidekick"),
-        //     SingleItem(name: "sportsLover"),
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "therapist"),
-        //     SingleItem(name: "trainer"),
-        //   ],
-        // ),
-        // const Row(
-        //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        //   children: [
-        //     SingleItem(name: "traveller"),
-        //   ],
-        // ),
       ],
     );
   }
@@ -201,7 +115,7 @@ class SingleItem extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: CustomText(
                     text: name.tr().toUpperCase(),
-                    fontSize: 16.0.sp,
+                    fontSize: 16.0,
                     color: stateP.preferences.contains(name.tr())
                         ? white
                         : (state.user.role == "CG" ? mainBlue : mainOrange),

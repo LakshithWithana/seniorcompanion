@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:seniorcompanion/core/constants/colors.dart';
-import 'package:seniorcompanion/features/settings/cubit/settings_cubit.dart';
+import 'package:newseniiorcompaniion/core/constants/colors.dart';
+import 'package:newseniiorcompaniion/features/settings/cubit/settings_cubit.dart';
 
 import '../../../../../app/bloc/app_bloc.dart';
 import '../../../../../core/shared/widgets/custom_elevated_buttons.dart';

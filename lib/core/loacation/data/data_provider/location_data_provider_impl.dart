@@ -2,9 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:seniorcompanion/core/constants/firebase_constants.dart';
-import 'package:seniorcompanion/core/models/address_model/address_model.dart';
-import 'package:seniorcompanion/core/type_defs/type_defs.dart';
+import 'package:newseniiorcompaniion/core/constants/firebase_constants.dart';
+import 'package:newseniiorcompaniion/core/models/address_model/address_model.dart';
+import 'package:newseniiorcompaniion/core/type_defs/type_defs.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/errors/exceptions/exceptions.dart';
 import 'location_data_provider.dart';
@@ -75,6 +76,11 @@ class LocationDataProviderImpl implements LocationDataProvider {
           'lat': newLocation.latitude,
           'lon': newLocation.longitude,
         });
+
+        // Obtain shared preferences.
+        final SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setDouble('lat', newLocation.latitude);
+        await prefs.setDouble('lon', newLocation.longitude);
 
         return unit;
       } catch (e) {

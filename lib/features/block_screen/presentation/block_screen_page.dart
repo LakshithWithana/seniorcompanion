@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seniorcompanion/features/block_screen/presentation/block_screen_view.dart';
+import 'package:newseniiorcompaniion/features/block_screen/presentation/block_screen_view.dart';
 
 class BlockScreenPage extends StatelessWidget {
   BlockScreenPage({
