@@ -8,7 +8,7 @@ enum RoleType { general, careGiver, careRecipient }
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
-    Key? key,
+    super.key,
     this.controller,
     this.validator,
     this.initialValue,
@@ -27,7 +27,7 @@ class CustomTextFormField extends StatelessWidget {
     this.height,
     this.errorText,
     this.roleType,
-  }) : super(key: key);
+  });
 
   final TextEditingController? controller;
   final String? Function(String?)? validator;

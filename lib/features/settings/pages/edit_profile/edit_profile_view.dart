@@ -4,7 +4,7 @@ import 'package:newseniiorcompaniion/core/constants/colors.dart';
 import 'package:newseniiorcompaniion/core/models/user_details_model/user_details_model.dart';
 import 'package:newseniiorcompaniion/features/settings/pages/edit_profile/widgets/about_input_widget.dart';
 import 'package:newseniiorcompaniion/features/settings/pages/edit_profile/widgets/birthday_input_widget.dart';
-
+import 'package:newseniiorcompaniion/features/settings/pages/edit_profile/widgets/email_read_only_widget.dart';
 import 'package:newseniiorcompaniion/features/settings/pages/edit_profile/widgets/first_name_input_widget.dart';
 import 'package:newseniiorcompaniion/features/settings/pages/edit_profile/widgets/gender_selection_widget.dart';
 import 'package:newseniiorcompaniion/features/settings/pages/edit_profile/widgets/last_name_input_widget.dart';
@@ -49,8 +49,9 @@ class EditProfileView extends StatelessWidget {
                 firstName: userDetails.firstName,
                 about: userDetails.about,
               ),
+              EmailReadOnlyWidget(email: userDetails.email),
               GenderSelecterWidget(gender: userDetails.gender),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 25),
               BirthdayInputWidget(birthday: userDetails.birthday),
               AboutInputWidget(
                 about: userDetails.about,

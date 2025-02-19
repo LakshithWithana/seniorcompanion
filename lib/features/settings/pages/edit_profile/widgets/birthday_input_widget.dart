@@ -21,6 +21,7 @@ class BirthdayInputWidget extends StatelessWidget {
           builder: (context, state) {
             return CustomTextFormField(
               readOnly: true,
+              enabled: false,
               initialValue: birthday.split(" ").first,
               roleType: state.user.role == "CR"
                   ? RoleType.careRecipient

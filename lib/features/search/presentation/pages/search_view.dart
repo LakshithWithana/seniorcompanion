@@ -23,9 +23,8 @@ class SearchView extends StatelessWidget {
     AuthRepository authRepository = locator<AuthRepository>();
     return BlocListener<SearchCubit, SearchState>(
       listener: (context, state) {
-        if (state.searchResult != null) {
-          if (state.status == FormzSubmissionStatus.success &&
-              state.searchResult!.isNotEmpty) {
+        if (state.status == FormzSubmissionStatus.success) {
+          if (state.searchResult != null && state.searchResult!.isNotEmpty) {
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -36,25 +35,20 @@ class SearchView extends StatelessWidget {
               ),
             );
           } else {
-            authRepository.currentUser.role == "CG"
-                ? ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    backgroundColor: Colors.amber,
-                    content: Text(
-                      "No Care Recievers are near you!, Try again in a bit",
-                      style: TextStyle(
-                        color: black,
-                      ),
-                    ),
-                  ))
-                : ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                    backgroundColor: Colors.amber,
-                    content: Text(
-                      "No Care Givers are near you!, Try again in a bit",
-                      style: TextStyle(
-                        color: black,
-                      ),
-                    ),
-                  ));
+            // Only show snackbar when submission is successful but no results found
+            final message = authRepository.currentUser.role == "CG"
+                ? "No Care Recievers are near you! Try again in a bit"
+                : "No Care Givers are near you! Try again in a bit";
+
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar() // Hide any existing snackbar
+              ..showSnackBar(SnackBar(
+                backgroundColor: Colors.amber,
+                content: Text(
+                  message,
+                  style: const TextStyle(color: black),
+                ),
+              ));
           }
         }
       },
